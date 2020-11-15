@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Venns&#39; Space</title>
+    <link>http://wenbin-liu.github.io/posts/</link>
+    <description>Recent content in Posts on Venns&#39; Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 15 Nov 2020 10:41:11 +0800</lastBuildDate><atom:link href="http://wenbin-liu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>新生</title>
+      <link>http://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/</link>
+      <pubDate>Sun, 15 Nov 2020 10:41:11 +0800</pubDate>
+      
+      <guid>http://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/</guid>
+      <description>Hugo 使用GitHub搭建博客总算完成，这算是我的博客的庆生贴吧。</description>
+    </item>
+    
+  </channel>
+</rss>
