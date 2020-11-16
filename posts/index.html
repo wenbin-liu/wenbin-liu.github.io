@@ -122,10 +122,12 @@
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       本文主要整理一些上 实分析与复分析 课时遇到的一些问题。
 测度论相关 1. 测度完备化的唯一性 测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $ 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。
-\[ \Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
-上式中的$\mu^* (P) := \mu(A)$。
+\[ \Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
+上式中的 $\mu^* (P) := \mu(A)$。
 stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
-那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。
+那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？
+ 记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$
+那么恰有 $P\cup \Sigma = \Sigma^*$ 从而知道上述的完备化是最小的。 那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？
  待更新
     </div>
   </div>
@@ -168,7 +170,7 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Hugo 使用GitHub搭建博客总算完成，这算是我的博客的庆生贴吧。
+      Hugo 使用Hugo搭建博客总算完成，这算是我的博客的庆生贴吧。
     </div>
   </div>
 </div>

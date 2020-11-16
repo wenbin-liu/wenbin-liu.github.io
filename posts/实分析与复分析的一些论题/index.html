@@ -8,10 +8,12 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="本文主要整理一些上 实分析与复分析 课时遇到的一些问题。
 测度论相关 1. 测度完备化的唯一性 测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $ 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。
-\[ \Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
-上式中的$\mu^* (P) := \mu(A)$。
+\[ \Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
+上式中的 $\mu^* (P) := \mu(A)$。
 stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
-那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。
+那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？
+ 记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$
+那么恰有 $P\cup \Sigma = \Sigma^*$ 从而知道上述的完备化是最小的。 那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？
  待更新">
     <meta name="generator" content="Hugo 0.78.2" />
     
@@ -36,10 +38,12 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
     <meta property="og:title" content="实分析与复分析的一些论题" />
 <meta property="og:description" content="本文主要整理一些上 实分析与复分析 课时遇到的一些问题。
 测度论相关 1. 测度完备化的唯一性 测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $ 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。
-\[ \Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
-上式中的$\mu^* (P) := \mu(A)$。
+\[ \Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
+上式中的 $\mu^* (P) := \mu(A)$。
 stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
-那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。
+那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？
+ 记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$
+那么恰有 $P\cup \Sigma = \Sigma^*$ 从而知道上述的完备化是最小的。 那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？
  待更新" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/" />
@@ -48,14 +52,16 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
 <meta itemprop="name" content="实分析与复分析的一些论题">
 <meta itemprop="description" content="本文主要整理一些上 实分析与复分析 课时遇到的一些问题。
 测度论相关 1. 测度完备化的唯一性 测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $ 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。
-\[ \Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
-上式中的$\mu^* (P) := \mu(A)$。
+\[ \Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
+上式中的 $\mu^* (P) := \mu(A)$。
 stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
-那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。
+那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？
+ 记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$
+那么恰有 $P\cup \Sigma = \Sigma^*$ 从而知道上述的完备化是最小的。 那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？
  待更新">
 <meta itemprop="datePublished" content="2020-11-16T18:22:53+08:00" />
 <meta itemprop="dateModified" content="2020-11-16T18:22:53+08:00" />
-<meta itemprop="wordCount" content="37">
+<meta itemprop="wordCount" content="56">
 
 
 
@@ -64,10 +70,12 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
 <meta name="twitter:title" content="实分析与复分析的一些论题"/>
 <meta name="twitter:description" content="本文主要整理一些上 实分析与复分析 课时遇到的一些问题。
 测度论相关 1. 测度完备化的唯一性 测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $ 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。
-\[ \Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
-上式中的$\mu^* (P) := \mu(A)$。
+\[ \Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\} \]
+上式中的 $\mu^* (P) := \mu(A)$。
 stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
-那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。
+那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？
+ 记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$
+那么恰有 $P\cup \Sigma = \Sigma^*$ 从而知道上述的完备化是最小的。 那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？
  待更新"/>
 
 	
@@ -184,15 +192,23 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
 和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。</p>
 
 <p><span  class="math">\[
-\Sigma^* = \left\{P \in X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\}
+\Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\}
 \]</span></p>
 
-<p>上式中的$\mu^* (P) := \mu(A)$。</p>
+<p>上式中的 $\mu^* (P) := \mu(A)$。</p>
 
 <p><a href="https://math.stackexchange.com/questions/627002/uniqueness-of-completion-of-a-measure-space">stackoverflow</a>
 谈论了在上述$\sigma$代数上完备测度的唯一性。</p>
 
-<p>那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗。</p>
+<p>那么上述的$\Sigma$代数是唯一能使测度完备的$\sigma$-代数吗？</p>
+
+<hr>
+
+<p>记$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$</p>
+
+<p>那么恰有 $P\cup \Sigma = \Sigma^*$
+从而知道上述的完备化是最小的。
+那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？</p>
 
 <hr>
 
