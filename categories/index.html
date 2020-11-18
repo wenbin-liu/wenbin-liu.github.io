@@ -36,7 +36,7 @@
 <meta property="og:description" content="抓住时间的尾巴" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://wenbin-liu.github.io/categories/" />
-<meta property="og:updated_time" content="2020-11-16T18:22:53+08:00" />
+<meta property="og:updated_time" content="2020-11-18T18:17:01+08:00" />
 <meta itemprop="name" content="Categories">
 <meta itemprop="description" content="抓住时间的尾巴">
 <meta name="twitter:card" content="summary"/>
@@ -167,6 +167,40 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
 \[ \mu * \nu (E) = \int f *g d m \]
 于是
 \[ \frac{d(\mu*\nu)}{d m} = f* g \]
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E9%A1%B9%E7%9B%AE" class="link blue hover-black">
+            Category: 项目
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="http://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/" class="link black dim">
+        吉他拾音器(1)
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      IDEA 最近突发奇想，想利用吉他弦切割磁感线产生电流来采集琴音。类似与电吉他拾音的 原理，这样采集的声音会是什么样的呢。电流通过琴弦传到脑门会和电吉他的音色一样吗？ 我已经跃跃欲试了。
+原理 总所周知，吉他靠琴弦振动发声。我如果在吉他的弦下方放置一个磁铁， 那么琴弦振动时刚好切割磁感线，此时如果在用导线将吉他弦两头连入电阻， 弦中将产生电流，电流的大小由下式给出
+$$ I = Blv $$
+电流的频率将与琴弦的频率相同，电流的振幅将正比与运动速度，也就是 拨弦的力度。采集的原理是没有问题的。
+于是可以有一个最简单的采集方案。
+上图中的耳机可以换成一个电阻后使用放大器放大后接入ADC，实现数字化采集，存入电脑。
+虽然上图仅展示了一根弦的情况，吉他有六根弦，此时可以用运放构建一个 六路加法器后再接入ADC。原理是一样的。
+简化 上述的结构已经可以采集出琴弦的声音了，吉他的弦两端挂着各自挂着一 根线，非常不方便。
+这天上课的时候灵光一闪，发现其实可以不用接线，也能把信号采集出来。 因为当琴弦开路时，也会有电荷从两端流向另一端，这可以等价的看成琴弦两端 通过一个电容相连，该电容可以计算出来(其实没必要,因为琴弦可以看作恒流源)。
+琴弦中流过的电流同样能激发出一个电磁场，于是若再琴弦下方放置一个电感 线圈用来采集该电磁场，便能采集出琴弦的声音。
+这一方案非常简洁，仅仅需要再吉他上安装一个磁铁，和一个电感线圈， 甚至直接将电感缠绕在磁铁上也毫无妨碍。
+但是此时测量的是电磁场的二级效应了，导线中产生的电流本身就不大， 其产生的电磁场也会很小，进一步,通过线圈采集回来的信号就微乎其微了， 从而该方法需要有一个放大器提供足够的放大倍数才能正常工作。
+下一步 接下来就是做实验实测了，不过最近没时间，应该要等到寒假才可继续。
     </div>
   </div>
 </div>
