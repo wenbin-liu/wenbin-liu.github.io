@@ -7,7 +7,7 @@
     <title>吉他 | Venns&#39; Space</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="抓住时间的尾巴">
-    <meta name="generator" content="Hugo 0.78.2" />
+    <meta name="generator" content="Hugo 0.80.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -36,7 +36,7 @@
 <meta property="og:description" content="抓住时间的尾巴" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://wenbin-liu.github.io/tags/%E5%90%89%E4%BB%96/" />
-<meta property="og:updated_time" content="2020-11-18T18:17:01+08:00" />
+<meta property="og:updated_time" content="2020-11-19T11:48:01+08:00" />
 <meta itemprop="name" content="吉他">
 <meta itemprop="description" content="抓住时间的尾巴">
 <meta name="twitter:card" content="summary"/>
@@ -120,6 +120,35 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="http://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/" class="link black dim">
+        吉他拾音器(2)
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      续 上节提到了吉他中电流的公式为 $$ I = Blv $$ 本文挖掘该公式更深层的含义。
+音色 上述公式揭露了一个很有趣的现象，那就是电流的幅度与琴弦的速度成正比，而 琴弦的振动速度也与其振动频率成正比，这会导致$n$ 次谐波的振幅放大$n$倍。也就是 说琴弦中电流的音色与琴弦的音色不同。
+由于琴弦振动时除了基频外还有倍频，它们构成的频谱共同决定了琴弦的音色。下面用公式 说明上述的论述。
+假设琴弦基频$\omega$, 琴弦振动时也会有谐波，于是琴弦的振动可以写成下列形式：
+$$ \hat{x}(t) = \sum_{n=1}^\infty c_n e^{in\omega t} $$
+$\hat{x}(t)$ 中的实部代表了琴弦的振动位移,也是人耳听到的声音。写成复数便于计算。
+$$ \hat{v}(t)=\frac{d \hat{x}}{dt} =i n\omega c_n e^{i n\omega t} $$
+而$\hat{I} = Bl \hat{v}$ 。从而
+$$ \hat{I} = \sum_{n=1}^\infty = A n c_n e^{i n \omega t} $$
+可以看出电流的频谱是吉他原生声音频谱的线性加权。 从而其高频部分会更大，声音会更尖锐，这恰好能够解释为什么 电吉他的音色要比原生吉他的音色尖锐的多。
+这就是电音吗？
+验证 上述的结论表明，吉他琴弦中电流的频谱被线性加权了，于是可以 构造一个相应的滤波器来将普通的声音变为“电音”,这可以用来验证上 述推导。
+相反也可以构造一个逆系统将电音转化为原生吉他的声音。
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="http://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/" class="link black dim">
         吉他拾音器(1)
       </a>
@@ -151,7 +180,7 @@ $$ I = Blv $$
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://wenbin-liu.github.io/" >
-    &copy;  Venns' Space 2020 
+    &copy;  Venns' Space 2021 
   </a>
     <div>
 
