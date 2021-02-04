@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>三维旋转群 | Venns&#39; Space</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
+ \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
+\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
+上式的\(A^*\) 意为厄米转置。
+根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
+\begin{equation} A = \left[ \begin{matrix} u &amp; v \\\
+-\overline v &amp; \overline u \end{matrix} \right ] \end{equation}
+并有 \(|u|^2 &#43; | v| ^2 = 1\)
+更进一步，假设 \(u = x_0 &#43; x_1 i,v = x_2 &#43; x_3 i\) 从而可将 \(A\) 写成向量形式。">
+    <meta name="generator" content="Hugo 0.80.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="三维旋转群" />
+<meta property="og:description" content="看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
+ \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
+\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
+上式的\(A^*\) 意为厄米转置。
+根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
+\begin{equation} A = \left[ \begin{matrix} u &amp; v \\\
+-\overline v &amp; \overline u \end{matrix} \right ] \end{equation}
+并有 \(|u|^2 &#43; | v| ^2 = 1\)
+更进一步，假设 \(u = x_0 &#43; x_1 i,v = x_2 &#43; x_3 i\) 从而可将 \(A\) 写成向量形式。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/" />
+<meta property="article:published_time" content="2021-02-04T00:00:00+08:00" />
+<meta property="article:modified_time" content="2021-02-04T00:00:00+08:00" />
+<meta itemprop="name" content="三维旋转群">
+<meta itemprop="description" content="看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
+ \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
+\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
+上式的\(A^*\) 意为厄米转置。
+根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
+\begin{equation} A = \left[ \begin{matrix} u &amp; v \\\
+-\overline v &amp; \overline u \end{matrix} \right ] \end{equation}
+并有 \(|u|^2 &#43; | v| ^2 = 1\)
+更进一步，假设 \(u = x_0 &#43; x_1 i,v = x_2 &#43; x_3 i\) 从而可将 \(A\) 写成向量形式。">
+<meta itemprop="datePublished" content="2021-02-04T00:00:00+08:00" />
+<meta itemprop="dateModified" content="2021-02-04T00:00:00+08:00" />
+<meta itemprop="wordCount" content="515">
+
+
+
+<meta itemprop="keywords" content="代数,群论," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="三维旋转群"/>
+<meta name="twitter:description" content="看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
+ \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
+\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
+上式的\(A^*\) 意为厄米转置。
+根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
+\begin{equation} A = \left[ \begin{matrix} u &amp; v \\\
+-\overline v &amp; \overline u \end{matrix} \right ] \end{equation}
+并有 \(|u|^2 &#43; | v| ^2 = 1\)
+更进一步，假设 \(u = x_0 &#43; x_1 i,v = x_2 &#43; x_3 i\) 从而可将 \(A\) 写成向量形式。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Venns&#39; Space
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="博文 page">
+              博文
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        博文
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/&amp;text=%e4%b8%89%e7%bb%b4%e6%97%8b%e8%bd%ac%e7%be%a4" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/&amp;title=%e4%b8%89%e7%bb%b4%e6%97%8b%e8%bd%ac%e7%be%a4" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">三维旋转群</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              Venns
+          
+          </strong>
+      </p>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-02-04T00:00:00+08:00">February 4, 2021</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><blockquote>
+<p>看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。</p>
+</blockquote>
+<h2 id="su-2--群">\(SU_2\) 群</h2>
+<p>\(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：</p>
+<p>\begin{equation}
+SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\}
+\end{equation}</p>
+<p>上式的\(A^*\) 意为厄米转置。</p>
+<p>根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式</p>
+<p>\begin{equation}
+A =
+\left[
+\begin{matrix}
+u &amp;  v \\\<br>
+-\overline v &amp;  \overline u
+\end{matrix}
+\right ]
+\end{equation}</p>
+<p>并有 \(|u|^2 +  | v| ^2 = 1\)</p>
+<p>更进一步，假设 \(u = x_0 + x_1 i,v = x_2 + x_3 i\) 从而可将
+\(A\) 写成向量形式。</p>
+<p>\begin{align}
+A &amp; = x_0 I + x_1 \mathbf i + x_{2} \mathbf j + x_3 \mathbf k
+\\\<br>
+\mathbf i &amp;= \mathrm{diag}\left\{ i, - i  \right\}
+\\\<br>
+\mathbf j &amp; = \left[
+\begin{matrix}
+0 &amp; 1 \\\<br>
+-1 &amp; 0
+\end{matrix}
+\right]
+\\\<br>
+\mathbf k &amp; = \left[
+\begin{matrix}
+0 &amp; i \\\<br>
+i &amp; 0
+\end{matrix}
+\right]
+\end{align}</p>
+<p>上式中的表示就是四元数表示，\(\mathbf{i,j,k}\) 均是厄米共轭矩阵,
+其实他也是 \(SU_{2}\) 李代数的一组基，它满足四元数的运算律</p>
+<p>\begin{align}
+\mathbf i^{2} = \mathbf j^2  = \mathbf k^2 = -1  \\\<br>
+\mathbf {ij} = \mathbf k, \mathbf{jk} = \mathbf i, \mathbf{ki} = \mathbf j
+\end{align}</p>
+<p>又知，\(SU_2\) 满足约束 \(x_0^{2} + x_1^2+x_2^2 + x_3^2=1\) ，
+\(SU_{2}\) 是四维空间中的三维球面 \(\mathbb S^{3}\) , 其拓扑结构比较简单。</p>
+<p>公式(3) 也把\(A\) 分解为了有迹部分和迹零部分。也就是</p>
+<p>\begin{equation}
+A = I \cos{\theta} + P \sin{\theta}
+\end{equation}</p>
+<p>其中 \(\mathrm{tr} P = 0\)</p>
+<h2 id="so-3--群">\(SO_3\) 群</h2>
+<p>现在可以谈论 \(SO_{3}\) 了。这里将使用共轭操作。 注意到共轭作用是保持迹不变的（因为不改变特征多项式）。从而它定义了迹零矩阵所构成的向量空间 \(\mathbb V = \mathrm{span}\left&lt;\mathbf{i,j,k} \right&gt;\)
+上的群作用。我们将说明这是一个到 \(SO_{3}\) 上的群同态。</p>
+<p>定义群作用：</p>
+<p>\begin{align}
+\gamma: SU_2\times \mathbb V &amp; \to \mathbb V
+\\\<br>
+\gamma_{A} U &amp;:= A U A^{*}
+\\\<br>
+U &amp;:= x_1 \mathbf i + x_2 \mathbf j + x_3 \mathbf k \in \mathbb V
+\end{align}</p>
+<p>上述即是共轭操作，故是群作用，即 \(\gamma_A \gamma_B = \gamma_{AB}\)</p>
+<p>我们将说明这个群作用是 \(SO_3\) 中的元素，为此需说明：</p>
+<p>\(\gamma_{A}\) 不改变 \(U\) 的长度，等价来说，保 \(\mathbb V\) 中的内积，为了便于计算，最好将该内积的定义转移的 \(SU_2\) 中。可以发现以下事实成立：</p>
+<p>\begin{align}
+\left &lt; U,V\right &gt; &amp;= -\frac{1}{2}\mathrm{tr}(UV)
+\\\<br>
+\left &lt; U,V\right &gt; &amp;:= x_1 y_1 + x_2 y_2 + x_3 y_3
+\\\<br>
+U &amp;:= x_1 \mathbf i + x_2 \mathbf j + x_3\mathbf k
+\\\<br>
+V &amp;:= y_1 \mathbf i + y_2 \mathbf j + y_3\mathbf k
+\end{align}</p>
+<p>通过上述公式不难发现</p>
+<p>\[
+\left &lt;\gamma_A U,\gamma_A V\right &gt;
+= -\frac{1}{2}\mathrm{tr}(A UV A^*) = \left &lt; U,V\right &gt;
+\]
+，这说明,该群作用是 \(O_3\) 中的作用。</p>
+<p>再证上述作用的矩阵的行列式为1, 这是因为 \(SU_{2}\) 是一个球面，它的拓扑是连通的。\(O_3\) 有两个连通分支: \(SO_3\) 和另一个陪集。\(\gamma_{A}\) 是连续映射， 从而其象是连通的，从而在 \(SO_3\) 中。</p>
+<p>现在知道 \(\gamma_A\) 是 \(SO_3\) 中的作用，我们来说明这个旋转的轴是显示给出的，记</p>
+<p>\begin{equation}
+A := I \cos \theta + P \sin \theta
+\end{equation}</p>
+<p>则 \(\gamma_A P = P\) ，这是因为</p>
+<ul>
+<li>\(\mathrm{tr}(P) = 0 \Leftrightarrow P^{2} = I\)</li>
+<li>\(P^* + P = 0\)</li>
+</ul>
+<p>通过计算可得。于是 \(P\) 是 \(\gamma_A\) 的转轴。</p>
+<p>转轴找到了是 \(P\) , 接下来找旋转角。</p>
+<p>视 \(\gamma_{A},\gamma_B\) 为 \(SO_3\) 中的元素则，\(\gamma_{A^{\prime}}
+= \gamma_B \gamma_A \gamma_B ^{-1}=\gamma_{BAB^{*}}\) 是一个坐标变换不改变旋转角。</p>
+<p>又知在 \(SU_2\) 中每个迹相等的类是一个等价类。任意的 \(A\) 必定与
+\(B = I \cos \theta + \mathbf i \sin\theta\) 共轭，我们直接计算 \(\gamma_B \mathbf j = \mathbf j \cos 2\theta + \mathbf k \sin 2\theta\)
+可得旋转角是 \(2\theta\) ，这也说明了
+\(\gamma\) 是到 \(SO_{3}\) 上的同态。</p>
+<p>最后我们，来说明这个同态的核。假设 \(A\) 是同态的核中的元素则</p>
+<p>\begin{align}
+\gamma_A U = AUA^{*} = U ,\forall U \in \mathbb V
+\\\<br>
+\Leftrightarrow A(I\cos\theta + U\sin\theta)A^{*} = (I\cos\theta + U\sin \theta),
+\forall \theta,U \in \mathbb V
+\end{align}</p>
+<p>从而同态的核即为 \(SU_2\) 的中心 \(Z\) , 而它恰是 \(\left\{\pm I\right\}\)</p>
+<p>我们将上述的证明总结为定理：</p>
+<!-- raw HTML omitted -->
+<p>上述的 \(\gamma_{A} U := A U A^{*}, U\in\mathbb V\)
+定义了一个从 \(SU_2\) 到 \(SO_3\) 上的群同态，该同态的核为
+\(\left\{\pm I\right\}\) 。若 \(A = I\cos \theta + P\sin\theta\) ,
+其中 \(P \in \mathbb V ,\theta \in [0,\pi)\) 。则： \(\gamma_{A}\) 是 \(\mathbb V\) 上的旋转， 旋转轴为 \(P\) ，旋转角为 \(2\theta\) 。</p>
+<!-- raw HTML omitted -->
+<h2 id="总结">总结</h2>
+<p>通过上述定理。我们可以通过四元数计算旋转，四元数表示法最大的便利是能直接看出旋转轴和旋转角，这使得姿态的表达更加便利。</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/%E4%BB%A3%E6%95%B0" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">代数</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/%E7%BE%A4%E8%AE%BA" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">群论</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://wenbin-liu.github.io/" >
+    &copy;  Venns' Space 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+
+  window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>

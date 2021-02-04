@@ -8,6 +8,23 @@
     <language>zh-cn</language>
     <lastBuildDate>Mon, 16 Nov 2020 09:57:32 +0800</lastBuildDate><atom:link href="http://wenbin-liu.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>三维旋转群</title>
+      <link>http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0800</pubDate>
+      
+      <guid>http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/</guid>
+      <description>看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
+ \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
+\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
+上式的\(A^*\) 意为厄米转置。
+根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
+\begin{equation} A = \left[ \begin{matrix} u &amp;amp; v \\\
+-\overline v &amp;amp; \overline u \end{matrix} \right ] \end{equation}
+并有 \(|u|^2 + | v| ^2 = 1\)
+更进一步，假设 \(u = x_0 + x_1 i,v = x_2 + x_3 i\) 从而可将 \(A\) 写成向量形式。</description>
+    </item>
+    
+    <item>
       <title>2020年,再见</title>
       <link>http://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/</link>
       <pubDate>Wed, 30 Dec 2020 23:36:00 +0800</pubDate>
