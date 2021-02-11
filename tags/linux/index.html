@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Venns&#39; Space | Venns&#39; Space</title>
+    <title>Linux | Venns&#39; Space</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="抓住时间的尾巴">
     <meta name="generator" content="Hugo 0.80.0" />
@@ -27,20 +27,20 @@
 
     
     
-      <link href="/index.xml" rel="alternate" type="application/rss+xml" title="Venns&#39; Space" />
-      <link href="/index.xml" rel="feed" type="application/rss+xml" title="Venns&#39; Space" />
+      <link href="/tags/linux/index.xml" rel="alternate" type="application/rss+xml" title="Venns&#39; Space" />
+      <link href="/tags/linux/index.xml" rel="feed" type="application/rss+xml" title="Venns&#39; Space" />
       
     
     
-    <meta property="og:title" content="Venns&#39; Space" />
+    <meta property="og:title" content="Linux" />
 <meta property="og:description" content="抓住时间的尾巴" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://wenbin-liu.github.io/" />
-<meta property="og:updated_time" content="2020-11-16T09:57:32+08:00" />
-<meta itemprop="name" content="Venns&#39; Space">
+<meta property="og:url" content="http://wenbin-liu.github.io/tags/linux/" />
+<meta property="og:updated_time" content="2021-02-11T00:00:00+08:00" />
+<meta itemprop="name" content="Linux">
 <meta itemprop="description" content="抓住时间的尾巴">
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Venns&#39; Space"/>
+<meta name="twitter:title" content="Linux"/>
 <meta name="twitter:description" content="抓住时间的尾巴"/>
 
 	
@@ -97,12 +97,8 @@
 
       <div class="tc-l pv4 pv6-l ph3 ph4-ns">
         <h1 class="f2 f-subheadline-l fw2 white-90 mb0 lh-title">
-          Venns&#39; Space
+          Linux
         </h1>
-        
-          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center mt3">
-            抓住时间的尾巴
-          </h2>
         
       </div>
     </div>
@@ -111,47 +107,25 @@
 
     <main class="pb7" role="main">
       
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray">
-    <p>欢迎来到我的博客，这里主要分享我在学习过程中碰到的一些有趣的问题，主题广泛，没有限制。</p>
-
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links nested-img mid-gray">
+      <p>标签为“Linux”的页面如下</p>
+    </div>
   </article>
-  
-  
-  
-  
-  
-  
-  
-    
-    
-
-    <div class="pa3 pa4-ns w-100 w-70-ns center">
+  <div class="mw8 center">    
+    <section class="flex-ns flex-wrap justify-around mt5">
       
-       
-          <h1 class="flex-none">
-            最近 博文
-          </h1>
-        
-
-      
-
-      <section class="w-100 mw8">
-        
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" class="color-inherit dim link">
-            Linux上使用OneDrive
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          前言 最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" class="link black dim">
+        Linux上使用OneDrive
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      前言 最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。
 个人账户的OneDrive使用非常简单，直接使用开源开发者提供的 onedrive 或者 rclone 软件即可。但是对于学校校友邮箱提供的OneDrive不是运行在微软官方的服务器上的而是运行在世纪互联的的代理服务器上，它的帐号与微软帐号是完全独立的。这和用学校邮箱申请的教育优惠版OneDrive是不一样的。
 教育优惠版OneDrive(非世纪互联) 对于教育优惠版的OneDrive, 即使用带 .edu 后缀的邮箱申请的帐号是有1T 空间的。该帐号存储在微软官方的服务器上。但是依然不能使用onedrive软件和rclone中的onedrive后端。会显示没有管理员，处于 unmanaged 的状态。必须使用webdav的方式登陆。
 所幸可以使用rclone的webdav后端登陆，见sharepoint.
@@ -161,89 +135,14 @@
 从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 挂载将会出现 403 Forbidden ,服务器会拒绝这一请求。
 使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
 [/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; 使用命令 sudo mount -t davfs https://[YOUR-DOMAIN]-my.
-        </div>
-          <a href="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">继续阅读</a>
-        
-      </div>
     </div>
   </div>
-</article>
+</div>
 
-          </div>
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/" class="color-inherit dim link">
-            三维旋转群
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。
- \(SU_2\) 群 \(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：
-\begin{equation} SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\} \end{equation}
-上式的\(A^*\) 意为厄米转置。
-根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式
-\begin{equation} A = \left[ \begin{matrix} u &amp; v \\\
--\overline v &amp; \overline u \end{matrix} \right ] \end{equation}
-并有 \(|u|^2 + | v| ^2 = 1\)
-更进一步，假设 \(u = x_0 + x_1 i,v = x_2 + x_3 i\) 从而可将 \(A\) 写成向量形式。
         </div>
-          <a href="http://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">继续阅读</a>
-        
-      </div>
-    </div>
+      
+    </section>
   </div>
-</article>
-
-          </div>
-        
-      </section>
-
-      
-      <section class="w-100">
-        <h1 class="f3">更多</h1>
-        
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="http://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/" class="link black dim">
-              2020年,再见
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="http://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/" class="link black dim">
-              吉他拾音器(2)
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="http://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/" class="link black dim">
-              吉他拾音器(1)
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="http://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/" class="link black dim">
-              实分析与复分析的一些论题
-            </a>
-          </h2>
-        
-
-        
-        
-          <a href="http://wenbin-liu.github.io/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">所有 博文</a>
-        
-        </section>
-      
-
-      </div>
-  
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

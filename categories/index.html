@@ -36,7 +36,7 @@
 <meta property="og:description" content="抓住时间的尾巴" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://wenbin-liu.github.io/categories/" />
-<meta property="og:updated_time" content="2021-02-04T00:00:00+08:00" />
+<meta property="og:updated_time" content="2021-02-11T00:00:00+08:00" />
 <meta itemprop="name" content="Categories">
 <meta itemprop="description" content="抓住时间的尾巴">
 <meta name="twitter:card" content="summary"/>
@@ -190,6 +190,37 @@ stackoverflow 谈论了在上述$\sigma$代数上完备测度的唯一性。
 \[ \mu * \nu (E) = \int f *g d m \]
 于是
 \[ \frac{d(\mu*\nu)}{d m} = f* g \]
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA" class="link blue hover-black">
+            Category: 计算机
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" class="link black dim">
+        Linux上使用OneDrive
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      前言 最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。
+个人账户的OneDrive使用非常简单，直接使用开源开发者提供的 onedrive 或者 rclone 软件即可。但是对于学校校友邮箱提供的OneDrive不是运行在微软官方的服务器上的而是运行在世纪互联的的代理服务器上，它的帐号与微软帐号是完全独立的。这和用学校邮箱申请的教育优惠版OneDrive是不一样的。
+教育优惠版OneDrive(非世纪互联) 对于教育优惠版的OneDrive, 即使用带 .edu 后缀的邮箱申请的帐号是有1T 空间的。该帐号存储在微软官方的服务器上。但是依然不能使用onedrive软件和rclone中的onedrive后端。会显示没有管理员，处于 unmanaged 的状态。必须使用webdav的方式登陆。
+所幸可以使用rclone的webdav后端登陆，见sharepoint.
+ 登陆到你的onedrive帐号上，此时的链接形如 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/_layouts/15/onedrive.aspx 那么你的webdav地址就为 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 配置文件如下所示  [sharepoint] type = webdav url = https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents vendor = sharepoint user = YourEmailAddress pass = encryptedpassword 使用命令 rclone ls sharepoint: 便可列出网盘中的文件
+世纪互联版校友邮箱版OneDrive 该版本的Onedrive的服务器是又世纪互联管理的。而作为校友邮箱是有管理员的，要使用上述开源开发者的onedrive客户端，必须让管理员安装相应的服务。如果没有安装，便无法使用。
+另外实际测试，rclone 的webdav客户端不支持世纪互联。
+从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 挂载将会出现 403 Forbidden ,服务器会拒绝这一请求。
+使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
+[/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; 使用命令 sudo mount -t davfs https://[YOUR-DOMAIN]-my.
     </div>
   </div>
 </div>

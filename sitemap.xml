@@ -4,14 +4,35 @@
   
   <url>
     <loc>http://wenbin-liu.github.io/categories/</loc>
-    <lastmod>2021-02-04T00:00:00+08:00</lastmod>
+    <lastmod>2021-02-11T00:00:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://wenbin-liu.github.io/tags/linux/</loc>
+    <lastmod>2021-02-11T00:00:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/</loc>
+    <lastmod>2021-02-11T00:00:00+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://wenbin-liu.github.io/tags/</loc>
-    <lastmod>2021-02-04T00:00:00+08:00</lastmod>
+    <lastmod>2021-02-11T00:00:00+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/</loc>
+    <lastmod>2021-02-11T00:00:00+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
