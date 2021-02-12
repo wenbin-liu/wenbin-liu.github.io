@@ -140,7 +140,7 @@
 另外实际测试，rclone 的webdav客户端不支持世纪互联。
 从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 挂载将会出现 403 Forbidden ,服务器会拒绝这一请求。
 使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
-[/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; 使用命令 sudo mount -t davfs https://[YOUR-DOMAIN]-my.
+[/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; uselocks 0 实际发现必须使用 uselocks 0 否则无法写入文件。见 ArchWiki davfs2
     </div>
   </div>
 </div>
