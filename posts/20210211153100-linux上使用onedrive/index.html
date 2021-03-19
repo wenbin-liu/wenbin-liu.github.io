@@ -16,7 +16,7 @@
 从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 挂载将会出现 403 Forbidden ,服务器会拒绝这一请求。
 使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
 [/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; uselocks 0 实际发现必须使用 uselocks 0 否则无法写入文件。见 ArchWiki davfs2">
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.81.0" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -48,9 +48,10 @@
 使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
 [/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; uselocks 0 实际发现必须使用 uselocks 0 否则无法写入文件。见 ArchWiki davfs2" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" />
-<meta property="article:published_time" content="2021-02-11T00:00:00+08:00" />
-<meta property="article:modified_time" content="2021-02-11T00:00:00+08:00" />
+<meta property="og:url" content="http://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-02-11T00:00:00&#43;08:00" />
+<meta property="article:modified_time" content="2021-02-11T00:00:00&#43;08:00" />
+
 <meta itemprop="name" content="Linux上使用OneDrive">
 <meta itemprop="description" content="前言 最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。
 个人账户的OneDrive使用非常简单，直接使用开源开发者提供的 onedrive 或者 rclone 软件即可。但是对于学校校友邮箱提供的OneDrive不是运行在微软官方的服务器上的而是运行在世纪互联的的代理服务器上，它的帐号与微软帐号是完全独立的。这和用学校邮箱申请的教育优惠版OneDrive是不一样的。
@@ -61,15 +62,10 @@
 另外实际测试，rclone 的webdav客户端不支持世纪互联。
 从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents 挂载将会出现 403 Forbidden ,服务器会拒绝这一请求。
 使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 rtFa 一个是 FedAuth ，然后在 /etc/davfs2/davfs2.conf 文件中添加如下配置
-[/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; uselocks 0 实际发现必须使用 uselocks 0 否则无法写入文件。见 ArchWiki davfs2">
-<meta itemprop="datePublished" content="2021-02-11T00:00:00+08:00" />
-<meta itemprop="dateModified" content="2021-02-11T00:00:00+08:00" />
+[/home/user/OneDrive] add_header Cookie rtFa=&lt;rtFa的cookie值&gt;;FedAuth=&lt;FedAuth的cookie值&gt; uselocks 0 实际发现必须使用 uselocks 0 否则无法写入文件。见 ArchWiki davfs2"><meta itemprop="datePublished" content="2021-02-11T00:00:00&#43;08:00" />
+<meta itemprop="dateModified" content="2021-02-11T00:00:00&#43;08:00" />
 <meta itemprop="wordCount" content="78">
-
-
-
-<meta itemprop="keywords" content="Linux," />
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="Linux," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Linux上使用OneDrive"/>
 <meta name="twitter:description" content="前言 最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。
 个人账户的OneDrive使用非常简单，直接使用开源开发者提供的 onedrive 或者 rclone 软件即可。但是对于学校校友邮箱提供的OneDrive不是运行在微软官方的服务器上的而是运行在世纪互联的的代理服务器上，它的帐号与微软帐号是完全独立的。这和用学校邮箱申请的教育优惠版OneDrive是不一样的。

@@ -6,7 +6,23 @@
     <description>Recent content in 代数 on Venns&#39; Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 14 Feb 2021 00:00:00 +0800</lastBuildDate><atom:link href="http://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Mar 2021 00:00:00 +0800</lastBuildDate><atom:link href="http://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RSA加密</title>
+      <link>http://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/</link>
+      <pubDate>Fri, 19 Mar 2021 00:00:00 +0800</pubDate>
+      
+      <guid>http://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/</guid>
+      <description>前言 最近看了下密码学的原理。研究密码学纯属偶然。之前逛淘宝二手书店，看到里冯克勤写的一本《代数与通信》，觉得非常新颖。一个数论学家竟然讲起了通信，他的见解一定值得参考。
+另一件事也无形中促进了我关注密码学。去年毕业之后常与我的朋友聚餐闲聊，他现在在一个做比特币钱包的公司工作。闲聊之余，他常给我科普比特币，虽然讲的一塌糊涂，尤其是谈及椭圆函数签名时，更是如坠云间，不知所云，尽管如此 ，他对比特币的热情还是引起了我一丝丝的兴趣。毕竟我是第一次见他对技术产生了兴趣。
+后面12月份比特币大涨。考试结束后有一段清闲时间，遂看起了中本聪的比特币论文。开始时看的一知半解，后面慢慢琢磨，也能体会到其中的有趣。Hash函数确实有许多妙用啊！数字签名的签名二字也是非常贴切。
+另外，阅读Artin的大作《Algebra》已有两个月。到今天为止，已经看完了 Factorization 一章。环论的应用大部分是在数论这类纯粹数学领域，不像群论还能应用于对称这类有几何图像的领域。对于纯粹的抽象，我已经有些许厌烦了。读完 RSA 加密和 椭圆函数 加密，我对数论，环论肃然起敬。兴趣也增加了那么一点。
+RSA加密 RSA加密的核心就一个定理：
+ 假设 \(n=pq\) ，\(p,q\) 是素数。在环 \(\mathbb Z_{\phi(n)}\) 取一单位 \(e\) ，即单位群 \(\mathbb Z_{\phi(n)}^{\times}\) 中的元素和它的逆元 \(d\) 。即 \(ed = 1 \mod \phi(n)\) 。那么 \(\forall x \in \mathbb Z_n\) 恒有： \[ x^{ed} = x \mod n \]
+ 上述的 \(\phi(n)\) 是欧拉函数，其值为 \(\phi(n)=(p-1)(q-1)\) 。他的计算依赖于因式分解，是困难的（若不知道 \(p,q\) ）。借助这个定理，RSA的加密解密过程如下：
+ 选择密钥 选取两个大素数 \(p,q\) 计算 \(n=pq\) ,再选择一对 \(e,d\) 使 \(ed=1 \mod\phi(n)\) ，其中 \((n,e)\) 作为公钥公之于众。\(p,q,d\) 作为私钥严密的保存。大整数的因式分解十分困难，最快的筛法也是指数级的复杂度。这保证了私钥的安全性。 加密 假设明文为 \(x \in \mathbb Z_n\) 。加密后的密文为 \(y=x^e \mod n\) 解密 计算 \(y^d \mod n\) ，那么上述的定理保证了这就是 \(x\)  定理的证明 \(n=pq\) 若 \(x^{ed} = x \mod p\) 对于模 \(p\) 与模 \(q\) 均成立，那么也对 \(q\) 成立，通过 理想 的语言很容易说明：</description>
+    </item>
+    
     <item>
       <title>特征多项式的连续性</title>
       <link>http://wenbin-liu.github.io/posts/20210206143418-%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</link>
