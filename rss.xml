@@ -1,0 +1,1167 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Venns&#39; Space</title>
+        <link>https://wenbin-liu.github.io/</link>
+        <description>Venns 的个人博客.</description>
+        <generator>Hugo 0.85.0 https://gohugo.io/</generator>
+        
+            <language>zh-CN</language>
+        
+        
+            <managingEditor>wenbin_liu@outlook.com (Venns)</managingEditor>
+        
+        
+            <webMaster>wenbin_liu@outlook.com (Venns)</webMaster>
+        
+        
+            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+        
+        <lastBuildDate>Fri, 09 Jul 2021 18:54:14 &#43;0800</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
+        
+        
+            <item>
+                <title>Galois 理论</title>
+                <link>https://wenbin-liu.github.io/posts/20210709102754-galois_%E7%90%86%E8%AE%BA/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210709102754-galois_%E7%90%86%E8%AE%BA/</guid>
+                <pubDate>Fri, 09 Jul 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Artin的 &lt;em&gt;Algebra&lt;/em&gt; 终于看完了，从去年12月份开始看的，到现在彻底结束已经半年了。其实这本书寒假时就看了一大半，后面回学校之后，看的时间反而比较少了，只能借助一些零散的时间看看。另外对于环论，因子分解，域论这些话题，我的兴致并不高。&lt;/p&gt;
+&lt;p&gt;我一直对 &lt;strong&gt;Galois&lt;/strong&gt; 其人有着深深的敬意。他充满激情的一生总是让我热血迸发，鼓舞着我前行。其实，吸引我的并不是他的数学成就，而是他身上的那种浪漫主义色彩，那种追寻理想，拒绝向现实低头的纯粹。&lt;/p&gt;
+&lt;h2 id=&#34;galois-理论&#34;&gt;Galois 理论&lt;/h2&gt;
+&lt;p&gt;Galois理论是用来解决多项式可解性的系统理论。Artin 书中对Galois理论处理有所简化，他只考虑了特征为0的域上的Galois理论。本文同样只考虑特征为0的域，主要是有理数域 \(\mathbb Q\) .&lt;/p&gt;
+&lt;h3 id=&#34;分裂域&#34;&gt;分裂域&lt;/h3&gt;
+&lt;p&gt;Galois理论主要研究根的对称性，这种对称性的研究是通过分裂域实现的。考虑域 \(F\) 上的多项式 \(f(x)\) ，将该多项式的所有根添加到原来的域中所得的是多项式即为分裂域。如果 \(f(x)\) 是不可约的，那么 \(F[x]/(f(x))\) 是一个域，并且该域中的 \(x\) 就是 \(f(x)\) 的一个根，并且 \(F\) 能够自然嵌入到 \(F[x]/(f(x))\) 中，这过程递归下去，就可以得到 \(f(x)\)
+的分裂域，对于可约的多项式，也可如此递归。从而分裂域是存在的。&lt;/p&gt;
+&lt;p&gt;一个分裂域是原来域的扩域，多项式根的对称性即为分裂域的对称性，因而要构建域的同构来研究对称性。&lt;/p&gt;
+&lt;p&gt;现有扩域 \(E/F\) ，域 \(E\) 的 \(F\) 自同构 \(\sigma\) 是 \(E \to E\) 的同构，同时 \(\sigma |_F = Id\) . 所有
+\(F\) 自同构构成了一个群, 称为 &lt;strong&gt;Galois群&lt;/strong&gt; ，记为 \(G(E/F)\).&lt;/p&gt;
+&lt;p&gt;假设 \(K\) 为一般的域， \(H\) 为它的自同构群，那么在该群的保持固定不动的元素也构成了一个域，称之为固定域，记为
+\(K^H\).&lt;/p&gt;
+&lt;h3 id=&#34;固定域定理&#34;&gt;固定域定理&lt;/h3&gt;
+&lt;p&gt;给定 \(E\) 的一个有限自同构群 \(G\) ，那么有 \(\left[E:E^G \right] = \left|G\right|\) .&lt;/p&gt;
+&lt;h4 id=&#34;证明&#34;&gt;证明&lt;/h4&gt;
+&lt;p&gt;记 \(F=E^G\) ，假设 \(E/F\) 是有限阶扩张，那么由于假定了所有的域特征为0, 那么该扩张有本源根，记
+\(E=F[\gamma]\) , 那么可以发现 \(G\) 中元素一定不能固定 \(\gamma\) ，否则该元素为单位元，从而 \(\gamma\) 的稳定子平凡，轨道长度为 \(|G|\) . 又 \(\gamma\) 轨道中的元素组成的多项式必定是 \(F\) 中的不可约多项式。从而该多项式的阶数为 \(|G|\) 。于是 \(\left[E:F\right]=\left|G\right|\) .&lt;/p&gt;
+&lt;p&gt;再说明 \(E/F\) 是有限扩张。因为任何一个元素，可以通过群作用来构建它在 \(F\) 上的极小多项式，从而
+\(E\) 上所有的元素均是代数元素。如果 \(E/F\) 不是有限代数扩张，那么，必定可以找到阶数任意大的代数元素，然而任意元素的阶数不能超过 \(\left|G\right|\) .矛盾。&lt;/p&gt;
+&lt;h3 id=&#34;galois-扩张&#34;&gt;Galois 扩张&lt;/h3&gt;
+&lt;p&gt;伽罗瓦扩张的三个的等价定义&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;\(\left[E:F\right] = \left|G(E/F)\right|\)&lt;/li&gt;
+&lt;li&gt;\(E^{G(E/F)}=F\)&lt;/li&gt;
+&lt;li&gt;\(E\) 是某个 \(F\) 上的多项式的分裂域&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;证明&#34;&gt;证明&lt;/h4&gt;
+&lt;p&gt;\(1 \Leftrightarrow 2\) ，由固定域定理有，\(F \subset E^{G(E/F)} \subset E, \left[E:E^{G(E/F)}\right] = \left|G(E/F)\right|\),从而 \(1 \Leftrightarrow 2\).&lt;/p&gt;
+&lt;p&gt;\(1 \Leftrightarrow 2\), 假定 \(\gamma_1\) 是扩张 \(E/F\) 的一个本原根。其在 \(F\) 上的极小多项式为 \(f(x)\) ，假设该多项式有 \(\gamma_1 ,\dots, \gamma_r\)
+共 \(r\) 个根位于 \(E\) 内。那么可以证明 \(G(E/F)\) 中的元素恰是由 \(\sigma(\gamma_1) = \gamma_i\) 这种形式的元素构成. 从而 \(|G(E/F)| = r\)
+于是多项式 \(f(x)\) 完全分裂等价于 1.(这里用到了分裂域定理,一个极小多项式在某个分裂域里要么不可约要么完全分裂).&lt;/p&gt;
+&lt;h3 id=&#34;galois-大定理&#34;&gt;Galois 大定理&lt;/h3&gt;
+&lt;p&gt;本文的主要定理是证明 &lt;strong&gt;Galois定理&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;设有Galois扩张 \(E/F\) 其Galois群为 \(G\) 那么 \(G\) 的子群与 \(E/F\) 的中间域一一对应:&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\left\{\text{subgroups of}\quad G \right\} &amp;amp;\leftrightarrow \left\{ E/F\quad \text{intermediate fields}\right\}\\\&lt;br&gt;
+\phi:   H &amp;amp;\rightarrow E^H , H \subset G \\\&lt;br&gt;
+\psi:   G(E/K) &amp;amp;\leftarrow K , F \subset K \subset E
+\end{align}&lt;/p&gt;
+&lt;p&gt;只要证明两个映射的合成总是恒等映射即可, \(\phi \circ \psi = Id\) 这个方向的恒等性由固定域定理证明.
+而另一个方向的恒等性 \(\psi \circ \phi = Id\) 由 Galois扩张的等价性证明.&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BE%A4%E8%AE%BA/">群论</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>代数信号处理</title>
+                <link>https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</guid>
+                <pubDate>Sun, 11 Apr 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;模论&#34;&gt;模论&lt;/h2&gt;
+&lt;p&gt;最近在看代数信号处理 &lt;sup id=&#34;9b23b344aaf1eed264e40898ae9e5c49&#34;&gt;&lt;a href=&#34;https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/#puschelAlgebraicSignalProcessing2008&#34; title=&#34;Puschel \&amp;amp; Moura, Algebraic {{Signal Processing Theory}}: {{Foundation}} and 1-{{D Time}}, {IEEE Transactions on Signal Processing}, v(8), 3572--3585 (2008).&#34;&gt;puschelAlgebraicSignalProcessing2008&lt;/a&gt;&lt;/sup&gt; ,该理论主要基于
+模论,遂乘此机会学习了 Artin 书的模论部分.&lt;/p&gt;
+&lt;p&gt;Artin的模论绝对不是写的最好的, 甚至都没有在一般的PID上考虑模的分解. 这从这章的标题也可看出
+这章取名为 &lt;strong&gt;Linear Algebra on a Ring&lt;/strong&gt; ,而不像一般的书籍取名模论. 确实这一章的论证技巧
+主要是线性代数的. 而不像环论中使用各种理想.&lt;/p&gt;
+&lt;p&gt;这一方法的缺点自然是一般性不够, 但是却是切入模论的最快路径.&lt;/p&gt;
+&lt;h3 id=&#34;整数环上的模&#34;&gt;整数环上的模&lt;/h3&gt;
+&lt;p&gt;该章的第一个重要结果是整数矩阵的结构,任给一个整数矩阵 \(A\) 总有两个可逆整数矩阵 \(P,Q\)
+使 \(\Lambda = PAQ^{-1}\) 是对角矩阵.&lt;/p&gt;
+&lt;p&gt;若记 \(\Lambda=\mathrm{diag}\{d_1,d_2,d_3,...,d_k,0,0,...,0\}\), 则有 \(d_1 |d_2 |d_3|\cdots|d_k\).该证明不难就是使用Euclid算法加
+一些矩阵技巧.Artin没有直接证明该分解的唯一性,实际上,它是在证明Abel群的结构定理的分解的唯一性
+的时候才说明了该分解的唯一性.&lt;/p&gt;
+&lt;p&gt;这个命题非常基本, 它贯穿了整章. Artin首先证明了Nother环的有限生成模的子模是有限生成的.
+整数环是Nother环,从而整数环的有限生成模的子模是有限生成的. 根据这一结果可以证明,
+整数环上的有限生成模 \(M\) 可以通过有限维的整数矩阵表示. 即存在整数矩阵 \(A\) 使得&lt;/p&gt;
+&lt;p&gt;\[
+M \simeq R_m/AR_n
+\]&lt;/p&gt;
+&lt;p&gt;由于前面提到的 \(P,Q\) 不过是坐标变换,从而整数环上的模可以表示为一些循环模的直和.
+实际上该一结论直接给出了Abel群的结构.&lt;/p&gt;
+&lt;h3 id=&#34;推广&#34;&gt;推广&lt;/h3&gt;
+&lt;p&gt;Artin接下来的思路就是推广. Artin首先证明了Hilbert Basis定理,
+即 &lt;strong&gt;任意诺特环的多项式环是诺特环&lt;/strong&gt; 从而将前面的定理推广到 \(\mathbb F[t]\) 环上. Artin 没有给出证明
+不过这个推广是显然的. Artin借此给出了\(\mathbb F[t]\) 模的结构. 但是也说明了它的唯一性,
+但是没有给出证明. 这是比较可惜的.&lt;/p&gt;
+&lt;h2 id=&#34;代数信号处理&#34;&gt;代数信号处理&lt;/h2&gt;
+&lt;p&gt;有了这一数学工具,便可以读懂代数信号处理的论文了. 代数信号处理将模论应用到信号处理理论,
+给出了信号处理的一个新的视角或者说一种理论框架,后面的图信号处理就是基于这一框架的.
+代数信号处理本身并没有给出新的东西.&lt;/p&gt;
+&lt;p&gt;代数信号处理将滤波器视为代数,而将信号视为代数上的模,这一构造并不新鲜.
+实际上在处理线性算子时,就将线性算子作用到向量上视为模与环的乘法,取线性算子生成的
+环作为环(可以视为将多项式环中的 \(x\) 替换为算子),于是可定义该环上的模.
+代数信号处理依赖于该线性算子的选取,并称之为 &lt;em&gt;shift operator&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;有限生成的模可以进行直和分解,这就给出了信号的不同频率分量,模与这些子模分量之间的变换对应了
+Fourier变换与逆变换.不过,使用模与线性空间类似,也要选定一组基进行运算,一组基可以
+将该模与欧式线性空间一一对应,更便于运算.&lt;/p&gt;
+&lt;h1 id=&#34;bibliography&#34;&gt;Bibliography&lt;/h1&gt;
+&lt;p&gt;&lt;a id=&#34;puschelAlgebraicSignalProcessing2008&#34;&gt;&lt;/a&gt;[puschelAlgebraicSignalProcessing2008] Puschel &amp;amp; Moura, Algebraic Signal Processing Theory: Foundation and 1-D Time, &lt;i&gt;IEEE Transactions on Signal Processing&lt;/i&gt;, &lt;b&gt;56(8)&lt;/b&gt;, 3572-3585 (2008). &lt;a href=&#34;http://dx.doi.org/10/cnvxnv&#34;&gt;doi&lt;/a&gt;. &lt;a href=&#34;https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/#9b23b344aaf1eed264e40898ae9e5c49&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>RSA加密</title>
+                <link>https://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/</guid>
+                <pubDate>Fri, 19 Mar 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;最近看了下密码学的原理。研究密码学纯属偶然。之前逛淘宝二手书店，看到里冯克勤写的一本《代数与通信》，觉得非常新颖。一个数论学家竟然讲起了通信，他的见解一定值得参考。&lt;/p&gt;
+&lt;p&gt;另一件事也无形中促进了我关注密码学。去年毕业之后常与我的朋友聚餐闲聊，他现在在一个做比特币钱包的公司工作。闲聊之余，他常给我科普比特币，虽然讲的一塌糊涂，尤其是谈及椭圆函数签名时，更是如坠云间，不知所云，尽管如此 ，他对比特币的热情还是引起了我一丝丝的兴趣。毕竟我是第一次见他对技术产生了兴趣。&lt;/p&gt;
+&lt;p&gt;后面12月份比特币大涨。考试结束后有一段清闲时间，遂看起了中本聪的比特币论文。开始时看的一知半解，后面慢慢琢磨，也能体会到其中的有趣。Hash函数确实有许多妙用啊！数字签名的签名二字也是非常贴切。&lt;/p&gt;
+&lt;p&gt;另外，阅读Artin的大作《Algebra》已有两个月。到今天为止，已经看完了 &lt;strong&gt;Factorization&lt;/strong&gt; 一章。环论的应用大部分是在数论这类纯粹数学领域，不像群论还能应用于对称这类有几何图像的领域。对于纯粹的抽象，我已经有些许厌烦了。读完 &lt;strong&gt;RSA&lt;/strong&gt; 加密和 &lt;strong&gt;椭圆函数&lt;/strong&gt; 加密，我对数论，环论肃然起敬。兴趣也增加了那么一点。&lt;/p&gt;
+&lt;h2 id=&#34;rsa加密&#34;&gt;RSA加密&lt;/h2&gt;
+&lt;p&gt;RSA加密的核心就一个定理：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;假设 \(n=pq\) ，\(p,q\) 是素数。在环 \(\mathbb Z_{\phi(n)}\) 取一单位 \(e\) ，即单位群
+\(\mathbb Z_{\phi(n)}^{\times}\) 中的元素和它的逆元 \(d\) 。即 \(ed = 1 \mod \phi(n)\) 。那么 \(\forall x \in \mathbb Z_n\) 恒有：
+\[
+x^{ed} = x \mod n
+\]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;上述的 \(\phi(n)\) 是欧拉函数，其值为 \(\phi(n)=(p-1)(q-1)\) 。他的计算依赖于因式分解，是困难的（若不知道 \(p,q\) ）。借助这个定理，RSA的加密解密过程如下：&lt;/p&gt;
+&lt;dl&gt;
+&lt;dt&gt;选择密钥&lt;/dt&gt;
+&lt;dd&gt;选取两个大素数 \(p,q\) 计算 \(n=pq\) ,再选择一对 \(e,d\) 使 \(ed=1 \mod\phi(n)\) ，其中 \((n,e)\) 作为公钥公之于众。\(p,q,d\) 作为私钥严密的保存。大整数的因式分解十分困难，最快的筛法也是指数级的复杂度。这保证了私钥的安全性。&lt;/dd&gt;
+&lt;dt&gt;加密&lt;/dt&gt;
+&lt;dd&gt;假设明文为 \(x \in \mathbb Z_n\) 。加密后的密文为 \(y=x^e \mod n\)&lt;/dd&gt;
+&lt;dt&gt;解密&lt;/dt&gt;
+&lt;dd&gt;计算 \(y^d \mod n\) ，那么上述的定理保证了这就是 \(x\)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;h3 id=&#34;定理的证明&#34;&gt;定理的证明&lt;/h3&gt;
+&lt;p&gt;\(n=pq\) 若 \(x^{ed} = x \mod p\) 对于模 \(p\) 与模 \(q\) 均成立，那么也对 \(q\) 成立，通过 &lt;strong&gt;理想&lt;/strong&gt; 的语言很容易说明：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+x^{ed} -x \in (p)
+\\\&lt;br&gt;
+x^{ed} -x \in (q)
+\end{align}&lt;/p&gt;
+&lt;p&gt;那么 \(x^{ed} -x \in (p) \cap (q) = (pq)\)&lt;/p&gt;
+&lt;p&gt;从而只要证明对模 \(p\) 成立，那么对模 \(q\) 的证明是完全相同的。&lt;/p&gt;
+&lt;p&gt;\begin{align}
+x^{ed} &amp;amp;= x^{1+k\phi(n)}
+\\\&lt;br&gt;
+&amp;amp;= x^{1+k(p-1)(q-1)}
+\end{align}&lt;/p&gt;
+&lt;p&gt;然而乘法群 \(\mathbb Z_p^\times\) 的阶是 \(p-1\) ,从而
+\(x^{p-1} = 1 \mod p\) ,于是&lt;/p&gt;
+&lt;p&gt;\begin{align}
+x^{ed} = x\cdot x^{(p-1)(q-1)k}  = x \mod p
+\end{align}&lt;/p&gt;
+&lt;p&gt;得证。&lt;/p&gt;
+&lt;h2 id=&#34;diffie-hellman-密钥交换&#34;&gt;Diffie-Hellman 密钥交换&lt;/h2&gt;
+&lt;p&gt;公钥加密一般来说安全性高，但是加密的速度不及对称加密。如果想要更快速的加密，对称加密可能是更好的选择（如AES）。但是对称加密有赖于双方拥有一个共同的密钥。然而如何将这个密钥安全的告诉信息接收方呢？这并不容易。&lt;/p&gt;
+&lt;p&gt;Diffie-Hellman 给出了密钥交换的一个方法。&lt;/p&gt;
+&lt;p&gt;考虑一个素域 \(\mathbb F_p\) ,当 \(p\) 是奇素数时，该域的乘法群是一个循环群，记循环群的生成元为 \(g\) .&lt;/p&gt;
+&lt;p&gt;假设 A 有一对公钥和私钥, 公钥为 \(b_a = g^{a_a}\) ，私钥为 \(a_a\) 。B的公钥和私钥分别为
+\(b_b = g^{a_b}, a_b\), 由公钥推私钥是离散对数难题，故安全性是有保障的。&lt;/p&gt;
+&lt;p&gt;当进行密钥交换时，A 首先索取 B 的公钥，然后用自己的私钥计算 \(b_b^{a_a} = g^{a_b a_a}\) 。
+B 做同样的操作，即索取 A 的公钥然后用自己的私钥计算 \(b_a^{a_b} = g^{a_a a_b}\) 。可以看到二者的计算结果是相同的，但是外界却无法获得。从而可以将该值 \(g^{a_a a_b}\) 作为一种“共享的秘密”，用该值来作为对称加密即可。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>特征多项式的连续性</title>
+                <link>https://wenbin-liu.github.io/posts/20210206143418-%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210206143418-%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</guid>
+                <pubDate>Sun, 14 Feb 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;hamiton-cayley-定理&#34;&gt;Hamiton-Cayley 定理&lt;/h2&gt;
+&lt;p&gt;Hamiton-Cayley 定理是线性代数中比较有名的定理，它的证法有很多，一般线性代数的书都会使用纯代数的方法证明。Artin书中的证法非常有趣，他使用了纯分析的办法证明，该方法简单直接，也具有足够的一般性，可以很轻松的推广到一般特征值有关的问题。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hamiton-Cayley 定理&lt;/strong&gt; 是指，若 \(f(x)\) 是矩阵 \(A\) 的特征多项式，那么必定有
+\(f(A) = 0\) 。&lt;/p&gt;
+&lt;p&gt;如果 \(A\) 有 \(n\) 个不同的特征值，该定理几乎是显而易见的。因为若 \(\lambda\)
+是 \(A\) 的特征值, \(v\) 是对应的特征向量，那么 \(\lambda^k\) 是 \(A^k\)
+的特征值， \(v\) 是对应的特征向量。 \(A\) 有 \(n\) 个不同的特征值，那么也就有
+\(n\) 个线性独立的特征向量, 他们构成了这个向量空间的一组基。从而 \(f(A)v_k = 0\)
+, \(k=1,2,\cdots,n\) ，从而 \(f(A) = 0\) 。&lt;/p&gt;
+&lt;p&gt;那么现在问题是证明，对于一般的情形，即特征值有重根的情况，该定理是成立的。&lt;/p&gt;
+&lt;p&gt;证明的关键是在于，对于有重根的特征多项式，可以使用一个没有重根的特征多项式逼近。&lt;/p&gt;
+&lt;h2 id=&#34;连续性&#34;&gt;连续性&lt;/h2&gt;
+&lt;p&gt;首先我们需说明多项式的连续性和根的连续性，简单来说有如下命题成立：&lt;/p&gt;
+&lt;h3 id=&#34;根的连续性&#34;&gt;根的连续性&lt;/h3&gt;
+&lt;p&gt;为了避免无限维空间的引入，我们在论及多项式的收敛性是，总认为多项式序列的次数不超过一给定值。下列说的多项式均是复数域的首一多项式。&lt;/p&gt;
+&lt;p&gt;1.设 \(p_k(t)\) 是一个次数小于 \(n\) 的收敛于 \(p(t)\) 多项式序列，其收敛性是作为有限维线性空间自然定义的。那么每个多项式 \(p_k\) 的根 \(\alpha_{k,\nu}\)
+可以通过合理编号使之收敛于 \(p_k\) 对应的根 \(\alpha_\nu\) 。&lt;/p&gt;
+&lt;p&gt;2.假设符号与上一致，若多项式 \(p_k\) 的根 \(\alpha_{k,\nu}\) 收敛于多项式 \(p(t)\)
+的根 \(\alpha_\nu\) ，则多项式 \(p_k(t)\) 收敛于 \(p_k\) 。&lt;/p&gt;
+&lt;p&gt;因为多项式的系数总是根的连续函数，所以 2 是显然的。1 的证明麻烦一点。首先任取 \(p(t)\) 的一个根 $α_1 $ ，然后找离 \(\alpha_1\) 最近的根，假设也为 \(\alpha_{k,1}\) 。于是&lt;/p&gt;
+&lt;p&gt;\begin{equation}
+|\alpha_1 - \alpha_{k,1}|^n \leq |(\alpha_1 - \alpha_{k,1})(\alpha_1 - \alpha_{k,2}) \cdots (\alpha_1 - \alpha_{k,n})| = |p_k(\alpha_1)|
+\end{equation}&lt;/p&gt;
+&lt;p&gt;上式右边趋于0,左边也将趋于0。 从而找到了一个可以被逼近的根。于是可以做因式分解：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+p_k(t) = (t- \alpha_{k,1})q_k(t)
+\\\&lt;br&gt;
+p(t) = (t-\alpha_1)q(t)
+\end{align}&lt;/p&gt;
+&lt;p&gt;那么直接做多项式除法可以发现 \(q_k(t) \to q(t)\) ，并且二者的次数要小于 \(n\) 从而可以归纳证得。上述的证明只考虑了多项式的次数等于 \(n\) 的情形，若小于 \(n\) ，证明是类似的。&lt;/p&gt;
+&lt;h3 id=&#34;矩阵的特征多项式&#34;&gt;矩阵的特征多项式&lt;/h3&gt;
+&lt;p&gt;对于矩阵 \(A\) 的多项式有下列事实成立。&lt;/p&gt;
+&lt;p&gt;1.总有矩阵 \(A_k\) 收敛于 \(A\) 使得每个 \(A_k\) 的特征多项式的根各不相同。将 \(A\) 上三角化，那么它的对角元素便是所有的特征值，于是只要让 \(A_k\) 做相同的共轭变换，让对角元素各不相同并趋于 \(A\) 上三角化后的对角元即可。&lt;/p&gt;
+&lt;p&gt;2.\(A_k\) 收敛于 \(A\) ，那么 \(A_k\) 对应的特征多项式也将收敛于 \(A\) 的特征多项式; 对应的根也将收敛到对应的值。结合上节的定理，这是显然的。&lt;/p&gt;
+&lt;h2 id=&#34;hamiton-cayley-定理的最终证明&#34;&gt;Hamiton-Cayley 定理的最终证明&lt;/h2&gt;
+&lt;p&gt;对于一般的多项式 \(A\) 总可以用 \(A_k\) 来收敛逼近，保证 \(A_k\) 的特征根各不相同。那么 \(p_k(A_k) = 0\) 。且 \(p_k(t) \to p(t)\) 。从而 \(p_k(A_k)\) 收敛于 \(p(A)\)
+，从而 \(p(A)= 0\) 。&lt;/p&gt;
+&lt;h2 id=&#34;另一个小应用&#34;&gt;另一个小应用&lt;/h2&gt;
+&lt;p&gt;上面的方法可以非常实用，比如 \(\mathrm{det}\ \mathrm{e}^ A = \mathrm e^{\mathrm{tr} A}\) 。若特征值各不相同，由于 \(\mathrm{e}^A\) 的特征值为 \(\mathrm e^\lambda\) 。从而 \(\mathrm{det} \ \mathrm{e}^ A = \mathrm{e}^{\lambda_1} \mathrm{e}^{\lambda_2}
+\cdots \mathrm{e}^{\lambda_n} = \mathrm{e}^{\mathrm{tr} A}\) . 若特征有重根使用上述类似的技术可以得到相同的结果。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">线性代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Linux上使用OneDrive</title>
+                <link>https://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/</guid>
+                <pubDate>Thu, 11 Feb 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;最近折腾了很久的OneDrive，想在Linux上使用学校的校友邮箱提供的OneDrive，毕竟有1T的存储空间。&lt;/p&gt;
+&lt;p&gt;个人账户的OneDrive使用非常简单，直接使用开源开发者提供的 &lt;code&gt;onedrive&lt;/code&gt; 或者 &lt;code&gt;rclone&lt;/code&gt; 软件即可。但是对于学校校友邮箱提供的OneDrive不是运行在微软官方的服务器上的而是运行在世纪互联的的代理服务器上，它的帐号与微软帐号是完全独立的。这和用学校邮箱申请的教育优惠版OneDrive是不一样的。&lt;/p&gt;
+&lt;h2 id=&#34;教育优惠版onedrive--非世纪互联&#34;&gt;教育优惠版OneDrive(非世纪互联)&lt;/h2&gt;
+&lt;p&gt;对于教育优惠版的OneDrive, 即使用带 &lt;code&gt;.edu&lt;/code&gt; 后缀的邮箱申请的帐号是有1T 空间的。该帐号存储在微软官方的服务器上。但是依然不能使用onedrive软件和rclone中的onedrive后端。会显示没有管理员，处于 &lt;strong&gt;unmanaged&lt;/strong&gt; 的状态。必须使用webdav的方式登陆。&lt;/p&gt;
+&lt;p&gt;所幸可以使用rclone的webdav后端登陆，见&lt;a href=&#34;https://rclone.org/webdav/#sharepoint&#34;&gt;sharepoint&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;登陆到你的onedrive帐号上，此时的链接形如 &lt;code&gt;https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/_layouts/15/onedrive.aspx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;那么你的webdav地址就为 &lt;code&gt;https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;配置文件如下所示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--listend--&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;webdav&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;YOUR-DOMAIN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;-my&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;personal&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;YOUR-EMAIL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Documents&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;vendor&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;YourEmailAddress&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;pass&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;encryptedpassword&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用命令 &lt;code&gt;rclone ls sharepoint:&lt;/code&gt; 便可列出网盘中的文件&lt;/p&gt;
+&lt;h2 id=&#34;世纪互联版校友邮箱版onedrive&#34;&gt;世纪互联版校友邮箱版OneDrive&lt;/h2&gt;
+&lt;p&gt;该版本的Onedrive的服务器是又世纪互联管理的。而作为校友邮箱是有管理员的，要使用上述开源开发者的onedrive客户端，必须让管理员安装相应的服务。如果没有安装，便无法使用。&lt;/p&gt;
+&lt;p&gt;另外实际测试，rclone 的webdav客户端不支持世纪互联。&lt;/p&gt;
+&lt;p&gt;从而必须使用其他方法，这里使用davfs2挂在webdav,但是，直接使用 &lt;code&gt;https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents&lt;/code&gt;
+挂载将会出现 &lt;strong&gt;403 Forbidden&lt;/strong&gt; ,服务器会拒绝这一请求。&lt;/p&gt;
+&lt;p&gt;使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 &lt;code&gt;rtFa&lt;/code&gt; 一个是 &lt;code&gt;FedAuth&lt;/code&gt; ，然后在 &lt;code&gt;/etc/davfs2/davfs2.conf&lt;/code&gt; 文件中添加如下配置&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;home&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OneDrive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;add_header&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Cookie&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;rtFa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rtFa&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;的&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cookie&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;值&amp;gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FedAuth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FedAuth&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;的&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cookie&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;值&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;nx&#34;&gt;uselocks&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;实际发现必须使用 &lt;code&gt;uselocks 0&lt;/code&gt; 否则无法写入文件。见 &lt;a href=&#34;https://wiki.archlinux.org/index.php/Davfs2&#34;&gt;ArchWiki davfs2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用命令 &lt;code&gt;sudo mount -t davfs https://[YOUR-DOMAIN]-my.sharepoint.com/personal/[YOUR-EMAIL]/Documents /mountpath&lt;/code&gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/linux/">Linux</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>三维旋转群</title>
+                <link>https://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/</guid>
+                <pubDate>Thu, 04 Feb 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;blockquote&gt;
+&lt;p&gt;看Artin的《Algebra》已经有一个月了，一直没能写些什么，最近看到\(SO_3\) 群和 \(SU_2\) 群，写的非常有趣，和我以前看的机器人的一些东西可以联系起来。\(SU_2\) 确实完美的将 \(SO_3\) 和四元数沟通起来了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;su-2--群&#34;&gt;\(SU_2\) 群&lt;/h2&gt;
+&lt;p&gt;\(SU_2\) 是保证二维Hermitian空间内积不变的 \(SL_2(\mathbb C)\) 的子空间。形式定义如下：&lt;/p&gt;
+&lt;p&gt;\begin{equation}
+SU_2 = \left\{A \in SL_2(\mathbb C) | A^* A = I \right\}
+\end{equation}&lt;/p&gt;
+&lt;p&gt;上式的\(A^*\) 意为厄米转置。&lt;/p&gt;
+&lt;p&gt;根据上述定义总可以将 \(SU_2\) 中的元素写成如下形式&lt;/p&gt;
+&lt;p&gt;\begin{equation}
+A =
+\left[
+\begin{matrix}
+u &amp;amp;  v \\\&lt;br&gt;
+-\overline v &amp;amp;  \overline u
+\end{matrix}
+\right ]
+\end{equation}&lt;/p&gt;
+&lt;p&gt;并有 \(|u|^2 +  | v| ^2 = 1\)&lt;/p&gt;
+&lt;p&gt;更进一步，假设 \(u = x_0 + x_1 i,v = x_2 + x_3 i\) 从而可将
+\(A\) 写成向量形式。&lt;/p&gt;
+&lt;p&gt;\begin{align}
+A &amp;amp; = x_0 I + x_1 \mathbf i + x_{2} \mathbf j + x_3 \mathbf k
+\\\&lt;br&gt;
+\mathbf i &amp;amp;= \mathrm{diag}\left\{ i, - i  \right\}
+\\\&lt;br&gt;
+\mathbf j &amp;amp; = \left[
+\begin{matrix}
+0 &amp;amp; 1 \\\&lt;br&gt;
+-1 &amp;amp; 0
+\end{matrix}
+\right]
+\\\&lt;br&gt;
+\mathbf k &amp;amp; = \left[
+\begin{matrix}
+0 &amp;amp; i \\\&lt;br&gt;
+i &amp;amp; 0
+\end{matrix}
+\right]
+\end{align}&lt;/p&gt;
+&lt;p&gt;上式中的表示就是四元数表示，\(\mathbf{i,j,k}\) 均是厄米共轭矩阵,
+其实他也是 \(SU_{2}\) 李代数的一组基，它满足四元数的运算律&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\mathbf i^{2} = \mathbf j^2  = \mathbf k^2 = -1  \\\&lt;br&gt;
+\mathbf {ij} = \mathbf k, \mathbf{jk} = \mathbf i, \mathbf{ki} = \mathbf j
+\end{align}&lt;/p&gt;
+&lt;p&gt;又知，\(SU_2\) 满足约束 \(x_0^{2} + x_1^2+x_2^2 + x_3^2=1\) ，
+\(SU_{2}\) 是四维空间中的三维球面 \(\mathbb S^{3}\) , 其拓扑结构比较简单。&lt;/p&gt;
+&lt;p&gt;公式(3) 也把\(A\) 分解为了有迹部分和迹零部分。也就是&lt;/p&gt;
+&lt;p&gt;\begin{equation}
+A = I \cos{\theta} + P \sin{\theta}
+\end{equation}&lt;/p&gt;
+&lt;p&gt;其中 \(\mathrm{tr} P = 0\)&lt;/p&gt;
+&lt;h2 id=&#34;so-3--群&#34;&gt;\(SO_3\) 群&lt;/h2&gt;
+&lt;p&gt;现在可以谈论 \(SO_{3}\) 了。这里将使用共轭操作。 注意到共轭作用是保持迹不变的（因为不改变特征多项式）。从而它定义了迹零矩阵所构成的向量空间 \(\mathbb V = \mathrm{span}\left&amp;lt;\mathbf{i,j,k} \right&amp;gt;\)
+上的群作用。我们将说明这是一个到 \(SO_{3}\) 上的群同态。&lt;/p&gt;
+&lt;p&gt;定义群作用：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\gamma: SU_2\times \mathbb V &amp;amp; \to \mathbb V
+\\\&lt;br&gt;
+\gamma_{A} U &amp;amp;:= A U A^{*}
+\\\&lt;br&gt;
+U &amp;amp;:= x_1 \mathbf i + x_2 \mathbf j + x_3 \mathbf k \in \mathbb V
+\end{align}&lt;/p&gt;
+&lt;p&gt;上述即是共轭操作，故是群作用，即 \(\gamma_A \gamma_B = \gamma_{AB}\)&lt;/p&gt;
+&lt;p&gt;我们将说明这个群作用是 \(SO_3\) 中的元素，为此需说明：&lt;/p&gt;
+&lt;p&gt;\(\gamma_{A}\) 不改变 \(U\) 的长度，等价来说，保 \(\mathbb V\) 中的内积，为了便于计算，最好将该内积的定义转移的 \(SU_2\) 中。可以发现以下事实成立：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\left &amp;lt; U,V\right &amp;gt; &amp;amp;= -\frac{1}{2}\mathrm{tr}(UV)
+\\\&lt;br&gt;
+\left &amp;lt; U,V\right &amp;gt; &amp;amp;:= x_1 y_1 + x_2 y_2 + x_3 y_3
+\\\&lt;br&gt;
+U &amp;amp;:= x_1 \mathbf i + x_2 \mathbf j + x_3\mathbf k
+\\\&lt;br&gt;
+V &amp;amp;:= y_1 \mathbf i + y_2 \mathbf j + y_3\mathbf k
+\end{align}&lt;/p&gt;
+&lt;p&gt;通过上述公式不难发现&lt;/p&gt;
+&lt;p&gt;\[
+\left &amp;lt;\gamma_A U,\gamma_A V\right &amp;gt;
+= -\frac{1}{2}\mathrm{tr}(A UV A^*) = \left &amp;lt; U,V\right &amp;gt;
+\]
+，这说明,该群作用是 \(O_3\) 中的作用。&lt;/p&gt;
+&lt;p&gt;再证上述作用的矩阵的行列式为1, 这是因为 \(SU_{2}\) 是一个球面，它的拓扑是连通的。\(O_3\) 有两个连通分支: \(SO_3\) 和另一个陪集。\(\gamma_{A}\) 是连续映射， 从而其象是连通的，从而在 \(SO_3\) 中。&lt;/p&gt;
+&lt;p&gt;现在知道 \(\gamma_A\) 是 \(SO_3\) 中的作用，我们来说明这个旋转的轴是显示给出的，记&lt;/p&gt;
+&lt;p&gt;\begin{equation}
+A := I \cos \theta + P \sin \theta
+\end{equation}&lt;/p&gt;
+&lt;p&gt;则 \(\gamma_A P = P\) ，这是因为&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(\mathrm{tr}(P) = 0 \Leftrightarrow P^{2} = I\)&lt;/li&gt;
+&lt;li&gt;\(P^* + P = 0\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过计算可得。于是 \(P\) 是 \(\gamma_A\) 的转轴。&lt;/p&gt;
+&lt;p&gt;转轴找到了是 \(P\) , 接下来找旋转角。&lt;/p&gt;
+&lt;p&gt;视 \(\gamma_{A},\gamma_B\) 为 \(SO_3\) 中的元素则，\(\gamma_{A^{\prime}}
+= \gamma_B \gamma_A \gamma_B ^{-1}=\gamma_{BAB^{*}}\) 是一个坐标变换不改变旋转角。&lt;/p&gt;
+&lt;p&gt;又知在 \(SU_2\) 中每个迹相等的类是一个等价类。任意的 \(A\) 必定与
+\(B = I \cos \theta + \mathbf i \sin\theta\) 共轭，我们直接计算 \(\gamma_B \mathbf j = \mathbf j \cos 2\theta + \mathbf k \sin 2\theta\)
+可得旋转角是 \(2\theta\) ，这也说明了
+\(\gamma\) 是到 \(SO_{3}\) 上的同态。&lt;/p&gt;
+&lt;p&gt;最后我们，来说明这个同态的核。假设 \(A\) 是同态的核中的元素则&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\gamma_A U = AUA^{*} = U ,\forall U \in \mathbb V
+\\\&lt;br&gt;
+\Leftrightarrow A(I\cos\theta + U\sin\theta)A^{*} = (I\cos\theta + U\sin \theta),
+\forall \theta,U \in \mathbb V
+\end{align}&lt;/p&gt;
+&lt;p&gt;从而同态的核即为 \(SU_2\) 的中心 \(Z\) , 而它恰是 \(\left\{\pm I\right\}\)&lt;/p&gt;
+&lt;p&gt;我们将上述的证明总结为定理：&lt;/p&gt;
+&lt;div class=&#34;theorem&#34;&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;p&gt;上述的 \(\gamma_{A} U := A U A^{*}, U\in\mathbb V\)
+定义了一个从 \(SU_2\) 到 \(SO_3\) 上的群同态，该同态的核为
+\(\left\{\pm I\right\}\) 。若 \(A = I\cos \theta + P\sin\theta\) ,
+其中 \(P \in \mathbb V ,\theta \in [0,\pi)\) 。则： \(\gamma_{A}\) 是 \(\mathbb V\) 上的旋转， 旋转轴为 \(P\) ，旋转角为 \(2\theta\) 。&lt;/p&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;总结&#34;&gt;总结&lt;/h2&gt;
+&lt;p&gt;通过上述定理。我们可以通过四元数计算旋转，四元数表示法最大的便利是能直接看出旋转轴和旋转角，这使得姿态的表达更加便利。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BE%A4%E8%AE%BA/">群论</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>2020年,再见</title>
+                <link>https://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/</guid>
+                <pubDate>Wed, 30 Dec 2020 23:36:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>
+&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+写在前面
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;今天已是2020年的倒数第二天了，时间真的好快。这一年我干了什么呢？&lt;/p&gt;
+&lt;p&gt;
+2020年开篇并不顺利，一场疫情让人措手不及，我本以为只消几个月，
+病毒就会退去，然而直到5月中下旬，我才回到学校。而直到现在，COVID-19
+依旧在全球肆虐，甚至在英国发生了变异，传播力更强了，昔日太平的生活不知
+何时才能回来，而今年春运马上就要开始，希望不要二次爆发才好。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-headline-2&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-2&#34;&gt;
+2020年的主题是数学
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-2&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;疫情在家闲来无事，竟在家研究起数学来了。计划是看看
+中科大的《近世代数引论》，然后冲击Galois理论。&lt;/p&gt;
+&lt;p&gt;
+学群论的时候一步一步跟进，觉得很是有趣，其中的轨道公式，我是非常喜欢的。然而到了
+环论域论时我的耐性渐渐失去，开始开起了快车，草草读过这两章后
+直接看章璞的的书强攻Galois理论，结果自然是不得要领，无法体会他们所说的
+精妙。事实上，我看Galois理论时还跟着南京大学秦厚荣的视频的，结果还是
+一塌糊涂。果然，学习数学没有捷径，浮躁是万万不可的。&lt;/p&gt;
+&lt;p&gt;
+看完Galois理论，我转战泛函分析，学习这个主要还是受到想在信号处理领域扎根，
+当初看小波变换，看压缩感知，深深的感受到了自己数学的有限，于是想通过泛函分析
+切入现代的分析学。吸取了前面的教训后，我把学习的进度掐的很慢，也做了书上的
+大部分习题。事实上开学时，我才把柯尔莫戈洛夫的泛函部分看完。&lt;/p&gt;
+&lt;p&gt;
+回到学校后主要看的是实变函数部分，不过我仅仅止步于第5章，之后准备
+毕业答辩，这本书便搁置了。&lt;/p&gt;
+&lt;p&gt;
+柯氏书《函数论与泛函分析》将泛函放在实变函数之前，确实是一股清流。不过
+这丝毫没有降低这本书泛函部分的深度。相反，将实变函数从泛函中剥离，使得
+该书的泛函托身于更一般的空间，其一般性是更高的。不过现在的数学家更倾向于
+认为分析是一个整体，教的时候应当穿针引线，将泛函实变联系起来。Rudin《实分析与复分析》
+便是这种写法的典型。&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-3&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;headline-3&#34;&gt;
+实分析与复分析
+&lt;/h3&gt;
+&lt;div id=&#34;outline-text-headline-3&#34; class=&#34;outline-text-3&#34;&gt;
+&lt;p&gt;这一年我可能最值得骄傲的一件事便是跟着沈老师学完了Rudin的《实分析与复分析》，当初
+选这门课的时候还是战战兢兢的，生怕最后不能及格。甚至在退课系统关闭前还发邮件问了他，
+希望他能给我点关照，这当然是痴心妄想。无论如何我最终还是选了这门课。&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-4&#34; class=&#34;outline-4&#34;&gt;
+&lt;h4 id=&#34;headline-4&#34;&gt;
+Borel测度
+&lt;/h4&gt;
+&lt;div id=&#34;outline-text-headline-4&#34; class=&#34;outline-text-4&#34;&gt;
+&lt;p&gt;Rudin的这本书观点甚高，完全不是典型的实分析。其中的泛函和实变函数是有机的整合在
+了一起，完全无法分开，其中关于测度的讲法更是匠心独具。比如本书的第二章“Borel测度”，
+直接用Reisz表示定理开宗明义的讲明正Borel测度（实际上是完备化的）与 $C_c(X)$
+上的正线性泛函一一对应。这么一个定理直接讲清楚了测度的结构，积分的结构。而Lebesgue测度
+不过是黎曼积分作为正线性泛函的所对应的测度。这个定理也奠定了此书的高度。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-headline-5&#34; class=&#34;outline-4&#34;&gt;
+&lt;h4 id=&#34;headline-5&#34;&gt;
+Hilbert空间
+&lt;/h4&gt;
+&lt;div id=&#34;outline-text-headline-5&#34; class=&#34;outline-text-4&#34;&gt;
+&lt;p&gt;本书的第四章“希尔伯特空间的初等理论”是我最喜欢的一章。Hilbert空间结构非常清楚，其性质
+也非常好（比如自反性），又有良好的几何图像，实在是讨人喜欢。其在物理，工科中也是应用广泛，
+比如量子力学的态空间，信号处理的 $L^2$ 空间。用Hlibert空间的概念处理Fourier 级数，直观
+又优雅。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-headline-6&#34; class=&#34;outline-4&#34;&gt;
+&lt;h4 id=&#34;headline-6&#34;&gt;
+复测度
+&lt;/h4&gt;
+&lt;div id=&#34;outline-text-headline-6&#34; class=&#34;outline-text-4&#34;&gt;
+&lt;p&gt;这本书很有个性的一个概念是复测度的引入。在复测度的框架下，积分与测度的关系
+更明了了，可积函数对应了一个测度，而绝对连续测度也对应了一个可积函数（Radon-Nykodym定理），
+这就让积分的绝对连续性成为一个平凡的推论。推广的里斯表示定理也直接表明，$C_0(X)$ 有界
+线性泛函与复的Borel测度一一对应。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;outline-container-headline-7&#34; class=&#34;outline-4&#34;&gt;
+&lt;h4 id=&#34;headline-7&#34;&gt;
+复分析
+&lt;/h4&gt;
+&lt;div id=&#34;outline-text-headline-7&#34; class=&#34;outline-text-4&#34;&gt;
+&lt;p&gt;复分析部分老师跳了很多章，我学得很痛苦，没有一种流畅的感觉。同时也感觉到Rudin
+的复分析部分没有实分析部分好。让我印象最为深刻的可能只有，用模群证明Picard小定理那
+节，是真的惊艳。可惜我没搞懂，太遗憾了。&lt;/p&gt;
+&lt;p&gt;
+这门课考试复习的时候，在网上看评论说这本书没有一张图，我仔细一翻，竟然是真的，当时我就在
+图书馆笑出了声，也不知道自己为什么笑，你明明应该哭的。&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>吉他拾音器(2)</title>
+                <link>https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/</guid>
+                <pubDate>Thu, 19 Nov 2020 11:48:01 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;续&#34;&gt;续&lt;/h2&gt;
+&lt;p&gt;上节提到了吉他中电流的公式为
+$$
+I = Blv
+$$
+本文挖掘该公式更深层的含义。&lt;/p&gt;
+&lt;h2 id=&#34;音色&#34;&gt;音色&lt;/h2&gt;
+&lt;p&gt;上述公式揭露了一个很有趣的现象，那就是电流的幅度与琴弦的速度成正比，而
+琴弦的振动速度也与其振动频率成正比，这会导致$n$ 次谐波的振幅放大$n$倍。也就是
+说琴弦中电流的音色与琴弦的音色不同。&lt;/p&gt;
+&lt;p&gt;由于琴弦振动时除了基频外还有倍频，它们构成的频谱共同决定了琴弦的音色。下面用公式
+说明上述的论述。&lt;/p&gt;
+&lt;p&gt;假设琴弦基频$\omega$, 琴弦振动时也会有谐波，于是琴弦的振动可以写成下列形式：&lt;/p&gt;
+&lt;p&gt;$$
+\hat{x}(t) = \sum_{n=1}^\infty c_n e^{in\omega t}
+$$&lt;/p&gt;
+&lt;p&gt;$\hat{x}(t)$ 中的实部代表了琴弦的振动位移,也是人耳听到的声音。写成复数便于计算。&lt;/p&gt;
+&lt;p&gt;$$
+\hat{v}(t)=\frac{d \hat{x}}{dt} =i n\omega c_n e^{i n\omega t}
+$$&lt;/p&gt;
+&lt;p&gt;而$\hat{I} = Bl \hat{v}$ 。从而&lt;/p&gt;
+&lt;p&gt;$$
+\hat{I} = \sum_{n=1}^\infty = A n c_n e^{i n \omega t}
+$$&lt;/p&gt;
+&lt;p&gt;可以看出电流的频谱是吉他原生声音频谱的线性加权。
+从而其高频部分会更大，声音会更尖锐，这恰好能够解释为什么
+电吉他的音色要比原生吉他的音色尖锐的多。&lt;/p&gt;
+&lt;p&gt;这就是电音吗？&lt;/p&gt;
+&lt;h2 id=&#34;验证&#34;&gt;验证&lt;/h2&gt;
+&lt;p&gt;上述的结论表明，吉他琴弦中电流的频谱被线性加权了，于是可以
+构造一个相应的滤波器来将普通的声音变为“电音”,这可以用来验证上
+述推导。&lt;/p&gt;
+&lt;p&gt;相反也可以构造一个逆系统将电音转化为原生吉他的声音。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E9%A1%B9%E7%9B%AE/">项目</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E9%9F%B3%E4%B9%90/">音乐</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%90%89%E4%BB%96/">吉他</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%8A%A8%E6%89%8B/">动手</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>吉他拾音器(1)</title>
+                <link>https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/</guid>
+                <pubDate>Wed, 18 Nov 2020 18:17:01 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;idea&#34;&gt;IDEA&lt;/h2&gt;
+&lt;p&gt;最近突发奇想，想利用吉他弦切割磁感线产生电流来采集琴音。类似与电吉他拾音的
+原理，这样采集的声音会是什么样的呢。电流通过琴弦传到脑门会和电吉他的音色一样吗？
+我已经跃跃欲试了。&lt;/p&gt;
+&lt;h2 id=&#34;原理&#34;&gt;原理&lt;/h2&gt;
+&lt;p&gt;总所周知，吉他靠琴弦振动发声。我如果在吉他的弦下方放置一个磁铁，
+那么琴弦振动时刚好切割磁感线，此时如果在用导线将吉他弦两头连入电阻，
+弦中将产生电流，电流的大小由下式给出&lt;/p&gt;
+&lt;p&gt;$$
+I = Blv
+$$&lt;/p&gt;
+&lt;p&gt;电流的频率将与琴弦的频率相同，电流的振幅将正比与运动速度，也就是
+拨弦的力度。采集的原理是没有问题的。&lt;/p&gt;
+&lt;p&gt;于是可以有一个最简单的采集方案。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wenbin-liu.github.io/images/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/guitar1.png&#34; alt=&#34;吉他拾音器结构&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上图中的耳机可以换成一个电阻后使用放大器放大后接入ADC，实现数字化采集，存入电脑。&lt;/p&gt;
+&lt;p&gt;虽然上图仅展示了一根弦的情况，吉他有六根弦，此时可以用运放构建一个
+六路加法器后再接入ADC。原理是一样的。&lt;/p&gt;
+&lt;h2 id=&#34;简化&#34;&gt;简化&lt;/h2&gt;
+&lt;p&gt;上述的结构已经可以采集出琴弦的声音了，吉他的弦两端挂着各自挂着一
+根线，非常不方便。&lt;/p&gt;
+&lt;p&gt;这天上课的时候灵光一闪，发现其实可以不用接线，也能把信号采集出来。
+因为当琴弦开路时，也会有电荷从两端流向另一端，这可以等价的看成琴弦两端
+通过一个电容相连，该电容可以计算出来(其实没必要,因为琴弦可以看作恒流源)。&lt;/p&gt;
+&lt;p&gt;琴弦中流过的电流同样能激发出一个电磁场，于是若再琴弦下方放置一个电感
+线圈用来采集该电磁场，便能采集出琴弦的声音。&lt;/p&gt;
+&lt;p&gt;这一方案非常简洁，仅仅需要再吉他上安装一个磁铁，和一个电感线圈，
+甚至直接将电感缠绕在磁铁上也毫无妨碍。&lt;/p&gt;
+&lt;p&gt;但是此时测量的是电磁场的二级效应了，导线中产生的电流本身就不大，
+其产生的电磁场也会很小，进一步,通过线圈采集回来的信号就微乎其微了，
+从而该方法需要有一个放大器提供足够的放大倍数才能正常工作。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://wenbin-liu.github.io/images/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/guitar2.png&#34; alt=&#34;简化后的吉他拾音器结构&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;下一步&#34;&gt;下一步&lt;/h2&gt;
+&lt;p&gt;接下来就是做实验实测了，不过最近没时间，应该要等到寒假才可继续。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E9%A1%B9%E7%9B%AE/">项目</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E9%9F%B3%E4%B9%90/">音乐</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%90%89%E4%BB%96/">吉他</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%8A%A8%E6%89%8B/">动手</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>实分析与复分析的一些论题</title>
+                <link>https://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/</guid>
+                <pubDate>Mon, 16 Nov 2020 18:22:53 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;本文主要整理一些上 &lt;strong&gt;&lt;em&gt;实分析与复分析&lt;/em&gt;&lt;/strong&gt; 课时遇到的一些问题。&lt;/p&gt;
+
+&lt;h2 id=&#34;测度论相关&#34;&gt;测度论相关&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-测度完备化的唯一性&#34;&gt;1. 测度完备化的唯一性&lt;/h3&gt;
+
+&lt;p&gt;测度空间 $(X,\Sigma,\mu)$ 可以进行延拓得到一个的完备测度$\mu^* $
+和$\sigma$-代数$\Sigma^* $, 其中的$\Sigma^*$由下式给出。&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\Sigma^* = \left\{P \subset X| \exists A,B\in \Sigma ,A\subset P \subset B,\mu(B-A) = 0\right\}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;上式中的 $\mu^* (P) := \mu(A)$。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://math.stackexchange.com/questions/627002/uniqueness-of-completion-of-a-measure-space&#34;&gt;stackoverflow&lt;/a&gt;
+谈论了在上述$\sigma$代数上完备测度的唯一性。&lt;/p&gt;
+
+&lt;p&gt;那么上述的$\Sigma$ 是唯一能使测度完备的$\sigma$-代数吗？&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;记
+&lt;span  class=&#34;math&#34;&gt;\(P = \left\{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right\}\)&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;那么恰有 $P\cup \Sigma = \Sigma^*$
+从而知道上述的完备化是最小的。
+那是否有更大的$\sigma$-代数，使测度在其上的延拓是完备的呢？&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;待更新&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E6%B5%8B%E5%BA%A6%E8%AE%BA/">测度论</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>测度观点下的卷积</title>
+                <link>https://wenbin-liu.github.io/posts/%E6%B5%8B%E5%BA%A6%E8%A7%82%E7%82%B9%E4%B8%8B%E7%9A%84%E5%8D%B7%E7%A7%AF/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/%E6%B5%8B%E5%BA%A6%E8%A7%82%E7%82%B9%E4%B8%8B%E7%9A%84%E5%8D%B7%E7%A7%AF/</guid>
+                <pubDate>Sun, 15 Nov 2020 21:05:48 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;测度的卷积&#34;&gt;测度的卷积&lt;/h2&gt;
+
+&lt;p&gt;今天做Rudin习题的时候发现了一个很有意思的概念。测度的卷积。
+用这个概念可以统一连续卷积，离散卷积和圆卷积。具体可见&lt;strong&gt;&lt;em&gt;实分析和复分析&lt;/em&gt;&lt;/strong&gt;第8章的习题。&lt;/p&gt;
+
+&lt;p&gt;首先看一下测度的卷积是怎么定义的。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;设$\mu,\nu$是$L^1(X)$ 上的复测度。（原题限定$X$为$\mathbb{R}$）
+则$\mu,\nu$的卷积被定义为&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[ \mu * \nu (E) = \int \mu(E-t) d\nu(t) \]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;由定义知上式中的空间不能是任意空间，比如定义中出现了减法，从而它还要是个
+加法群。不过我们只关心几种情况,下面仔细阐述。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面主要用分别考虑下面三种情况：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;$X$ 为$\mathbb{R}$。&lt;/li&gt;
+&lt;li&gt;$X$ 为 $\mathbb{Z}$&lt;/li&gt;
+&lt;li&gt;$X$ 为 $T$, 这里的$T$指离散的圆盘，或者认为是一个周期数列。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;连续的情况-x-mathbbr&#34;&gt;连续的情况 $X =\mathbb{R}$&lt;/h2&gt;
+
+&lt;p&gt;这里假定两个测度绝对连续，那么由Radon-Nykodym 定理可以将复测度写成积分的形式：&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\mu(E) = \int f dm
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\nu(E) = \int g dm
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;则可以断言&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\mu * \nu (E) = \int f *g d m
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;于是&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+\frac{d(\mu*\nu)}{d m} = f* g
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;这是连续卷积。于是我们可以这样理解，每个$L^1$ 空间中的函数
+都对应了一个复测度，复测度的卷积，对应了这个函数，也就是R-N导数
+的卷积。这时函数应当认为是一个密度函数。&lt;/p&gt;
+
+&lt;p&gt;这一思路可以毫无意外的推广到离散的情况。&lt;/p&gt;
+
+&lt;h2 id=&#34;离散的情况-xmathbbz&#34;&gt;离散的情况 $X=\mathbb{Z}$&lt;/h2&gt;
+
+&lt;p&gt;这时复测度关于计数测度绝对连续。
+此时定义密度函数(其实也是R-N导数)：&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+f(n) = \mu(\{n\})
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;这时也可以发现测度的卷积对应了密度函数的卷积，这恰是信号处理中的
+离散卷积。&lt;/p&gt;
+
+&lt;h2 id=&#34;离散圆周的情况-x--mathbbt&#34;&gt;离散圆周的情况 $X = \mathbb{T}$&lt;/h2&gt;
+
+&lt;p&gt;这里的复测度关于计数测度绝对连续
+此时的T是圆周上均匀离散采样得来，具体来说就是&lt;/p&gt;
+
+&lt;p&gt;&lt;span  class=&#34;math&#34;&gt;\[
+T = \left\{ e^{2\pi jn/N} | n=0,1,2,\cdots,N-1\right\}
+\]&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;记$f = d \mu/dm,g=d\nu/dm$
+则$f * g = d(\mu*\nu)/dm$ 恰是圆卷积。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E6%95%B0%E5%AD%A6/">数学</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E6%B5%8B%E5%BA%A6%E8%AE%BA/">测度论</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/">信号处理</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>新生</title>
+                <link>https://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/</guid>
+                <pubDate>Sun, 15 Nov 2020 10:41:11 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;hugo&#34;&gt;Hugo&lt;/h2&gt;
+&lt;p&gt;使用Hugo搭建博客总算完成，这算是我的博客的庆生贴吧。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+    </channel>
+</rss>

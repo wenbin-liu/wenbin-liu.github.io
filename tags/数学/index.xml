@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数学 on Venns&#39; Space</title>
+    <link>http://wenbin-liu.github.io/tags/%E6%95%B0%E5%AD%A6/</link>
+    <description>Recent content in 数学 on Venns&#39; Space</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 11 Apr 2021 00:00:00 +0800</lastBuildDate><atom:link href="http://wenbin-liu.github.io/tags/%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>代数信号处理</title>
+      <link>http://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</link>
+      <pubDate>Sun, 11 Apr 2021 00:00:00 +0800</pubDate>
+      
+      <guid>http://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</guid>
+      <description>模论 最近在看代数信号处理 puschelAlgebraicSignalProcessing2008,该理论主要基于 模论,遂乘此机会学习了 Artin 书的模论部分.
+Artin的模论绝对不是写的最好的, 甚至都没有在一般的PID上考虑模的分解. 这从这章的标题也可看出 这章取名为 Linear Algebra on a Ring ,而不像一般的书籍取名模论. 确实这一章的论证技巧 主要是线性代数的. 而不像环论中使用各种理想.
+这一方法的缺点自然是一般性不够, 但是却是切入模论的最快路径.
+整数环上的模 该章的第一个重要结果是整数矩阵的结构,任给一个整数矩阵 \(A\) 总有两个可逆整数矩阵 \(P,Q\) 使 \(\Lambda = PAQ^{-1}\) 是对角矩阵.
+若记 \(\Lambda=\mathrm{diag}\{d_1,d_2,d_3,&amp;hellip;,d_k,0,0,&amp;hellip;,0\}\), 则有 \(d_1 |d_2 |d_3|\cdots|d_k\).该证明不难就是使用Euclid算法加 一些矩阵技巧.Artin没有直接证明该分解的唯一性,实际上,它是在证明Abel群的结构定理的分解的唯一性 的时候才说明了该分解的唯一性.
+这个命题非常基本, 它贯穿了整章. Artin首先证明了Nother环的有限生成模的子模是有限生成的. 整数环是Nother环,从而整数环的有限生成模的子模是有限生成的. 根据这一结果可以证明, 整数环上的有限生成模 \(M\) 可以通过有限维的整数矩阵表示. 即存在整数矩阵 \(A\) 使得
+\[ M \simeq R_m/AR_n \]
+由于前面提到的 \(P,Q\) 不过是坐标变换,从而整数环上的模可以表示为一些循环模的直和. 实际上该一结论直接给出了Abel群的结构.
+推广 Artin接下来的思路就是推广. Artin首先证明了Hilbert Basis定理, 即 任意诺特环的多项式环是诺特环 从而将前面的定理推广到 \(\mathbb F[t]\) 环上. Artin 没有给出证明 不过这个推广是显然的.</description>
+    </item>
+    
+  </channel>
+</rss>
