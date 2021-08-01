@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2021-08-01T12:03:48&#43;08:00</updated>
+    <updated>2021-08-01T15:06:26&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Haskell和范畴论(上)</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/" />
             <id>https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/</id>
-            <updated>2021-08-01T12:02:35&#43;08:00</updated>
+            <updated>2021-08-01T15:06:12&#43;08:00</updated>
             <published>2021-07-31T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -43,7 +43,7 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Maybe&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Empty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Full&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Sum Type&lt;/span&gt;
-&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Product Type&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Product Type&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;Haskell 中的所有类型构成了一个范畴,其中的对象是 Haskell 中的类型. 态射是这些类型之间的函数.
