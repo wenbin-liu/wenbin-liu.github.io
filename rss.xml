@@ -10,7 +10,7 @@
         <title>Venns&#39; Space</title>
         <link>https://wenbin-liu.github.io/</link>
         <description>Venns 的个人博客.</description>
-        <generator>Hugo 0.85.0 https://gohugo.io/</generator>
+        <generator>Hugo 0.86.0 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
         
@@ -23,10 +23,150 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Fri, 09 Jul 2021 18:54:14 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 01 Aug 2021 12:03:48 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
+        
+            <item>
+                <title>Haskell和范畴论(上)</title>
+                <link>https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/</guid>
+                <pubDate>Sat, 31 Jul 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Haskell 是有名的函数式编程语言. 支持函数式编程的语言很多,但是像 Haskell 这样不使用函数式的思维写不出代码的实属罕见. Haskell本身偏学术性质, 学术界有很多新奇的东西能够在Haskell 找到. 最有名的当属 &lt;strong&gt;Monad&lt;/strong&gt; . 现代的编程语言理论与范畴论联系紧密. Haskell
+中有很多衍生自范畴论的语言. 本文主要讨论这些概念.&lt;/p&gt;
+&lt;h2 id=&#34;代数数据类型--adt&#34;&gt;代数数据类型 (ADT)&lt;/h2&gt;
+&lt;p&gt;代数数据类型(Algebraic Data Type, ADT) 是Haskell中非常有趣而重要的东西. 类型可以看作一个集合,某个类型的值就是这个集合中的元素. Haskell 中的类型有 &lt;strong&gt;Sum Type&lt;/strong&gt; 和 &lt;strong&gt;Product Type&lt;/strong&gt;
+, Sum Type 使用 &lt;code&gt;|&lt;/code&gt; 符号连接,代表类型之间是或的关系, Product Type 一般使用多个元素的构造器连接.
+如果将 &lt;strong&gt;Type&lt;/strong&gt; 看作集合, 那么 &lt;strong&gt;Sum Type&lt;/strong&gt; 对应集合范畴中的无交并, &lt;strong&gt;Product Type&lt;/strong&gt; 对应集合范畴中的笛卡尔积.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Maybe&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Empty&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Full&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Sum Type&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Vector&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Double&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Product Type&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Haskell 中的所有类型构成了一个范畴,其中的对象是 Haskell 中的类型. 态射是这些类型之间的函数.
+这个范畴称之为 &lt;strong&gt;Hask 范畴&lt;/strong&gt; . Product Type 是这个范畴中的 Product, Sum Type 是这个范畴的
+Coproduct . Haskell 中的代数数据类型很有意思的一点是,它还支持 &lt;strong&gt;Recursive Type&lt;/strong&gt; ,即在类型的定义中递归. 比如 &lt;code&gt;List&lt;/code&gt; 的定义就是一个很有名的例子.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;List&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Nil&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;List&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- Recursive Type&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;typeclass&#34;&gt;Typeclass&lt;/h2&gt;
+&lt;p&gt;Haskell 中第一个和寻常语言不同的概念就是 &lt;strong&gt;Functor&lt;/strong&gt; . 要说明 Functor ,首先得介绍 &lt;code&gt;Typeclass&lt;/code&gt; 的概念.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Typeclass&lt;/strong&gt; 是 Haskell 中用来描述类型特性的关键字. 它用来描述这些类型具有什么样的操作, 这些操作类似其他语言中的
+&lt;em&gt;接口&lt;/em&gt; , 但应当注意 &lt;strong&gt;Typeclass&lt;/strong&gt; 属于更高阶的抽象,是用来描述类型的, 这和接口是完全不一样的.&lt;/p&gt;
+&lt;p&gt;例如 &lt;code&gt;Eq&lt;/code&gt; 类型类描述了一类可以判断是否相等的类型. 它必须定义 &lt;code&gt;==&lt;/code&gt; 这一函数.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Eq&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Bool&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;class&lt;/code&gt; 关键字说明了一个 Typeclass 应当具有的抽象结构, 它本身不能给出具体的类型.  要说明某个具体的Type
+(一般由data关键字声明) 是一个 &lt;code&gt;Eq&lt;/code&gt; Typeclass. 必须使用 &lt;code&gt;instance&lt;/code&gt; 关键字给出 &amp;quot;接口&amp;quot; 的实际定义, 如&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Eq&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Bool&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;True&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;True&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;True&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;False&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;False&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;True&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;functor&#34;&gt;Functor&lt;/h3&gt;
+&lt;p&gt;Functor(函子) 是一类特殊的Typeclass. 这一术语来自范畴论. 在范畴论中, 函子是两个范畴之间的映射,
+它将一个范畴中的对象映射到另一个范畴中的对象, 同时将源范畴中对象之间的态射提升到目标范畴中.&lt;/p&gt;
+&lt;p&gt;如范畴 \(\mathcal C_1\) 到 范畴 \(\mathcal C_2\) 的函子 \(F\),&lt;/p&gt;
+&lt;p&gt;\begin{align}
+A \in \mathrm{Obj}(\mathcal C_1) &amp;amp;\Rightarrow F A \in \mathrm{Obj}(\mathcal C_2) \\\&lt;br&gt;
+(f : A \rightarrow B) \in \mathrm{Hom}(A,B) &amp;amp;\Rightarrow F f:  F A \rightarrow F B \in \mathrm{Hom}(F A, F B) , A ,B \in \mathrm{Obj}(\mathcal C_1) \\\&lt;br&gt;
+F (g \circ f)&amp;amp; = F g \circ F f , f \in \mathrm{Hom}(A,B), g \in \mathrm{Hom}(B,C)
+\end{align}&lt;/p&gt;
+&lt;p&gt;对于有一个类型参数的类型, 它将类型映射为新的类型. 但是一般不能将类型与类型之间的函数提升为新的类型之间的函数, 如果能, 它将是Hask
+范畴中的函子,也就是 Haskell 中的函子, 该提升操作称之为 &lt;code&gt;fmap&lt;/code&gt;. 具体 Functor 的 Haskell定义如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Functor&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;fmap&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;上述的 &lt;code&gt;f&lt;/code&gt; 是带有一个参数的类型构造器. 列表就是最常见的函子, 它的定义如下&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Functor&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;fmap&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Nil&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Nil&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;fmap&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;xs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fmap&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;范畴中的函子还要保态射的合成, Haskell 的编译器不会检查这一点, 需要编程人员自行检查.&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Galois 理论</title>
@@ -414,7 +554,7 @@ p(t) = (t-\alpha_1)q(t)
 &lt;!--listend--&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
@@ -422,7 +562,7 @@ p(t) = (t-\alpha_1)q(t)
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;webdav&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;url&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;://&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;YOUR-DOMAIN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;-my&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;personal&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;YOUR-EMAIL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Documents&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;vendor&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;sharepoint&lt;/span&gt;
@@ -439,12 +579,12 @@ p(t) = (t-\alpha_1)q(t)
 &lt;p&gt;使用cookie可解决这一问题，随便使用一个浏览器登陆Onedrive，找到两个cookie值一个是 &lt;code&gt;rtFa&lt;/code&gt; 一个是 &lt;code&gt;FedAuth&lt;/code&gt; ，然后在 &lt;code&gt;/etc/davfs2/davfs2.conf&lt;/code&gt; 文件中添加如下配置&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;home&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OneDrive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;home&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;user&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;OneDrive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;add_header&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Cookie&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;rtFa&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;rtFa&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;的&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cookie&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;值&amp;gt;;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FedAuth&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FedAuth&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;的&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;cookie&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;值&amp;gt;&lt;/span&gt;
 &lt;span class=&#34;nx&#34;&gt;uselocks&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
