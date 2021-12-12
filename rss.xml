@@ -10,7 +10,7 @@
         <title>Venns&#39; Space</title>
         <link>https://wenbin-liu.github.io/</link>
         <description>Venns 的个人博客.</description>
-        <generator>Hugo 0.86.0 https://gohugo.io/</generator>
+        <generator>Hugo 0.88.1 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
         
@@ -23,10 +23,248 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 01 Aug 2021 15:06:26 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 12 Dec 2021 20:42:45 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
+        
+            <item>
+                <title>Haskell和范畴论(下) – Monad</title>
+                <link>https://wenbin-liu.github.io/posts/20210801145506-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8B_monad/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20210801145506-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8B_monad/</guid>
+                <pubDate>Sun, 01 Aug 2021 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;blockquote&gt;
+&lt;p&gt;这篇文章的前半部分在暑假的时候就已经写好，后面忙于考托福，就一直没有继续写下去。最近有时间了，突然发现已经到年末了，遂找了个周末将这篇文章写完。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;本文是上一篇文章 &lt;a href=&#34;https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/&#34;&gt;Haskell和范畴论(上)&lt;/a&gt; 的下篇, 主要介绍 Haskell 中最神秘, 最挠有趣味的 &lt;strong&gt;Monad&lt;/strong&gt; 的概念.&lt;/p&gt;
+&lt;h2 id=&#34;haskell-is-pure&#34;&gt;Haskell is pure&lt;/h2&gt;
+&lt;p&gt;Haskell 中的函数都是纯粹的, 所谓纯粹是指 Haskell 中所有的函数是数学意义上的映射, 输入同一个数, 输出的值也必定相同.
+而在C语言中, 由于有全局变量, 静态变量等, 函数的输出可能会随外部环境改变而改变, 因而不是纯粹的.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;countAdd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;counter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如上所示 &lt;code&gt;countAdd(x)&lt;/code&gt; 函数的值会随调用次数的改变而改变, 从而不是纯的.&lt;/p&gt;
+&lt;p&gt;Haskell 中的函数是纯的, 这类似于数字电路中的组合逻辑. 而命令式编程语言, 如C, 由于具有状态变量, 具有某种程度上的记忆性, 因而不是纯的, 非纯的函数类似与数字电路中的时序逻辑.&lt;/p&gt;
+&lt;p&gt;一般计算机的抽象使用图灵机, 也就是带有状态的有限自动机. 要实现一般的编程, 总要涉及到状态变量, 这类非纯的东西. 另外
+IO 可以看作一组公用的寄存器, 它天生就是一个全局变量, 涉及 IO 操作的将导致非纯的函数.&lt;/p&gt;
+&lt;p&gt;那么如何使用 Haskell 中的函数表达常见的非纯的函数呢, 或者说如何表达带有 &lt;strong&gt;副作用(side-effect)&lt;/strong&gt; 的函数呢. 答案是 &lt;strong&gt;Monad&lt;/strong&gt;
+, 尤其是其中的 &lt;code&gt;State&lt;/code&gt; Monad. &lt;code&gt;State&lt;/code&gt; Monad 可以看作将时序逻辑展开成组合逻辑.&lt;/p&gt;
+&lt;h2 id=&#34;computation-with-effects&#34;&gt;Computation with Effects&lt;/h2&gt;
+&lt;p&gt;本节按照 &lt;em&gt;Moggi&lt;/em&gt; 文章 &amp;lt;&amp;amp;moggiNotionsComputationMonads&amp;gt; 的思路介绍 &lt;strong&gt;Monad&lt;/strong&gt; .&lt;/p&gt;
+&lt;p&gt;给定一个类型 \(A\) , 用 \(T A\) 表示带有副作用的 \(A\) 类型值. 而带有副作用的函数则可表示为类型 \(f :: A \rightarrow T B\) . 一般的程序可以看作特殊的函数, 因而, 这种计算表示, 也给出了一般的程序的抽象.&lt;/p&gt;
+&lt;p&gt;给定一个 \(A\) 类型的参数, 我们应当可以将 \(A\) 包裹进 \(T A\) 中, 由于没有进行其他作用, 进行这个操作的函数应当没有什么副作用,
+虽然, 形式上 \(TA\) 是带有副作用的. 这个函数就是 Haskell 中的 &lt;code&gt;pure :: a -&amp;gt; T a&lt;/code&gt; 函数.&lt;/p&gt;
+&lt;p&gt;如果有两个程序 \(f : A \rightarrow T B, g : B \rightarrow T C\), 那么这两个程序应当可以组合起来, 得到一个 \(A \rightarrow T C\) 的程序. 这就是 Haskell
+中的 &lt;code&gt;&amp;gt;=&amp;gt; :: (a -&amp;gt; T b) -&amp;gt; (b -&amp;gt; T c) -&amp;gt; (a -&amp;gt; T c)&lt;/code&gt; .&lt;/p&gt;
+&lt;p&gt;实际上 &lt;code&gt;pure, (&amp;gt;=&amp;gt;)&lt;/code&gt; 两个函数可以构成一个范畴, 称之为 &lt;strong&gt;Kleisi Category&lt;/strong&gt;. 具体定义如下&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的类型是 Kelisi 范畴中的对象&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pure:: a -&amp;gt; T a&lt;/code&gt; 是这个范畴中对象 &lt;code&gt;a&lt;/code&gt; 的 Id 态射&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f:: a -&amp;gt; T b&lt;/code&gt; 是这个对象中 \(a \rightarrow b\) 的态射&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;f &amp;gt;=&amp;gt; g&lt;/code&gt; 是两个态射 \(f \in \mathrm{Hom}(A,B), g \in \mathrm{Hom}(B,C)\) 的合成.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;要满足范畴的要求, 还需一些约束, 他们是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;恒等性: &lt;code&gt;pure &amp;gt;=&amp;gt; f = f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;恒等性: &lt;code&gt;f &amp;gt;=&amp;gt; pure = f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;结合性: &lt;code&gt;f &amp;gt;=&amp;gt; (g &amp;gt;=&amp;gt; h) = (f &amp;gt;=&amp;gt; g) &amp;gt;=&amp;gt; h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实际上述的 &lt;code&gt;pure, (&amp;gt;=&amp;gt;)&lt;/code&gt; 两个函数可以用 &lt;code&gt;pure, (&amp;gt;&amp;gt;=) :: T a -&amp;gt; (a -&amp;gt; T b) -&amp;gt; T b&lt;/code&gt; 等价描述. 二者的相互转化由下列公式给出&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;=&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;g&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;-- x can be replced by any value&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;code&gt;&amp;gt;&amp;gt;=&lt;/code&gt; 读作 &amp;quot;bind&amp;quot; , 它可以看作将一个程序 &lt;code&gt;a-&amp;gt; T b&lt;/code&gt; 提升为 &lt;code&gt;T a -&amp;gt; T b&lt;/code&gt; 的算子. 使得原本的 函数能够接受一个带副作用的输入.
+这就是 Haskell 中 Monad 的定义.&lt;/p&gt;
+&lt;p&gt;由此引出 &lt;strong&gt;Kleisi Triple&lt;/strong&gt; 的定义 &amp;lt;&amp;amp;moggiNotionsComputationMonads&amp;gt; .&lt;/p&gt;
+&lt;h3 id=&#34;kleisi-triple&#34;&gt;Kleisi Triple&lt;/h3&gt;
+&lt;p&gt;Kleisi Triple 就是有上述的 &lt;code&gt;T, pure, &amp;gt;&amp;gt;=&lt;/code&gt; 定义的三元组. 他们用来抽象带副作用的程序, 唯一的确定了一个 Kleisi Category.
+我们重新用数学符号表示该三元组. \((T, \eta , -^*)\) 是范畴 \(\mathcal C\) 上的 Kleisi Triple 如果下述定义&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(T: \mathrm{Obj}(\mathcal C) \rightarrow \mathrm{Obj}(\mathcal C)\)&lt;/li&gt;
+&lt;li&gt;\(\eta_A: A \rightarrow T A, \forall A \in \mathrm{Obj}(\mathcal C)\)&lt;/li&gt;
+&lt;li&gt;\(f^*:T A \rightarrow T B, \forall f: A \rightarrow T B\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;满足:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(\eta_A^* = \mathrm{id}_{TA}\)&lt;/li&gt;
+&lt;li&gt;\(f^* \circ \eta_A = f, f : A \rightarrow T B\)&lt;/li&gt;
+&lt;li&gt;\(g^* \circ f^* = (g^* \circ f)^*, f : A \rightarrow T B, g : B \rightarrow T C\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Kleisi Triple 是更适合编程的语言, 实际上述的定义就是数学家们所说的 &lt;strong&gt;Monad&lt;/strong&gt; .&lt;/p&gt;
+&lt;h3 id=&#34;monad&#34;&gt;Monad&lt;/h3&gt;
+&lt;p&gt;Monad 是范畴论中的一个术语, 它和 Kleisi Triple 是等价的.&lt;/p&gt;
+&lt;p&gt;三元组 \((T,\eta,\mu)\) 是范畴 \(\mathcal C\) 上的 &lt;strong&gt;Monad&lt;/strong&gt; ,如果&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(T\) 是 \(\mathcal C\) 到 \(\mathcal C\) 的自函子.&lt;/li&gt;
+&lt;li&gt;\(\eta: \mathrm{Id}_\mathcal{C} \rightarrow T\) 是自然变换&lt;/li&gt;
+&lt;li&gt;\(\mu: T^2 \rightarrow T\) 是自然变换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使下面的交换图交换:&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://wenbin-liu.github.io/ox-hugo/2021-08-01_21-08-49_MonadCommunicateDig.png&#34;/&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;给定一个 Kleisi Triple 可以定义出一个 Monad 其中:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(T(f):= (\eta_B \circ f)^*, f:A \rightarrow B\)&lt;/li&gt;
+&lt;li&gt;\(\eta\) 定义相同&lt;/li&gt;
+&lt;li&gt;\(\mu_A:=(Id_{TA})^*\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;同样给定一个Monad也可定义出一个 Kleisi Triple&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;\(T\) 就是Monad中Functor 在对象上的约束（Kleisi Triple中的 \(T\) 不需要是Functor）&lt;/li&gt;
+&lt;li&gt;\(\eta\) 定义相同&lt;/li&gt;
+&lt;li&gt;\(f^*:= \mu_B \circ T(f),f:A \rightarrow TB\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;examples&#34;&gt;Examples&lt;/h2&gt;
+&lt;p&gt;Monad的理论基本介绍完了, 接下来就是介绍实际的一些用来表示副作用的 Monad 了.&lt;/p&gt;
+&lt;h3 id=&#34;maybe-monad&#34;&gt;Maybe Monad&lt;/h3&gt;
+&lt;p&gt;Maybe Monad 几乎是Trival的，其实现如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Monad&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Maybe&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Just&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Nothing&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Nothing&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;Just&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Maybe Monad 可以轻松拓展为处理 Exception 的Monad，只要将 其中的 &lt;code&gt;Nothing&lt;/code&gt;
+换成另一个包含多种错误的 Sum Type 即可。&lt;/p&gt;
+&lt;h3 id=&#34;state-monad&#34;&gt;State Monad&lt;/h3&gt;
+&lt;p&gt;比较有趣的是 State Monad。State Monad 的形式定义是 \(TA = (A \times S)^S\)
+\((A \times S)^S\) 是所有形如 \(f:S \rightarrow (A \times S)\) 函数的集合。写成用Haskell的语法可以给出State Monad的定义&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;State&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;State&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;runState&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)}&lt;/span&gt;
+
+&lt;span class=&#34;kr&#34;&gt;instance&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Monad&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;State&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;where&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;State&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mx&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;State&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;$&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;\&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;let&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;runState&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mx&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&amp;#39;&lt;/span&gt;
+    &lt;span class=&#34;kr&#34;&gt;in&lt;/span&gt;
+      &lt;span class=&#34;n&#34;&gt;runState&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;可以发现 State Monad 类似一个带输出的状态机，它由他的状态转移函数 ( &lt;code&gt;s-&amp;gt;s&lt;/code&gt; ) 决定,该状态机的输出是附带的，状态转移函数是本质的。那么 &lt;code&gt;a -&amp;gt; State s b&lt;/code&gt; 代表什么样的语义呢？它是根据输入值 &lt;code&gt;a&lt;/code&gt; （严格来说是 &lt;code&gt;a&lt;/code&gt; 类型的值）输出一个带输出的状态转移函数，从而不同的输入值可以决定不同的状态跳转方式。如果按照前述
+Kleisi Triple 的方式来理解, &lt;code&gt;a -&amp;gt; State s b&lt;/code&gt; 是 Kleisi Triple 中的 \(A \rightarrow TB\) ,它应该比 &lt;code&gt;State s b&lt;/code&gt;
+类型的变量更重要。当两个 Kleisi 范畴中的箭头合成时，比如 &lt;code&gt;a -&amp;gt; State s b&lt;/code&gt; 与箭头 &lt;code&gt;b -&amp;gt; State s c&lt;/code&gt; 合成第二个箭头首先读取第一个箭头的输出，也就是状态机跳转后的输出，然后这一输出值将传递给第二个箭头，然后决定第二次状态跳转方式。这恰恰就是图灵机的模型，图灵机是个有限状态机，它不断读取纸带输入，然后根据输入决定状态跳转。从而借助
+State Monad 我们验证了Haskell是图灵完备的。&lt;/p&gt;
+&lt;h3 id=&#34;io-monad&#34;&gt;IO Monad&lt;/h3&gt;
+&lt;p&gt;IO Monad在 Haskell 中一般当作黑盒使用。在 &lt;em&gt;Moggi&lt;/em&gt; 论文中，IO也是一种 Monad，但它的抽象不同与Haskell 中的实现。输入可以抽象为Kleisi Triple : \(TA:= \mu\gamma . A + \gamma^U\) 其中的 \(\mu\) 是 Recursive Type 的写法&amp;lt;&amp;amp;pierceTypesProgrammingLanguages2002&amp;gt;.
+其中的加号表示一个 &lt;strong&gt;Sum Type&lt;/strong&gt; .从而 \(TA\) 要么是A类型本身，要么是 &lt;code&gt;U \rightarrow A&lt;/code&gt; 类型，假设 &lt;code&gt;U&lt;/code&gt; 是输入类型。用Haskell 表示就是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;|&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;Box&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unBox&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;U&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;T&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这是一个很有意思的一个类型它包含了所有形如 &lt;code&gt;U -&amp;gt; A&lt;/code&gt; , &lt;code&gt;U-&amp;gt;U-&amp;gt;A&lt;/code&gt; ,.., &lt;code&gt;U-&amp;gt;U-&amp;gt;... -&amp;gt;U-&amp;gt;A&lt;/code&gt;
+假设 &lt;code&gt;U&lt;/code&gt; 代表键盘上的字母表， &lt;code&gt;TA&lt;/code&gt; 则代表了键盘不同输入是对程序的影响。将它定义为一个Monad的时候，Kleisi Triple的箭头是将这些 &lt;code&gt;U&lt;/code&gt; 输入接起来。&lt;/p&gt;
+&lt;p&gt;在 &lt;em&gt;Moggi&lt;/em&gt; 论文中，输出被抽象为 \(TA := \mu\gamma. A+(U \times \gamma)\). \(U\times \gamma\) 是 Product Type 和前文类似，该抽象也非常有意思。分析同前文。&lt;/p&gt;
+&lt;p&gt;上述的对IO的抽象非常和现实非常贴切，但是不太实用。实际上 IO 可以用 State Monad 的实现。计算机可以看作一个巨大的有限状态机这些状态就是CPU中的一些寄存器。同样 IO 操作可以看作是对这些寄存器的读与写。那么只要将与IO相关的寄存器纳入到 State Monad
+中的状态中，便可实现IO操作。当然，实际实现中不必操作寄存器，只要对基本的读写操作封装好，设计相应状态变化时便使用该封装好的函数即可。&lt;/p&gt;
+&lt;p&gt;参考 &lt;a href=&#34;https://www.youtube.com/watch?v=fCoQb-zqYDI&#34;&gt;Tsoding&lt;/a&gt; 的视频，他将 &lt;code&gt;IO&lt;/code&gt; 定义为如下的State Monad&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-haskell&#34; data-lang=&#34;haskell&#34;&gt;&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;World&lt;/span&gt;
+&lt;span class=&#34;kr&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;IO&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;IO&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;runIO&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;::&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;World&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;World&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后便可实现相应的IO操作，唯一需要注意的是 &lt;code&gt;World&lt;/code&gt; 更多意义是形式上的，它保证了IO执行的严格顺序，但是由于
+Haskell是Lazy的，可能不对 &lt;code&gt;World&lt;/code&gt; 执行显示计算，那么IO的顺序之间的依赖可能被打断。因此，在实行具体的IO操作时 &lt;code&gt;World&lt;/code&gt; 要进行显示计算。具体可参考Youtube的视频。&lt;/p&gt;
+&lt;p&gt;&amp;lt;~/Documents/mybib.bib&amp;gt;&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E4%BB%A3%E6%95%B0/">代数</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BC%96%E7%A8%8B/">编程</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Haskell和范畴论(上)</title>
