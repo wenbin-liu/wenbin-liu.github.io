@@ -23,10 +23,161 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Mon, 18 Apr 2022 17:58:41 &#43;0800</lastBuildDate>
+        <lastBuildDate>Tue, 03 May 2022 21:41:27 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
+        
+            <item>
+                <title>Hamilton-Jacobi 方程</title>
+                <link>https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/</guid>
+                <pubDate>Tue, 03 May 2022 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;最小作用量原理&#34;&gt;最小作用量原理&lt;/h2&gt;
+&lt;p&gt;经典力学可以通过最小作用量原理描述，其中作用量表达式为：&lt;/p&gt;
+&lt;p&gt;\[
+S = \int_{t_1}^{t_2} L(q,\dot q,t) dt
+\]&lt;/p&gt;
+&lt;p&gt;最小作用量原理断定，物体真实的运动轨迹将使得上式取极值，从而对上式做变分将得到拉格朗日方程。这里将变分的结果写出。&lt;/p&gt;
+&lt;p&gt;\[
+\delta S = \int_{t_1}^{t_2} \delta q
+\left(\frac{\partial L}{\partial q}  - \frac{d}{dt}\frac{\partial L}{\dot \partial q}\right) dt +
+\left. \frac{\partial L}{\partial \dot q}\delta q \right|^{t_2}_{t_1}
+\]&lt;/p&gt;
+&lt;p&gt;上式的变分并不是无约束的，实际上，最小作用量原理要求固定轨迹的两个端点, 即 \(\delta q(t_2) = \delta q(t_1) = 0\) 。实际上人们常常忽略端点处的时间参数也是固定的。也就是说在轨迹末端的位置固定，到达轨迹末端的时间也是固定的。&lt;/p&gt;
+&lt;h2 id=&#34;作用量&#34;&gt;作用量&lt;/h2&gt;
+&lt;p&gt;假设现在物体的运动是已知的，即已经通过最小作用量原理求得了物体运动的方程，从而此时可以得到作用量函数。&lt;/p&gt;
+&lt;p&gt;\[
+S(q_2 ,t_2) = \int_{t_1}^{t_2} L dt
+\]&lt;/p&gt;
+&lt;p&gt;如上一节所说，做变分时轨迹末端的位置和时刻都是固定的，从而作用量是轨迹末端位置和时间的函数。现在可以看看作用量的全微分是什么。由于这里涉及变分，直接求全微分不太好求，可以依次求偏微分。&lt;/p&gt;
+&lt;p&gt;首先固定到达时间，改变到达位置，从而按照上一节的结论和欧拉-拉格朗日方程可以得到：&lt;/p&gt;
+&lt;p&gt;\[
+\delta S = \int_{t_1}^{t_2} \delta q
+\left(\frac{\partial L}{\partial q}  - \frac{d}{dt}\frac{\partial L}{\dot \partial q}\right) dt +
+\left. \frac{\partial L}{\partial \dot q}\delta q \right|^{t_2}_{t_1}
+= \frac{\partial L}{\partial \dot q}\delta q_2
+\]&lt;/p&gt;
+&lt;p&gt;从而得到作用量关于位置的偏微分&lt;/p&gt;
+&lt;p&gt;\[
+\frac{\partial S(q,t)}{\partial q} = \frac{\partial L}{\partial \dot q} = p
+\]&lt;/p&gt;
+&lt;p&gt;关于到达时间的偏微分要复杂一些，郎道书中通过间接计算 \(\dfrac{d S}{d t}\) 来求偏微分。这里我们直接计算，帮助理解这里微妙的变分关系。&lt;/p&gt;
+&lt;p&gt;现在要求关于到达时间的偏微分，从而到达位置必须固定，假设到达时间从 \(t_2\) 变为了 \(t_2 + \delta t\). 那么到达位置势必变为 \(q(t_2 + \delta t)\) .显然到达位置无法固定，因此到达 \(t_2\) 时刻的位置不能固定必须改变 \(\delta q(t_2)\) 来抵消这一改变，如果即到达位置的改变为 \(\Delta q\) (参考 Goldstein &amp;lt;&amp;amp;goldsteinCLASSICALMECHANICS2011&amp;gt; ). 从而&lt;/p&gt;
+&lt;p&gt;\[
+\Delta q_2 = \delta q(t_2) + \dot q \delta t = 0
+\]&lt;/p&gt;
+&lt;p&gt;于是可以求作用量关于时间的偏微分，于是&lt;/p&gt;
+&lt;p&gt;\[
+\delta S = L \delta t_2 + \int^{t_2}_{t_1}\delta L d t
+= L \delta t_2+ \frac{\partial L}{\partial \dot q}\delta q(t_2) = L\delta t_2 - p \dot q \delta t_2
+= -H \delta t_2
+\]&lt;/p&gt;
+&lt;p&gt;于是得到全微分为&lt;/p&gt;
+&lt;p&gt;\[
+dS = -H dt + p dq
+\]&lt;/p&gt;
+&lt;p&gt;形式上该微分可以这样记忆：&lt;/p&gt;
+&lt;p&gt;\[
+dS = L dt = p\dot q dt - H dt
+= pdq -H dt
+\]&lt;/p&gt;
+&lt;p&gt;这样的记忆不无道理，可以将 \(q,t\) 两个变量看作新的空间上的参数，那么 \(p\) 是 \(q,t\) 的函数，从而 \(S\) 是路径积分其在终点处的全微分自然由上式给出。&lt;/p&gt;
+&lt;h2 id=&#34;hamilton-jacobi-方程&#34;&gt;Hamilton-Jacobi 方程&lt;/h2&gt;
+&lt;p&gt;作用量对时间的偏导数为系统的 Hamilton 量，而 Hamilton 量中的动量是作用量关于位置的偏导数，从而给定Hamilton量可以构造作用量满足的偏微分方程, 即 Hamilton-Jacobi 方程。&lt;/p&gt;
+&lt;p&gt;\[
+\frac{\partial S(q,t)}{\partial t} = -H(p,q) =-H(\frac{\partial S}{\partial q},q)
+\]&lt;/p&gt;
+&lt;p&gt;上式的推导假设了系统是保守体系。&lt;/p&gt;
+&lt;h2 id=&#34;作为生成函数的作用量&#34;&gt;作为生成函数的作用量&lt;/h2&gt;
+&lt;p&gt;Hamilton-Jacobi 方程一般可通过分离变量求解，但是即便求出作用量的显示形式，轨迹方程也无法直接求出。不过作用量可以看成一类特殊正则变换的生成函数。&lt;/p&gt;
+&lt;p&gt;在位形空间上选取任意的坐标系均满足 Euler-Lagrangian 方程，而对于 Hamilton 方程组，\(p,q\) 的同等地位使得可以对 \(p,q\) 整体做变换得到 \(P,Q\). 当然这并不能保证新的变量依然满足 Hamilton 方程组，现在寻找该变换需要满足的条件。&lt;/p&gt;
+&lt;p&gt;这里需要用到一个新的最小作用量原理，若将作用量表示为 \(S = \int p dq -\int H dt\) 同时认为 \(p,q\) 是独立的变量，那么对这两个变量做变分也可得到Hamilton 方程组。这个推导比较简单。这里略去。&lt;/p&gt;
+&lt;p&gt;假设作用量可以用新旧两组变量做变分，于是&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\delta S &amp;amp;= \delta \int p dq -H dt \\
+\delta S &amp;amp;= \delta \int P dQ -H&#39;dt
+\end{align}&lt;/p&gt;
+&lt;p&gt;上述变分必须等价，一种方法是二者相差一个全微分。因为在边界处变分为0.&lt;/p&gt;
+&lt;p&gt;于是&lt;/p&gt;
+&lt;p&gt;\[
+pdq -Hdt = PdQ -H&#39;dt + dF
+\]&lt;/p&gt;
+&lt;p&gt;从而&lt;/p&gt;
+&lt;p&gt;\begin{align}
+p &amp;amp;= \frac{\partial F}{\partial q}\\
+P &amp;amp;= -\frac{\partial F}{\partial Q}\\
+H&#39; &amp;amp;= H + \frac{\partial F}{\partial t}
+\end{align}&lt;/p&gt;
+&lt;p&gt;对 \(F\) 做 Legendre 变换可以得到不同类型的生成函数。倘若可以选取一个特殊的生成函数使得新的 Hamilton 量为0，那么 Hamilton 方程将变得 Trivial 。 观察上式可以发现，该条件恰好就是 Hamilton-Jacobi 方程。&lt;/p&gt;
+&lt;p&gt;\[
+-H = \frac{\partial F}{\partial t}
+\]&lt;/p&gt;
+&lt;p&gt;假设现在已经解出 Hamilton-Jacobi 方程，那么可以任意选取其中的积分常数作为 \(Q\) 根据 \(P\) 为常数求得轨迹方程。&lt;/p&gt;
+&lt;h2 id=&#34;量子力学中的-hamilton-jacobi-方程&#34;&gt;量子力学中的 Hamilton-Jacobi 方程&lt;/h2&gt;
+&lt;p&gt;量子力学的运动学有 Schrodinger 方程给出，假设波函数有形式 \(\Psi = \exp(iS/\hbar)\)，则 Schrodinger 方程给出&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\frac{-\hbar^2\nabla^2}{2m} \Psi + V \Psi = hi \frac{\partial}{\partial t} \Psi
+\end{align}&lt;/p&gt;
+&lt;p&gt;带入波函数并整理可得&lt;/p&gt;
+&lt;p&gt;\[
+\frac{1}{2m}(\nabla S)^2 - \frac{hi}{2m} \nabla^2 S = -\frac{\partial S}{\partial t}
+\]&lt;/p&gt;
+&lt;p&gt;令 \(\hbar \to 0\) ，上式恰好便是 Hamilton-Jacobi 方程。&lt;/p&gt;
+&lt;h2 id=&#34;feymann-路径积分&#34;&gt;Feymann 路径积分&lt;/h2&gt;
+&lt;p&gt;Feymann 路径积分是量子力学的另一种等价描述。它断言传播子由下式给出：&lt;/p&gt;
+&lt;p&gt;\[
+\left&amp;lt;x_1,t_1|x_0,t_0\right&amp;gt; = \sum_{\mathrm{average\ over\ all\ paths}} \exp(i\int_{t_0,x _0}^{t_1,x_1} \frac{L}{\hbar} dt)
+\]&lt;/p&gt;
+&lt;p&gt;如果假设 \(x_1,t_1\) 与 \(x_0,t_0\) 十分靠近，考虑一个自由粒子，则作用量为&lt;/p&gt;
+&lt;p&gt;\[
+S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
+\]&lt;/p&gt;
+&lt;p&gt;则传播子近似为&lt;/p&gt;
+&lt;p&gt;\[
+\left&amp;lt;x_1,t_1|x_0,t_0\right&amp;gt;  = \exp\left(-\frac{E(t_1 -t_0)}{\hbar}i+\frac{\sqrt{2mE}}{\hbar}(x_1-x_0)i\right)
+\]&lt;/p&gt;
+&lt;p&gt;上式恰为自由粒子的波函数。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E7%89%A9%E7%90%86/">物理</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E5%88%86%E6%9E%90%E5%8A%9B%E5%AD%A6/">分析力学</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/">量子力学</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Einstein-Hilbert 作用量</title>
