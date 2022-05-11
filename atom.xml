@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2022-05-11T15:31:12&#43;08:00</updated>
+    <updated>2022-05-11T16:33:16&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -20,7 +20,7 @@
             <title type="text">Hamilton-Jacobi 方程</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/" />
             <id>https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/</id>
-            <updated>2022-05-11T15:02:28&#43;08:00</updated>
+            <updated>2022-05-11T16:09:31&#43;08:00</updated>
             <published>2022-05-03T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -58,7 +58,7 @@ S(q_2 ,t_2) = \int_{t_1}^{t_2} L dt
 &lt;p&gt;\[
 \frac{\partial S(q,t)}{\partial q} = \frac{\partial L}{\partial \dot q} = p
 \]&lt;/p&gt;
-&lt;p&gt;关于到达时间的偏微分要复杂一些，郎道书中通过间接计算 \(\dfrac{d S}{d t}\) 来求偏微分。这里我们直接计算，帮助理解这里微妙的变分关系。&lt;/p&gt;
+&lt;p&gt;关于到达时间的偏微分要复杂一些，郎道书（(&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/#citeproc_bib_item_2&#34;&gt;Landau and Lifshitz 1976&lt;/a&gt;)）中通过间接计算 \(\dfrac{d S}{d t}\) 来求偏微分。这里我们直接计算，帮助理解这里微妙的变分关系。&lt;/p&gt;
 &lt;p&gt;现在要求关于到达时间的偏微分，从而到达位置必须固定，假设到达时间从 \(t_2\) 变为了 \(t_2 + \delta t\). 那么到达位置势必变为 \(q(t_2 + \delta t)\) .显然到达位置无法固定，因此到达 \(t_2\) 时刻的位置不能固定必须改变 \(\delta q(t_2)\) 来抵消这一改变，如果即到达位置的改变为 \(\Delta q\) (参考 Goldstein (&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/#citeproc_bib_item_1&#34;&gt;GOLDSTEIN 2011&lt;/a&gt;) ). 从而&lt;/p&gt;
 &lt;p&gt;\[
 \Delta q_2 = \delta q(t_2) + \dot q \delta t = 0
@@ -137,6 +137,7 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
   &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;GOLDSTEIN, HERBERT. 2011. &lt;i&gt;CLASSICAL MECHANICS.&lt;/i&gt; Place of publication not identified: ADDISON-WESLEY.&lt;/div&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_2&#34;&gt;&lt;/a&gt;Landau, L. D., and E. M. Lifshitz. 1976. &lt;i&gt;Mechanics: Volume 1&lt;/i&gt;. 3rd edition. Oxford New York: Butterworth-Heinemann.&lt;/div&gt;
 &lt;/div&gt;</content>
             
             
@@ -177,7 +178,7 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
             <title type="text">Einstein-Hilbert 作用量</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/" />
             <id>https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/</id>
-            <updated>2022-04-18T17:53:02&#43;08:00</updated>
+            <updated>2022-05-11T16:30:51&#43;08:00</updated>
             <published>2022-04-14T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -187,7 +188,7 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
             <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">General Relativity 最近听 BC 的课听到了 Einstein-Hilbert 作用量。之前看梁灿彬的书，Einstein 场方程基本知道了个……</summary>
             
                 <content type="html">&lt;h2 id=&#34;general-relativity&#34;&gt;General Relativity&lt;/h2&gt;
-&lt;p&gt;最近听 BC 的课听到了 Einstein-Hilbert 作用量。之前看梁灿彬的书，Einstein 场方程基本知道了个大概，其推导也比较平常，基本接近与猜（上册书）。BC 的书的推导接近朗道的讲法，使用 Einstein-Hilbert 作用量推导计算略繁复，但非常有趣，易于理解。&lt;/p&gt;
+&lt;p&gt;最近听 BC 的课听到了 Einstein-Hilbert 作用量。之前看梁灿彬的书，Einstein 场方程基本知道了个大概，其推导也比较平常，基本接近与猜（上册书）。BC 的书((&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/#citeproc_bib_item_1&#34;&gt;Bambi 2018&lt;/a&gt;))的推导接近朗道的讲法，使用 Einstein-Hilbert 作用量推导计算略繁复，但非常有趣，易于理解。&lt;/p&gt;
 &lt;p&gt;Einstein-Hilbert 作用量最早由 Hilbert 发现，他通过这一作用量几乎和 Einstein 同时给出了引力场方程的正确形式。&lt;/p&gt;
 &lt;h2 id=&#34;einstein-hilbert-作用量&#34;&gt;Einstein-Hilbert 作用量&lt;/h2&gt;
 &lt;p&gt;作用量应包含两个部分，一个部分的作用量由引力给出,或者说由几何给出，另一部分作用量描述物质与能量。对作用量整体做变分便可得到物质与几何的关系。因此作用量由如下两部分：&lt;/p&gt;
@@ -230,7 +231,7 @@ S_g = \int R\sqrt{-g}d^4 x
 \int R_{\mu\nu}  \sqrt{-g} \delta g^{\mu\nu} d^4 x = -\int R^{\mu\nu}  \sqrt{-g} \delta g_{\mu\nu} d^4 x
 \]&lt;/p&gt;
 &lt;h3 id=&#34;第三项&#34;&gt;第三项&lt;/h3&gt;
-&lt;p&gt;第三项需要一些艰苦的运算。梁书的计算比较有意思，这里按梁书的思路计算。当度规改变时，与之匹配的导数算符随之改变。而曲率张量作为二次导数算符的对易也会随之改变，假设变分后的导数算符为 \(\tilde \nabla\) ,该导数算符与原导数算符的差是一个张量，如下关系成立：&lt;/p&gt;
+&lt;p&gt;第三项需要一些艰苦的运算。梁书的计算比较有意思，这里按梁书的思路计算((&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/#citeproc_bib_item_3&#34;&gt;梁灿彬 and 周彬 2006&lt;/a&gt;))。当度规改变时，与之匹配的导数算符随之改变。而曲率张量作为二次导数算符的对易也会随之改变，假设变分后的导数算符为 \(\tilde \nabla\) ,该导数算符与原导数算符的差是一个张量，如下关系成立：&lt;/p&gt;
 &lt;p&gt;\[
 (\tilde \nabla_\mu - \nabla_\mu) \omega_\nu = \delta \Gamma^\rho_{\mu\nu} \omega_\rho
 \]&lt;/p&gt;
@@ -263,14 +264,19 @@ g^{\mu\nu}\delta R_{\mu\nu} = \nabla^\mu v_\mu
 v_\mu = g^{\rho\sigma}(\nabla_\sigma \delta g_{\mu\rho} - \nabla_\mu \delta g_{\rho\sigma})
 \]&lt;/p&gt;
 &lt;p&gt;从而第三项是一个散度的形式，可以根据高斯定理写成边界的积分，不可由于其中涉及的度规变分的导数，在边界处，度规的变分为0
-但度规导数的变分不一定为0，从而不能简单认为其为0，不过可以让边界趋于无穷，此时边界项应该为0，Wiki对此有进一步的讨论。或者见 Carroll 的书 &lt;em&gt;Spacetime and Geometry&lt;/em&gt; .&lt;/p&gt;
+但度规导数的变分不一定为0，从而不能简单认为其为0，不过可以让边界趋于无穷，此时边界项应该为0，Wiki对此有进一步的讨论。或者见 Carroll 的书 &lt;em&gt;Spacetime and Geometry&lt;/em&gt; (&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/#citeproc_bib_item_2&#34;&gt;Carroll 2003&lt;/a&gt;) .&lt;/p&gt;
 &lt;h2 id=&#34;变分结果&#34;&gt;变分结果&lt;/h2&gt;
 &lt;p&gt;整理上述推导便可得到真空引力场方程：&lt;/p&gt;
 &lt;p&gt;\[
 R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 0
 \]&lt;/p&gt;
 &lt;p&gt;对于非真空情况，可以对物质的作用量进行变分从而得到相应的能动张量，从而得到完整的有物质存在的引力场方程。&lt;/p&gt;
-</content>
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;Bambi, Cosimo. 2018. &lt;i&gt;Introduction to General Relativity: A Course for Undergraduate Students of Physics&lt;/i&gt;. Undergraduate Lecture Notes in Physics. Singapore: Springer Singapore. doi:&lt;a href=&#34;https://doi.org/10.1007/978-981-13-1090-4&#34;&gt;10.1007/978-981-13-1090-4&lt;/a&gt;.&lt;/div&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_2&#34;&gt;&lt;/a&gt;Carroll, Sean M. 2003. &lt;i&gt;Spacetime and Geometry: An Introduction to General Relativity&lt;/i&gt;. San Francisco: Addison-Wesley.&lt;/div&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_3&#34;&gt;&lt;/a&gt;梁灿彬, and 周彬. 2006. &lt;i&gt;微分几何入门与广义相对论（上册·第二版）&lt;/i&gt;.  现代物理基础丛书 ISBN: 9787030164605. $&amp;#60;$a href=“https://book.douban.com/press/2633“$&amp;#62;$科学出版社$&amp;#60;$/a$&amp;#62;$ $&amp;#60;$br$&amp;#62;$ 出版年: 2006. &lt;a href=&#34;https://book.douban.com/subject/1725267/&#34;&gt;https://book.douban.com/subject/1725267/&lt;/a&gt;.&lt;/div&gt;
+&lt;/div&gt;</content>
             
             
             
