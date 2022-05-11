@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 03 May 2022 21:41:27 &#43;0800</lastBuildDate>
+        <lastBuildDate>Wed, 11 May 2022 15:31:12 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
@@ -68,7 +68,7 @@ S(q_2 ,t_2) = \int_{t_1}^{t_2} L dt
 \frac{\partial S(q,t)}{\partial q} = \frac{\partial L}{\partial \dot q} = p
 \]&lt;/p&gt;
 &lt;p&gt;关于到达时间的偏微分要复杂一些，郎道书中通过间接计算 \(\dfrac{d S}{d t}\) 来求偏微分。这里我们直接计算，帮助理解这里微妙的变分关系。&lt;/p&gt;
-&lt;p&gt;现在要求关于到达时间的偏微分，从而到达位置必须固定，假设到达时间从 \(t_2\) 变为了 \(t_2 + \delta t\). 那么到达位置势必变为 \(q(t_2 + \delta t)\) .显然到达位置无法固定，因此到达 \(t_2\) 时刻的位置不能固定必须改变 \(\delta q(t_2)\) 来抵消这一改变，如果即到达位置的改变为 \(\Delta q\) (参考 Goldstein &amp;lt;&amp;amp;goldsteinCLASSICALMECHANICS2011&amp;gt; ). 从而&lt;/p&gt;
+&lt;p&gt;现在要求关于到达时间的偏微分，从而到达位置必须固定，假设到达时间从 \(t_2\) 变为了 \(t_2 + \delta t\). 那么到达位置势必变为 \(q(t_2 + \delta t)\) .显然到达位置无法固定，因此到达 \(t_2\) 时刻的位置不能固定必须改变 \(\delta q(t_2)\) 来抵消这一改变，如果即到达位置的改变为 \(\Delta q\) (参考 Goldstein (&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/#citeproc_bib_item_1&#34;&gt;GOLDSTEIN 2011&lt;/a&gt;) ). 从而&lt;/p&gt;
 &lt;p&gt;\[
 \Delta q_2 = \delta q(t_2) + \dot q \delta t = 0
 \]&lt;/p&gt;
@@ -143,7 +143,10 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
 \left&amp;lt;x_1,t_1|x_0,t_0\right&amp;gt;  = \exp\left(-\frac{E(t_1 -t_0)}{\hbar}i+\frac{\sqrt{2mE}}{\hbar}(x_1-x_0)i\right)
 \]&lt;/p&gt;
 &lt;p&gt;上式恰为自由粒子的波函数。&lt;/p&gt;
-</description>
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;GOLDSTEIN, HERBERT. 2011. &lt;i&gt;CLASSICAL MECHANICS.&lt;/i&gt; Place of publication not identified: ADDISON-WESLEY.&lt;/div&gt;
+&lt;/div&gt;</description>
                 
                 
                 
