@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 11 May 2022 16:33:16 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 14 May 2022 15:35:41 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
@@ -277,6 +277,12 @@ v_\mu = g^{\rho\sigma}(\nabla_\sigma \delta g_{\mu\rho} - \nabla_\mu \delta g_{\
 R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 0
 \]&lt;/p&gt;
 &lt;p&gt;对于非真空情况，可以对物质的作用量进行变分从而得到相应的能动张量，从而得到完整的有物质存在的引力场方程。&lt;/p&gt;
+&lt;h2 id=&#34;能动张量&#34;&gt;能动张量&lt;/h2&gt;
+&lt;p&gt;对物质的作用量 \(L_m\) 变分可以得到能动张量的形式，即&lt;/p&gt;
+&lt;p&gt;\[\delta S_m = \int \delta \left( L_m \sqrt{-g} \right) d^4 x
+= \int T_{\mu\nu}\delta g^{\mu\nu}\sqrt{-g} d^4 x
+\]&lt;/p&gt;
+&lt;p&gt;利用这一方式计算能动张量要比用拉格朗日量计算再对称化要简单许多。可以用这一方法计算电磁场的能动张量。电磁场的能动张量正比于 \(F^{ab}F_{ab}\) . 对其进行变分便可得到教材中的电磁能动张量的表达式。具体的过程与前面的计算类似。当然前面有个比例因子，不过我不记得是多少了。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
   &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;Bambi, Cosimo. 2018. &lt;i&gt;Introduction to General Relativity: A Course for Undergraduate Students of Physics&lt;/i&gt;. Undergraduate Lecture Notes in Physics. Singapore: Springer Singapore. doi:&lt;a href=&#34;https://doi.org/10.1007/978-981-13-1090-4&#34;&gt;10.1007/978-981-13-1090-4&lt;/a&gt;.&lt;/div&gt;

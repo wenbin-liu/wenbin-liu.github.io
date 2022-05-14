@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2022-05-11T16:33:16&#43;08:00</updated>
+    <updated>2022-05-14T15:35:41&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -178,7 +178,7 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
             <title type="text">Einstein-Hilbert 作用量</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/" />
             <id>https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/</id>
-            <updated>2022-05-11T16:30:51&#43;08:00</updated>
+            <updated>2022-05-14T15:34:39&#43;08:00</updated>
             <published>2022-04-14T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -271,6 +271,12 @@ v_\mu = g^{\rho\sigma}(\nabla_\sigma \delta g_{\mu\rho} - \nabla_\mu \delta g_{\
 R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 0
 \]&lt;/p&gt;
 &lt;p&gt;对于非真空情况，可以对物质的作用量进行变分从而得到相应的能动张量，从而得到完整的有物质存在的引力场方程。&lt;/p&gt;
+&lt;h2 id=&#34;能动张量&#34;&gt;能动张量&lt;/h2&gt;
+&lt;p&gt;对物质的作用量 \(L_m\) 变分可以得到能动张量的形式，即&lt;/p&gt;
+&lt;p&gt;\[\delta S_m = \int \delta \left( L_m \sqrt{-g} \right) d^4 x
+= \int T_{\mu\nu}\delta g^{\mu\nu}\sqrt{-g} d^4 x
+\]&lt;/p&gt;
+&lt;p&gt;利用这一方式计算能动张量要比用拉格朗日量计算再对称化要简单许多。可以用这一方法计算电磁场的能动张量。电磁场的能动张量正比于 \(F^{ab}F_{ab}\) . 对其进行变分便可得到教材中的电磁能动张量的表达式。具体的过程与前面的计算类似。当然前面有个比例因子，不过我不记得是多少了。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
   &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;Bambi, Cosimo. 2018. &lt;i&gt;Introduction to General Relativity: A Course for Undergraduate Students of Physics&lt;/i&gt;. Undergraduate Lecture Notes in Physics. Singapore: Springer Singapore. doi:&lt;a href=&#34;https://doi.org/10.1007/978-981-13-1090-4&#34;&gt;10.1007/978-981-13-1090-4&lt;/a&gt;.&lt;/div&gt;
