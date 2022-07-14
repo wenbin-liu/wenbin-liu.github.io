@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2022-05-14T15:35:41&#43;08:00</updated>
+    <updated>2022-07-14T12:13:11&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -15,12 +15,12 @@
                 <email>wenbin_liu@outlook.com</email>
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
-    <generator uri="https://gohugo.io/" version="0.96.0">Hugo</generator>
+    <generator uri="https://gohugo.io/" version="0.99.1">Hugo</generator>
         <entry>
             <title type="text">Hamilton-Jacobi 方程</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/" />
             <id>https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/</id>
-            <updated>2022-05-11T16:09:31&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2022-05-03T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -178,7 +178,7 @@ S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
             <title type="text">Einstein-Hilbert 作用量</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/" />
             <id>https://wenbin-liu.github.io/posts/20220414154124-einstein_hilbert_%E4%BD%9C%E7%94%A8%E9%87%8F/</id>
-            <updated>2022-05-14T15:34:39&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2022-04-14T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -313,10 +313,213 @@ R_{\mu\nu} - \frac{1}{2}R g_{\mu\nu} = 0
         </entry>
     
         <entry>
+            <title type="text">统计力学(上) – 正则系综</title>
+            <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220328175608-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6/" />
+            <id>https://wenbin-liu.github.io/posts/20220328175608-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6/</id>
+            <updated>2022-07-14T12:07:39&#43;08:00</updated>
+            <published>2022-03-28T00:00:00&#43;08:00</published>
+            <author>
+                    <name>Venns</name>
+                    <uri>https://wenbin-liu.github.io/</uri>
+                    <email>wenbin_liu@outlook.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 去年期末的时候学习了 ISFET 的基本原理。ISFET工作时涉及到可逆化学反应的平衡和一些……</summary>
+            
+                <content type="html">&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;去年期末的时候学习了 &lt;strong&gt;ISFET&lt;/strong&gt; 的基本原理。ISFET工作时涉及到可逆化学反应的平衡和一些基本的电化学现象，遂去了解了一下物理化学。正好宿舍楼道里有很多药学院留下的课本，便简单看了看。看懂了多少，我自己也不清楚。但是大体上，我意识到，化学反应，热力学，半导体物理这些学科似乎都是基于统计力学，它们的思维方式，数学形式都颇为相似。之后便找来了 Susskind 的统计力学视频看了看(&lt;a href=&#34;https://www.youtube.com/watch?v=D1RzvXDXyqA&amp;amp;t=27s&#34;&gt;油管链接&lt;/a&gt;，&lt;a href=&#34;https://www.bilibili.com/video/BV1Jt411x7oV?p=1&#34;&gt;B站链接&lt;/a&gt;)，震撼至极，再一次惊讶与物理的精妙和普适，从简单的系宗（或者说等概率假设）出发，竟然能推出所有的热力学现象。&lt;/p&gt;
+&lt;p&gt;Susskind 本人也是个有意思的人，我上 wiki 上搜索了他的生平。他父亲是个水管工，他早年在父亲生病后也做过水管工，之后本科念的是工程，后面去康奈尔读的物理学博士。wiki 上有一段Susskind和他父亲之间的对话，非常有意思，这段话可以一窥 Susskind 的家庭环境，于是不难理解 Susskind 淳朴直爽的性格。这段对话发生在 Susskind 告诉父亲他要去读物理的PhD 之时。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;When I told my father I wanted to be a physicist, he said, &#39;Hell no, you ain&#39;t going to work in a drug store.&#39;
+I said, &#39;No, not a pharmacist.&#39; I said, &#39;Like Einstein.&#39; He poked me in the chest with a piece of plumbing pipe.
+&#39;You ain&#39;t going to be no engineer,&#39; he said. &#39;You&#39;re going to be Einstein.&#39;&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;PS：Susskind 的统计力学视频有两个版本，一个是列于 Modern Physics 课程中，另一个是单独录的，二者差别不大，个人感觉后者编排的更清楚，尤其是Ising Model 那部分。所以链接给出的是后者。&lt;/p&gt;
+&lt;h2 id=&#34;系综&#34;&gt;系综&lt;/h2&gt;
+&lt;p&gt;系综是统计力学中最基本的概念，所谓系综就是需多个相同系统的副本，这种副本的一些宏观量相同，比如压强，温度，体积等。这些副本之间也有一些量不同，这些不同的量就是统计力学要去统计的量。对微正则系综来说，每个副本的能量和粒子数是固定的，但是给定能量每个副本的状态可能不一样，并且统计力学一条基本原理便是等概率假设：给定能量值，那么对于所有能达到该一能量的状态来说，它们是等概率的。也就是说在等能面上，所有的状态概率相同。&lt;/p&gt;
+&lt;p&gt;对正则系综而言，除了状态数可以改变外，能量会在不同的副本之间改变，对于巨正则系综，能量和粒子数都将变成可变量。巨正则系综和正则系综没有本质的不同，实际上，可以将粒子数也视作某种状态，将巨正则系综纳入正则系综。正则系宗是运用的最多的。&lt;/p&gt;
+&lt;p&gt;用多个思维副本来描述统计系统，是为了描述某一量的涨落行为，这种涨落行为一般使得系统的某一量围绕一平均值上下波动，用系综是为了对这一中波动做统计描述。系综有平均值，意味着这种涨落有平均值，系综越多，这种涨落就越小（相当于采样越多，方差越小）。&lt;/p&gt;
+&lt;h3 id=&#34;正则系综&#34;&gt;正则系综&lt;/h3&gt;
+&lt;p&gt;系综的推导一般有两种，一种将系统放在一个巨大的热库中处于热平衡；另一种考虑多个系统的思维副本。我认为，后者的推导更干净一点，下文的推导均基于该方法。简单起见后续的 Boltzmann 常数均取为1.&lt;/p&gt;
+&lt;p&gt;考虑一个正则系综，它有 \(N\) 个副本，为简单起见，假设每个副本只有一个粒子。每个粒子能处于的状态为 \(1,2,3,...,k\) , 每个状态对应的能量为 \(E_1,E_2,...,E_k\) . 每个系统均处于某个状态中，记处于状态 \(k\) 的系统数为 \(n_k\) . 假设系统的平均能量为 \(E\) ,
+那么系统应该满足如下的约束条件&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\sum_{i=0}^k n_i E_i &amp;amp;= N E
+\\
+\sum_{i=0}^k n_i &amp;amp;= N
+\end{align}&lt;/p&gt;
+&lt;p&gt;考虑一特定的系综分布（Configuration）， \(\{n_1,n_2,...,n_k\}\) . 则其出现的概率应当正比于它的组合数，这里假设系统（粒子）可分辨的。那么组合数是多项分布：&lt;/p&gt;
+&lt;p&gt;\[
+\Omega = \frac{N!}{n_1! n_2! ... n_k!}
+\]&lt;/p&gt;
+&lt;p&gt;那么系统处于最概然的分布时间应该是最多的，或者就说系统最有可能处于最概然分布。那么对 \(\Omega\) 求极大值便可得到最概然分布。&lt;/p&gt;
+&lt;p&gt;当然，这一最概然分布应当满足前述的约束，即系综数约束和能量约束。通过对 \(\Omega\) 求对数并使用 Stringling 公式可简化优化函数，由于这是带约束的优化问题，应当使用拉格朗日乘子法求解。&lt;/p&gt;
+&lt;h4 id=&#34;系综求解&#34;&gt;系综求解&lt;/h4&gt;
+&lt;p&gt;Stirling 公式常用于对阶乘做近似。
+\[
+\ln N! = \sum_{n=1}^N \ln n \approx \int_1^N \ln x d x \approx N \ln N -N
+\]&lt;/p&gt;
+&lt;p&gt;利用 Stirling 公式可以近似前述组合数公式：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\ln \Omega &amp;amp;= \ln N! - \ln n_1 ! -\ln n_2! -...-\ln n_k !
+\\
+&amp;amp;\approx N\ln N -N - \sum_{i=1}^k (n_i\ln n_i - n_i)
+\\
+&amp;amp;= N\ln N -\sum_{i=1}^k n_i\ln n_i
+\end{align}&lt;/p&gt;
+&lt;p&gt;使用拉格朗日乘子法求解该问题&lt;/p&gt;
+&lt;p&gt;\[
+L = \ln \Omega - \alpha \left(\sum n_i\right) - \beta \left(\sum n_i E_i\right)
+\]&lt;/p&gt;
+&lt;p&gt;最终求得&lt;/p&gt;
+&lt;p&gt;\[
+n_i \propto e^{-\beta E_i}
+\]
+对其归一化便得到了有名的 Boltzmann 分布。 其归一化因子被称为配分函数
+\[
+Z=\sum_i e^{-\beta E_i}
+\]
+最终求得
+\[
+n_i = N  e^{-\beta E_i}/Z
+\]&lt;/p&gt;
+&lt;h4 id=&#34;能量&#34;&gt;能量&lt;/h4&gt;
+&lt;p&gt;分布函数求出来后便可计算系统的平均能量&lt;/p&gt;
+&lt;p&gt;\begin{align}
+E &amp;amp;= \sum_i n_i E_i /N
+\\
+&amp;amp;= \exp(-\beta E_i)E_i/Z
+\\
+&amp;amp;= -\frac{\partial \ln Z}{\partial \beta}
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是求得配分函数后求导数便可得到平均能量。实际上配分函数包含了系统的大部分信息，很多热力学量可以通过它求出。&lt;/p&gt;
+&lt;h4 id=&#34;熵&#34;&gt;熵&lt;/h4&gt;
+&lt;p&gt;熵被定义系统的状态数的对数，对于系综，该状态数为各子系统的状态数的对数的平均，即&lt;/p&gt;
+&lt;p&gt;\begin{align}
+S &amp;amp;:= \frac{\ln \Omega}{N} \approx \frac{1}{N}
+\left( N\ln N -\sum_i n_i \ln n_i \right)
+\\
+&amp;amp;= \beta E + \ln Z
+\end{align}&lt;/p&gt;
+&lt;p&gt;注意可以验证上述的熵的定义也等于&lt;/p&gt;
+&lt;p&gt;\[
+S=\sum_i \frac{n_i}{N}\ln \frac{n_i}{N}
+\]&lt;/p&gt;
+&lt;p&gt;为了改写上述公式，定义 Helmotz 自由能为：&lt;/p&gt;
+&lt;p&gt;\[
+F = - \frac{\ln Z(\beta)}{\beta}
+\]&lt;/p&gt;
+&lt;p&gt;从而可以得到熵的公式：&lt;/p&gt;
+&lt;p&gt;\[
+F= E -S/\beta
+\]&lt;/p&gt;
+&lt;h4 id=&#34;温度&#34;&gt;温度&lt;/h4&gt;
+&lt;p&gt;当物体处于热平衡时，系综处于最概然分布，也就是熵最大的分布。考虑两个可以热交换的系统，那么当处于热平衡时，系统的熵最大，从个可以推出，两个独立系统各自能量关于熵的导数必然相等，从而可以如下定义温度：&lt;/p&gt;
+&lt;p&gt;\[
+T = \left. \frac{\partial E}{\partial S} \right|_V
+\]&lt;/p&gt;
+&lt;p&gt;现在来推导 \(T\) 和 \(\beta\) 之间的关系。&lt;/p&gt;
+&lt;p&gt;由上节得到的自由能的公式可以得到：&lt;/p&gt;
+&lt;p&gt;\[
+S = \beta E + \ln Z(\beta)
+\]&lt;/p&gt;
+&lt;p&gt;微分得到&lt;/p&gt;
+&lt;p&gt;\[
+d S = E d\beta + \beta d E + \frac{\partial \ln Z}{\partial \beta} d\beta = \beta dE
+\]&lt;/p&gt;
+&lt;p&gt;于是&lt;/p&gt;
+&lt;p&gt;\[
+T = \left. \frac{\partial E}{\partial S}\right|_V = \frac{1}{\beta}
+\]&lt;/p&gt;
+&lt;h4 id=&#34;理想气体&#34;&gt;理想气体&lt;/h4&gt;
+&lt;p&gt;目前所有的推导都是一般性的，没有具体的物理。现在可以用系综分析理想气体，体验下统计力学的强大威力。&lt;/p&gt;
+&lt;p&gt;理想气体的单个粒子的哈密顿函数为 \(H=\frac{1}{2m}\left(p_x^2+p_y^2+p_z^2\right)\)
+粒子的状态由相空间中的点唯一决定。下面计算配分函数：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+Z(\beta) &amp;amp;= \int \exp\left(-\beta\frac{p_x^2+p_y^2+p_z^2}{2m}\right)
+dp_x d p_y d p_z dx dy dz
+\\
+&amp;amp;= V\left(2\pi \frac{m}{\beta}\right)^{\frac{3}{2}}
+\end{align}&lt;/p&gt;
+&lt;p&gt;粒子的平均能量为&lt;/p&gt;
+&lt;p&gt;\[
+E = -\frac{\partial \ln Z(\beta)}{\partial\beta} =\frac{3}{2}T
+\]&lt;/p&gt;
+&lt;p&gt;与经典热力学中的结论对比可以知道上述的 \(T\) 就是熟知的绝对温度。上述公式也可用量子力学的三维无限深势阱模型推导，结果是一样的。&lt;/p&gt;
+&lt;h4 id=&#34;压强&#34;&gt;压强&lt;/h4&gt;
+&lt;p&gt;给定一个热力学系统，当缓慢增大体积时，系统将对外界做工。这里要求缓慢意味系统的变化是可逆的。根据量子力学的绝热定理，当系统某个参量缓慢变化时，系统所处的能级不会改变，改变的是对应能级的能量。或者说此时系统处于的量子态不变。由于熵仅仅与量子态的分布有关，当系统缓慢变化时，熵也就不变。所以可以用熵不变作为量子力学意义上的缓慢变化。这当然是可逆过程。&lt;/p&gt;
+&lt;p&gt;比如一个无限深势阱，缓慢改变体积，每个量子态对应的能量将改变，体系的能量改变。于是压强可以被定义为：&lt;/p&gt;
+&lt;p&gt;\[
+p = \left . \frac{\partial E}{\partial V}\right|_S
+\]&lt;/p&gt;
+&lt;p&gt;上式中 \(E\) 是 \(T\) 和 \(V\) 的函数. 而熵 \(S\) 也是 \(T,V\) 的函数。从而不可直接对 \(E\) 求偏导数来计算压强。&lt;/p&gt;
+&lt;p&gt;\begin{align}
+dE &amp;amp;= \left. \frac{\partial E}{\partial T}\right|_V dT +
+\left. \frac{\partial E}{\partial V}\right|_T d V
+\\
+dS &amp;amp;= \left. \frac{\partial S}{\partial T}\right|_V dT +
+\left. \frac{\partial S}{\partial V}\right|_T d V
+\end{align}&lt;/p&gt;
+&lt;p&gt;让上式中的 \(dS\) 为 0 即可联立求得&lt;/p&gt;
+&lt;p&gt;\begin{align}
+p &amp;amp;= \left. \frac{\partial E}{\partial V}\right|_S
+\\
+&amp;amp;= \left. \frac{\partial E}{\partial V}\right|_T -
+\left. \frac{\partial E}{\partial S}\right|_V
+\left. \frac{\partial S}{\partial V}\right|_T
+\\
+&amp;amp;= \left . \frac{\partial \left(E - TS\right)}{\partial V}\right|_T
+\\
+&amp;amp;= \left. \frac{\partial F}{\partial V}\right|_T
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是便得到了压强的计算公式，用它来计算理想气体的压强可以得到&lt;/p&gt;
+&lt;p&gt;\[
+p = T/V
+\]&lt;/p&gt;
+&lt;p&gt;当有多个粒子时上式自然变成了&lt;/p&gt;
+&lt;p&gt;\[
+pV = NT
+\]&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/categories/%E7%89%A9%E7%90%86/" term="物理" label="物理" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6/" term="统计力学" label="统计力学" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/tags/%E9%87%8F%E5%AD%90%E5%8A%9B%E5%AD%A6/" term="量子力学" label="量子力学" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
             <title type="text">Haskell和范畴论(下) – Monad</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210801145506-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8B_monad/" />
             <id>https://wenbin-liu.github.io/posts/20210801145506-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8B_monad/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-08-01T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -557,7 +760,7 @@ Haskell是Lazy的，可能不对 &lt;code&gt;World&lt;/code&gt; 执行显示计�
             <title type="text">Haskell和范畴论(上)</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/" />
             <id>https://wenbin-liu.github.io/posts/20210731183120-haskell%E5%92%8C%E8%8C%83%E7%95%B4%E8%AE%BA_%E4%B8%8A/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-07-31T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -700,7 +903,7 @@ F (g \circ f)&amp;amp; = F g \circ F f , f \in \mathrm{Hom}(A,B), g \in \mathrm{
             <title type="text">Galois 理论</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210709102754-galois_%E7%90%86%E8%AE%BA/" />
             <id>https://wenbin-liu.github.io/posts/20210709102754-galois_%E7%90%86%E8%AE%BA/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-07-09T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -791,7 +994,7 @@ F (g \circ f)&amp;amp; = F g \circ F f , f \in \mathrm{Hom}(A,B), g \in \mathrm{
             <title type="text">代数信号处理</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/" />
             <id>https://wenbin-liu.github.io/posts/20210411162304-%E4%BB%A3%E6%95%B0%E4%BF%A1%E5%8F%B7%E5%A4%84%E7%90%86/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T12:09:20&#43;08:00</updated>
             <published>2021-04-11T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -885,7 +1088,7 @@ Fourier变换与逆变换.不过,使用模与线性空间类似,也要选定一�
             <title type="text">RSA加密</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/" />
             <id>https://wenbin-liu.github.io/posts/20210302150220-rsa%E5%8A%A0%E5%AF%86/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-03-19T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -985,7 +1188,7 @@ B 做同样的操作，即索取 A 的公钥然后用自己的私钥计算 \(b_a
             <title type="text">特征多项式的连续性</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210206143418-%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/" />
             <id>https://wenbin-liu.github.io/posts/20210206143418-%E7%89%B9%E5%BE%81%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%80%A7/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-02-14T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1074,7 +1277,7 @@ p(t) = (t-\alpha_1)q(t)
             <title type="text">Linux上使用OneDrive</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/" />
             <id>https://wenbin-liu.github.io/posts/20210211153100-linux%E4%B8%8A%E4%BD%BF%E7%94%A8onedrive/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-02-11T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1168,7 +1371,7 @@ p(t) = (t-\alpha_1)q(t)
             <title type="text">三维旋转群</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/" />
             <id>https://wenbin-liu.github.io/posts/20210204164731-%E4%B8%89%E7%BB%B4%E6%97%8B%E8%BD%AC%E7%BE%A4/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2021-02-04T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1336,7 +1539,7 @@ A := I \cos \theta + P \sin \theta
             <title type="text">2020年,再见</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/" />
             <id>https://wenbin-liu.github.io/posts/2020%E5%B9%B4%E5%86%8D%E8%A7%81/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-12-30T23:36:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1463,7 +1666,7 @@ Hilbert空间
             <title type="text">吉他拾音器(2)</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/" />
             <id>https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A82/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-11-19T11:48:01&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1551,7 +1754,7 @@ $$&lt;/p&gt;
             <title type="text">吉他拾音器(1)</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/" />
             <id>https://wenbin-liu.github.io/posts/%E5%90%89%E4%BB%96%E6%8B%BE%E9%9F%B3%E5%99%A8/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-11-18T18:17:01&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1640,7 +1843,7 @@ $$&lt;/p&gt;
             <title type="text">实分析与复分析的一些论题</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/" />
             <id>https://wenbin-liu.github.io/posts/%E5%AE%9E%E5%88%86%E6%9E%90%E4%B8%8E%E5%A4%8D%E5%88%86%E6%9E%90%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BA%E9%A2%98/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-11-16T18:22:53&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1703,7 +1906,7 @@ $$P = \left{A\subset X | \exists B\in \Sigma, A\subset B,\mu(B)=0 \right}$$&lt;/
             <title type="text">测度观点下的卷积</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/%E6%B5%8B%E5%BA%A6%E8%A7%82%E7%82%B9%E4%B8%8B%E7%9A%84%E5%8D%B7%E7%A7%AF/" />
             <id>https://wenbin-liu.github.io/posts/%E6%B5%8B%E5%BA%A6%E8%A7%82%E7%82%B9%E4%B8%8B%E7%9A%84%E5%8D%B7%E7%A7%AF/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-11-15T21:05:48&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -1805,7 +2008,7 @@ $$&lt;/p&gt;
             <title type="text">新生</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/" />
             <id>https://wenbin-liu.github.io/posts/%E6%96%B0%E7%94%9F/</id>
-            <updated>2022-04-18T17:03:28&#43;08:00</updated>
+            <updated>2022-07-14T11:31:07&#43;08:00</updated>
             <published>2020-11-15T10:41:11&#43;08:00</published>
             <author>
                     <name>Venns</name>
