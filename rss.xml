@@ -23,10 +23,214 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Thu, 14 Jul 2022 12:13:11 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 14 Aug 2022 22:06:58 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
+        
+            <item>
+                <title>统计力学(中) – 巨正则系综</title>
+                <link>https://wenbin-liu.github.io/posts/20220729135339-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6_%E4%B8%AD_%E5%B7%A8%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20220729135339-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6_%E4%B8%AD_%E5%B7%A8%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC/</guid>
+                <pubDate>Fri, 29 Jul 2022 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;本文是上篇文章 &lt;a href=&#34;https://wenbin-liu.github.io/posts/20220328175608-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6/&#34;&gt;统计力学(上) -- 正则系综&lt;/a&gt; 的继续，主要讨论巨正则系综。&lt;/p&gt;
+&lt;h2 id=&#34;量子统计和正则系综的缺陷&#34;&gt;量子统计和正则系综的缺陷&lt;/h2&gt;
+&lt;p&gt;正则系综考虑多个系统副本构成的综合系统，这些子系统之间能相互交换能量，但不能相互交换粒子，因而子系统的粒子数是守恒的。对于经典系统，粒子是可分辨的，这并不会带来不便，但是一旦涉及量子系统，这一方法的缺陷便体现出来了。&lt;/p&gt;
+&lt;p&gt;对于量子系统，粒子都是不可区分的，基本粒子可以分成两大类，玻色子和费米子。对于费米子，同一个量子态上至多只能有一个粒子。玻色子则没有这个限制。更深的理论表明，玻色子是自旋为整数的粒子，而费米子是自旋为半整数的粒子。从而夸克，电子为费米子。光子为玻色子。&lt;/p&gt;
+&lt;p&gt;由于基本粒子的这一特性，某一量子态上的粒子数也应当视为状态。量子态上不同的粒子数代表不同的状态。假设一个系统有 \(N\) 个粒子。这 \(N\) 个粒子中有 \(n_\alpha\) 个粒子处于 \(\alpha\) 状态, \(\alpha\) 状态对应的能量记为 \(\varepsilon_\alpha\) 。
+(注意这里和上一节符号完全不同， \(n_\alpha\) 是粒子数不是系统数)。计算配分函数:
+\[
+Q = \sum_{n_1,n_2,...} e^{-\beta\left( n_1 \varepsilon_1+n_2\varepsilon_2 + ...\right)}
+\]
+上述的求和是限定在 \(\sum n_\alpha = N\) 的条件下的. 由于粒子数守恒这一约束。上式难以计算。&lt;/p&gt;
+&lt;p&gt;上式与经典的公式也有所不同，对于经典系统，粒子可分辨，从而会多出一个 \(\frac{N!}{n_1! n_2!\cdots}\) 的权重因子，从而可以使用多项分布公式进行计算（不考虑Gibbs修正）。&lt;/p&gt;
+&lt;p&gt;但是倘若能让 \(N\) 变为一自由变量，遍历所有的粒子数，那么上式或许改写为多个和式乘积的形式。这类似与从微正则系综过渡到正则系综的过程。如果让正则系综的中的粒子可以交换，那么便得到了巨正则系综。&lt;/p&gt;
+&lt;h2 id=&#34;巨正则系综&#34;&gt;巨正则系综&lt;/h2&gt;
+&lt;p&gt;考虑 \(M\) 个系统构成的系综，每个子系统可以相互交换能量和粒子。假设某一系统的粒子数为 \(N\) 那么，系统可能的状态是 \(N\) 的函数，记为 \(j(N)\)。（也可理解为笛卡尔积）。记系综中含有 \(N\) 个粒子并处于
+\(j(N)\) 状态的系统数为 \(m_{j(N)}\) . 于是和系综类似，总的状态数为&lt;/p&gt;
+&lt;p&gt;\[
+\Omega = \frac{M!}{\Pi_{N}\Pi_{j(N)}m_{j(N)}!}
+\]&lt;/p&gt;
+&lt;p&gt;满足约束&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\sum_{N}\sum_{j(N)} m_{j(N)}N &amp;amp;=  M \overline{N}
+\\
+\sum_{N}\sum_{j(N)} m_{j(N)}\varepsilon_{j(N)} &amp;amp;=  M \overline E
+\end{align}&lt;/p&gt;
+&lt;p&gt;和求解系综一样，使用 Stirling 公式和拉格朗日乘子法可求解上述优化问题。最终可以得到。&lt;/p&gt;
+&lt;p&gt;\[
+m_{j(N)} \propto e^{-\beta \varepsilon_{j(N)} - \gamma N}
+\]&lt;/p&gt;
+&lt;p&gt;为了看出上述约束因子的物理意义，定义 \(\mu = -\gamma/\beta\) .
+并计算上式的归一化因子，称之为 &lt;strong&gt;巨配分函数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;\[
+\mathcal{Q} = \sum_N \sum_{j(N)} e^{-\beta\left(\varepsilon_{j(N)} -\mu N\right)}
+\]&lt;/p&gt;
+&lt;h3 id=&#34;变量的物理意义&#34;&gt;变量的物理意义&lt;/h3&gt;
+&lt;p&gt;现在来考虑拉格朗日乘子的物理意义， 按照之前正则系综的推导 \(\beta\) 应该是温度. 我们首先计算熵&lt;/p&gt;
+&lt;p&gt;\begin{align}
+S &amp;amp;= \sum_{j(N),N}-P\left(j\left(N\right),N\right)\ln P\left(j\left
+(N\right),N\right)
+\\
+&amp;amp;= \ln \mathcal{Q} + \beta \overline{E} +\gamma \overline N
+\end{align}&lt;/p&gt;
+&lt;p&gt;同时对 \(\ln \mathcal Q\) 做微分可以发现&lt;/p&gt;
+&lt;p&gt;\begin{align}
+d(\ln \mathcal{Q}) = -\overline E d\beta -\overline N d \gamma +
+\frac{\partial\ln \mathcal{Q}}{\partial V} dV
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是可以得到微分等式：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+dS = \beta d \overline E + \gamma d \overline N +
+\frac{\partial\ln \mathcal{Q}}{\partial V} dV
+\end{align}&lt;/p&gt;
+&lt;p&gt;还记得上一节对温度的定义吗： 温度被定义为平均能量关于熵的偏导数，于是可以计算发现
+\(T = \left. \frac{\partial \bar{E}}{\partial S}\right|_{\bar N,V}
+= \frac{1}{\beta}\) . 从而 \(\beta\) 是温度的倒数. 进而，平均能量关于粒子数的偏导数是化学势. 即
+\(\mu =  \left. \frac{\partial \bar{E}}{\partial \bar N}\right|_{S,V}
+=-\frac{\gamma}{\beta}\) . 最后能量关于体积的偏导数是压强，所以
+\(p =  -\left. \frac{\partial \bar{E}}{\partial V}\right|_{S,\bar N}
+=\frac{1}{\beta}  \left.\frac{\partial\ln \mathcal{Q}}{\partial V}
+\right|_{\beta,\mu}\) . 注意这里求偏导数时固定的是 \(\beta\) 和 \(\mu\) . 原因在于前面推导熵的微分式时对固定的也是这两个值，况且巨配分函数也只是这两个值的函数。巨配分函数对体积的依赖来源于能级对体积的依赖。&lt;/p&gt;
+&lt;p&gt;当体积非常大时，对体积的偏导数可以用比例近似，也就是说：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+p \approx \frac{\ln \mathcal Q}{\beta V}
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是前面熵的公式可以改写为：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+S = \beta p V + \beta \overline E -
+\beta \mu \overline N
+\end{align}&lt;/p&gt;
+&lt;p&gt;从而有&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\mu \overline N = \overline E -TS + pV
+\end{align}&lt;/p&gt;
+&lt;p&gt;右边的式便是吉布斯自由能 \(G\) . 是另一个热力学势&lt;/p&gt;
+&lt;h3 id=&#34;热力学势&#34;&gt;热力学势&lt;/h3&gt;
+&lt;p&gt;热力学势是描述热力学系统能量状态的量，前面所说的内能 \(E(S,N,V)\) (为了叙述的方便，不再写上划线)
+是作为 \(S,N,V\) 三个变量的函数，实际上，为了描述不同热力学系统，可以采用其他热力学势，比如化学反应中常为恒温恒压的系统，此时选取自变量为 \(p,T,N\) 的热力学势较为合适。 从一个热力学势变换到另一个热力学势是通过 Legendre 变换实现的。&lt;/p&gt;
+&lt;p&gt;由前面熵的公式知：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+dE &amp;amp;= TdS -pdV +\mu dN
+\\
+d(E -TS +pV) &amp;amp;= -SdT + Vdp + \mu dN
+\end{align}&lt;/p&gt;
+&lt;p&gt;从而记 \(G(p,T,N)=E-TS+pV\) ，则它是压强和温度的函数。由于压强和温度都是强度量，从而应该有
+\[G(p,T,N)=G(p,T,1)N = \mu(p,T) N\]&lt;/p&gt;
+&lt;p&gt;于是化学势的物理含义便是单个粒子平均的吉布斯自由能。顺便提一下，对比 \(G\) 的两种形式的微分，可以得到 &lt;em&gt;Gibbs Duhem Relation&lt;/em&gt; .&lt;/p&gt;
+&lt;h2 id=&#34;理想气体&#34;&gt;理想气体&lt;/h2&gt;
+&lt;p&gt;暂时现不考虑量子现象，考虑经典理想气体。之后可以用这一模型分析化学反应。&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\mathcal{Q} &amp;amp;= \sum_{N=0}^{\infty}\frac{1}{N!}\sum_{n_1+n_2+... = N}\frac{N!}{n_1!n_2!...} e^{-\beta( n_1 E_{1} + n_2 E_2+... )+ \mu\beta N}
+\\
+&amp;amp;=\sum_N z^N \frac{1}{N!}(e^{-\beta E_1}+e^{-\beta E_2}+...)^N
+\\
+&amp;amp;=\sum_N z^N Q_N(\beta)
+\end{align}&lt;/p&gt;
+&lt;p&gt;其中 \(\frac{1}{N!}\) 是Gibbs修正因子，是Gibbs为了解释经典统计中熵的可加性时引入的。
+\(Q_N(\beta)\) 是配分函数。\(z=\exp(\mu\beta)\) 引入是为了方便，上式变成了了类似z变换的公式。对于理想气体：&lt;/p&gt;
+&lt;p&gt;\[
+Q_N(\beta) = \frac{1}{N!}\left(\frac{1}{h^3}\int e^{-\beta\frac{p_x^2+p_y^2+p_z^2}{2m}}
+dp_x dp_y dp_z dq_x dq_y dq_z\right)^N
+= \frac{1}{N!}\left(\frac{2\pi m}{\beta h^2}\right)^{\frac{3}{2}N}V^N
+\]&lt;/p&gt;
+&lt;p&gt;于是得到
+\[
+\ln \mathcal Q = \exp(zV\lambda^{-3})
+\]
+其中 \(\lambda = \sqrt\frac{\beta h^2}{2\pi m}\) 常被称为热德布罗意波长.&lt;/p&gt;
+&lt;h3 id=&#34;粒子数&#34;&gt;粒子数&lt;/h3&gt;
+&lt;p&gt;由前面巨配分函数的定义可以得到平均粒子数为&lt;/p&gt;
+&lt;p&gt;\begin{align}
+N &amp;amp;= \frac{\partial \ln \mathcal Q}{\partial \ln z}
+\\
+&amp;amp;= zV\lambda^{-3}
+\end{align}&lt;/p&gt;
+&lt;p&gt;通过 \(z\) 可以解出化学势的公式：
+\[
+\mu =T\ln z = T\ln \lambda^3 n
+\]
+其中 \(n = N/V\) 是粒子的数密度，不过我们没有考虑粒子基态的能量，这里可以加上粒子基态的能量，得到：
+\[
+\mu =  \varepsilon_0 + T\ln \lambda^3 n
+\]&lt;/p&gt;
+&lt;h2 id=&#34;化学反应&#34;&gt;化学反应&lt;/h2&gt;
+&lt;p&gt;热力学现象都是朝向熵增加的方向进行，直到熵最大时达到热平衡状态。这个道理也适合化学反应，化学反应一般在恒温恒压下进行，一般的热力学系统在恒温恒压条件下便达到了热平衡，但是对于化学反应，它们可以通过非体积功来改变热平衡，增加熵从而达到化学平衡。因为系统的熵的增加不总通过吸热达到，通过化学反应类似的不可逆过程均可增加熵(&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220729135339-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6_%E4%B8%AD_%E5%B7%A8%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC/#citeproc_bib_item_1&#34;&gt;.朗道 and .栗弗席兹 2011&lt;/a&gt;) ,从而有如下等式成立：
+\[
+T\delta S \geq \delta Q = \delta E + p \delta V
+\]&lt;/p&gt;
+&lt;p&gt;由于是恒温恒压条件，上式可以变为
+\[
+\delta (E-TS + pV) = \delta G \leq 0
+\]&lt;/p&gt;
+&lt;p&gt;这意味这恒恒压条件下，不可逆反应使得吉布斯自由能不断减小，当自由能最小时达到化学平衡。&lt;/p&gt;
+&lt;p&gt;考虑化学反应：
+\[
+\ce{a A + b B &amp;lt;=&amp;gt; c C}
+\]&lt;/p&gt;
+&lt;p&gt;则平衡时必然有&lt;/p&gt;
+&lt;p&gt;\begin{align}
+dG &amp;amp;= \mu_a d N_a + \mu_b d N_b +\mu_c d N_c
+\\
+&amp;amp;= (a \mu_a + b \mu_b - c \mu_c )d N = 0
+\end{align}&lt;/p&gt;
+&lt;p&gt;从而 \(a \mu_a + b \mu_b - c \mu_c =0\)&lt;/p&gt;
+&lt;p&gt;利用前面理想气体的模型分析化学势可以得到：&lt;/p&gt;
+&lt;p&gt;\begin{align}
+a\ln n_a + b\ln n_b -c\ln n_c &amp;amp;= \ln K
+\\
+\frac{n_a^a n_b^b}{n_c^c} = K
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是得到熟悉的化学反应常数的公式，其中 \(K\) 是温度依赖的函数。&lt;/p&gt;
+&lt;h2 id=&#34;后记&#34;&gt;后记&lt;/h2&gt;
+&lt;p&gt;对正则系综缺陷的讨论主要来自 Feynman (&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220729135339-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6_%E4%B8%AD_%E5%B7%A8%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC/#citeproc_bib_item_3&#34;&gt;Feynman 1998&lt;/a&gt;) ,
+而对巨正则系综的推导主要来自李政道 (&lt;a href=&#34;https://wenbin-liu.github.io/posts/20220729135339-%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6_%E4%B8%AD_%E5%B7%A8%E6%AD%A3%E5%88%99%E7%B3%BB%E7%BB%BC/#citeproc_bib_item_2&#34;&gt;李 2006&lt;/a&gt;)&lt;/p&gt;
+&lt;unsrt&gt;
+&lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;.朗道, and .栗弗席兹. 2011. &lt;i&gt;统计物理学 I&lt;/i&gt;. Translated by 束仁贵, 束莼, and 郑伟谋.  理论物理学教程 ISBN: 9787040305722. $&amp;#60;$a href=“https://book.douban.com/press/2549“$&amp;#62;$高等教育出版社$&amp;#60;$/a$&amp;#62;$ $&amp;#60;$br$&amp;#62;$ 副标题: 理论物理学教程 第五卷. &lt;a href=&#34;https://book.douban.com/subject/6259200/&#34;&gt;https://book.douban.com/subject/6259200/&lt;/a&gt;.&lt;/div&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_2&#34;&gt;&lt;/a&gt;李 政道. 2006. &lt;i&gt;统计力学&lt;/i&gt;. 上海科学技术出版社. &lt;a href=&#34;https://book.douban.com/subject/1956816/&#34;&gt;https://book.douban.com/subject/1956816/&lt;/a&gt;.&lt;/div&gt;
+  &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_3&#34;&gt;&lt;/a&gt;Feynman, Richard P. 1998. &lt;i&gt;Statistical Mechanics: A Set of Lectures&lt;/i&gt;. Advanced Book Classics. Boulder, Colo: Westview Press.&lt;/div&gt;
+&lt;/div&gt;</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E7%89%A9%E7%90%86/">物理</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%8A%9B%E5%AD%A6/">统计力学</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%B3%BB%E7%BB%BC/">系综</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>Hamilton-Jacobi 方程</title>
