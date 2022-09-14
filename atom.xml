@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2022-08-15T11:02:20&#43;08:00</updated>
+    <updated>2022-09-14T16:36:35&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -227,7 +227,7 @@ a\ln n_a + b\ln n_b -c\ln n_c &amp;amp;= \ln K
             <title type="text">Hamilton-Jacobi 方程</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/" />
             <id>https://wenbin-liu.github.io/posts/20220503153502-hamilton_jacobi_%E6%96%B9%E7%A8%8B/</id>
-            <updated>2022-05-11T16:33:21&#43;08:00</updated>
+            <updated>2022-09-14T16:32:54&#43;08:00</updated>
             <published>2022-05-03T00:00:00&#43;08:00</published>
             <author>
                     <name>Venns</name>
@@ -332,16 +332,6 @@ H&#39; &amp;amp;= H + \frac{\partial F}{\partial t}
 &lt;p&gt;\[
 \left&amp;lt;x_1,t_1|x_0,t_0\right&amp;gt; = \sum_{\mathrm{average\ over\ all\ paths}} \exp(i\int_{t_0,x _0}^{t_1,x_1} \frac{L}{\hbar} dt)
 \]&lt;/p&gt;
-&lt;p&gt;如果假设 \(x_1,t_1\) 与 \(x_0,t_0\) 十分靠近，考虑一个自由粒子，则作用量为&lt;/p&gt;
-&lt;p&gt;\[
-S = \sqrt{2mE}(x_1 -x_0) -E(t_1 - t_0)
-\]&lt;/p&gt;
-&lt;p&gt;则传播子近似为&lt;/p&gt;
-&lt;p&gt;\[
-\left&amp;lt;x_1,t_1|x_0,t_0\right&amp;gt;  = \exp\left(-\frac{E(t_1 -t_0)}{\hbar}i+\frac{\sqrt{2mE}}{\hbar}(x_1-x_0)i\right)
-\]&lt;/p&gt;
-&lt;p&gt;上式恰为自由粒子的波函数。&lt;/p&gt;
-&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;style&gt;.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}&lt;/style&gt;&lt;div class=&#34;csl-bib-body&#34;&gt;
   &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_1&#34;&gt;&lt;/a&gt;GOLDSTEIN, HERBERT. 2011. &lt;i&gt;CLASSICAL MECHANICS.&lt;/i&gt; Place of publication not identified: ADDISON-WESLEY.&lt;/div&gt;
   &lt;div class=&#34;csl-entry&#34;&gt;&lt;a id=&#34;citeproc_bib_item_2&#34;&gt;&lt;/a&gt;Landau, L. D., and E. M. Lifshitz. 1976. &lt;i&gt;Mechanics: Volume 1&lt;/i&gt;. 3rd edition. Oxford New York: Butterworth-Heinemann.&lt;/div&gt;
