@@ -10,7 +10,7 @@
         <title>Venns&#39; Space</title>
         <link>https://wenbin-liu.github.io/</link>
         <description>Venns 的个人博客.</description>
-        <generator>Hugo 0.99.1 https://gohugo.io/</generator>
+        <generator>Hugo 0.106.0 https://gohugo.io/</generator>
         
             <language>zh-CN</language>
         
@@ -23,10 +23,104 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Wed, 14 Sep 2022 16:36:35 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sun, 21 Jan 2024 13:51:00 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
+        
+            <item>
+                <title>NAS – All in One</title>
+                <link>https://wenbin-liu.github.io/posts/20231217160000-nas_all_in_one/</link>
+                <guid isPermaLink="true">https://wenbin-liu.github.io/posts/20231217160000-nas_all_in_one/</guid>
+                <pubDate>Sun, 21 Jan 2024 00:00:00 &#43;0800</pubDate>
+                
+                    <author>wenbin_liu@outlook.com (Venns)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;好久没有更新博客了，上次跟新博客竟然是一年之前了。这一年发生了太多事，最明显一点，去年这个时候的中国还是处于严密的疫情封控之中，而现在封控解除了，经济萧条，民生凋敝，社会变化之快仿佛已经过了一个世纪。 而我也结束了学术生涯，开始了打工人的沪漂生活。 对于生活在信息社会的人们来说，我们每天都在制造数据，尤其是照片什么的，因此我想组装一个NAS，把自己未来生产的一些数据存储在自己家中。我计划这个NAS最好能够用个7，8年。因此存储空间要足够大。同时也希望这个NAS能够成为家中的一个数据中心，兼顾路由 ，媒体中心功能，也就是 &lt;strong&gt;ALL IN ONE&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;硬件方案&#34;&gt;硬件方案&lt;/h2&gt;
+&lt;h3 id=&#34;主板&#34;&gt;主板&lt;/h3&gt;
+&lt;p&gt;主板我选的是倍控的N5105倍控款，集成了6个SATA口，一个M.2口,4个2.5G网口，以及一个PCIE3.0x2 (x4 卡槽)。选取这一款，主要是看上了这个PCIE接口，可以添加款一个万兆光口，连接光猫棒，取代光猫。价格688&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://wenbin-liu.github.io/ox-hugo/2023-12-17_16-37-41_msg5553580209-797.jpg&#34;
+         alt=&#34;Figure 1: 倍控N5105主板&#34;/&gt;&lt;figcaption&gt;
+            &lt;p&gt;&lt;span class=&#34;figure-number&#34;&gt;Figure 1: &lt;/span&gt;倍控N5105主板&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&#34;机箱&#34;&gt;机箱&lt;/h3&gt;
+&lt;p&gt;机箱选的是天箭座6盘位，对于6盘位机箱来说，天箭座体积比较小，甚至太小了，安装的时候就非常紧凑。价格829.&lt;/p&gt;
+&lt;h3 id=&#34;电源&#34;&gt;电源&lt;/h3&gt;
+&lt;p&gt;电源选的是台达DPS-250AB FLEX小1U电源，价格259。 这个没什么好说的。&lt;/p&gt;
+&lt;h3 id=&#34;内存&#34;&gt;内存&lt;/h3&gt;
+&lt;p&gt;内存选的DDR4 8g， 价格73块。&lt;/p&gt;
+&lt;h3 id=&#34;网卡&#34;&gt;网卡&lt;/h3&gt;
+&lt;p&gt;主板板载了4个2.5G网卡，但是我想甩掉烦人的光猫，因此买了一个万兆网卡，Mellanox MCX311A-XCAT
+。虽然是PCIEx4，主板有些的PCIE带宽是x2.但是只有一个光口速度也够了。价格115. 使用万兆网卡连接光猫棒的时候出了点问题。必须强制接口速率为1000M才可识别光猫棒。&lt;/p&gt;
+&lt;h3 id=&#34;光猫棒&#34;&gt;光猫棒&lt;/h3&gt;
+&lt;p&gt;光猫棒选的是ODI的XPON，因为我家电信是EPON。&lt;/p&gt;
+&lt;h3 id=&#34;硬盘&#34;&gt;硬盘&lt;/h3&gt;
+&lt;p&gt;硬盘我买的是西数的HC550氦气盘16T。一共三块，计划其中一块用来存个人文件，比如照片，一块用来存备份。最后一块用来存网上下的的电影之类，作为媒体盘。价格一共5094&lt;/p&gt;
+&lt;h2 id=&#34;软件&#34;&gt;软件&lt;/h2&gt;
+&lt;p&gt;为了稳定性和方便性，我使用PVE作为宿主机系统。创建了两个虚拟机,一个是openwrt作为主路由，负责拨号和网络管理。第二个虚拟机为openmediavault作为nas系统，管理我的三块硬盘。 最后创建一个LXC容器用来管理Docker。在LXC内我倾向于使用Docker-compose管理docker。NAS的存储使用SAMBA或者NFS共享给其他虚拟机/容器和局域网内其他设备。安装的Docker包括&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;qbittorent,负责种子下载&lt;/li&gt;
+&lt;li&gt;alist，负责下载aliyun，baiduyun网盘内的数据&lt;/li&gt;
+&lt;li&gt;transmission，负责一般URL下载。&lt;/li&gt;
+&lt;li&gt;Jellyfin,负责电影/电视剧管理，流媒体传输。可以硬解。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;openmediavault&#34;&gt;Openmediavault&lt;/h3&gt;
+&lt;p&gt;我使用OMV作为NAS系统，他开源，简洁，小巧。没有复杂过多的功能。我的硬盘全部使用BTRFS文件系统。然后备份基于BTRFS的快照策略。对于个人数据，我使用 &lt;strong&gt;btrbk&lt;/strong&gt; 工具备份，它能利用BTRFS的快照功能自动创建快照到备份盘。非常方便。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://wenbin-liu.github.io/ox-hugo/2024-01-21_13-44-13_screenshot.png&#34;
+         alt=&#34;Figure 2: Opennediavault 界面&#34;/&gt;&lt;figcaption&gt;
+            &lt;p&gt;&lt;span class=&#34;figure-number&#34;&gt;Figure 2: &lt;/span&gt;Opennediavault 界面&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;集群&#34;&gt;集群&lt;/h2&gt;
+&lt;p&gt;此外我还有一个闲置的工控机，同样，安装了PVE之后装了Debian虚拟机，然后直通显卡，安装Plasma-Bigscreen桌面作为机顶盒使用。目前看来没有什么问题。PVE有集群功能，可以将这个节点和NAS组成集群，一起管理，比较方便。&lt;/p&gt;
+&lt;figure&gt;&lt;img src=&#34;https://wenbin-liu.github.io/ox-hugo/2024-01-21_13-45-41_screenshot.png&#34;
+         alt=&#34;Figure 3: PVE 集群&#34;/&gt;&lt;figcaption&gt;
+            &lt;p&gt;&lt;span class=&#34;figure-number&#34;&gt;Figure 3: &lt;/span&gt;PVE 集群&lt;/p&gt;
+        &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/linux/">Linux</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://wenbin-liu.github.io/tags/%E7%BD%91%E7%BB%9C/">网络</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>统计力学(中) – 巨正则系综</title>
