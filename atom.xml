@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Venns&#39; Space</title>
     <subtitle type="html">Venns 的个人博客.</subtitle>
-    <updated>2024-01-21T13:51:00&#43;08:00</updated>
+    <updated>2024-03-30T21:12:02&#43;08:00</updated>
     <id>https://wenbin-liu.github.io/</id>
     <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/" />
     <link rel="self" type="application/atom&#43;xml" href="https://wenbin-liu.github.io/atom.xml" />
@@ -16,6 +16,103 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.106.0">Hugo</generator>
+        <entry>
+            <title type="text">渐进均分性与信源编码</title>
+            <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20220302160220-test/" />
+            <id>https://wenbin-liu.github.io/posts/20220302160220-test/</id>
+            <updated>2024-03-30T21:11:02&#43;08:00</updated>
+            <published>2024-03-30T00:00:00&#43;08:00</published>
+            <author>
+                    <name>Venns</name>
+                    <uri>https://wenbin-liu.github.io/</uri>
+                    <email>wenbin_liu@outlook.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">前言 许久没有更新博客了，这意味着我很久没碰到有趣的值得记录的事情了。但是最近学习信息……</summary>
+            
+                <content type="html">&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;许久没有更新博客了，这意味着我很久没碰到有趣的值得记录的事情了。但是最近学习信息论碰到一个挺有意思的一个问题。他用一种几乎纯概率的手段证明了数据压缩中一个非常经典的编码问题。遂将其记录下来。&lt;/p&gt;
+&lt;h2 id=&#34;aep&#34;&gt;AEP&lt;/h2&gt;
+&lt;p&gt;渐进均分性是其实就是大数定理的一个推论。大数定理表明&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若 \(X_1, X_2, \dots, X_n\) i.i.d \(\sim p(x)\) . 则依概率有&lt;/p&gt;
+&lt;p&gt;\[
+\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^{n} X_i = \mathbb E X
+\]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;如果把\(X_i\) 替换为对数值$log p(X_i)$则上述定理变为渐进均分性 &lt;strong&gt;AEP&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若 \(X_1, X_2, \dots, X_n\) i.i.d \(\sim p(x)\) . 则依概率有&lt;/p&gt;
+&lt;p&gt;\[
+\lim_{n \to \infty} \frac{1}{n} \sum_{i=1}^{n} \log p(X_i) = \mathbb E \log X = H(X)
+\]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;依概率收敛也就是说\(\frac{1}{n}\sum_{i=1}^{n} \log p(X_i)\) 可以以无限接近1的概率逼近熵。从而给定任意 \(\varepsilon,n\), 定义如下的典型集
+\[
+A_\varepsilon^n =\{(x_1, \dots,x_n)| H(X) -\varepsilon \leq \frac{1}{n} \log p(x_1, x_2, \dots x_n) \leq H(X) + \varepsilon\}
+\]&lt;/p&gt;
+&lt;p&gt;依概率收敛意味这对任意 \(\varepsilon\)，
+\(\lim \mathbb P (A_\epsilon^n) = 1\)，因此若\(n\) 足够大 \(\mathbb P (A_\epsilon^n) \geq
+1-\varepsilon\)
+此外，有
+\(1 \geq \mathbb P (A_\varepsilon^n)  \geq |A_\varepsilon^n|2^{-n(H+\varepsilon)}\),  \(|A_\varepsilon^n| \leq 2^{n(H+\varepsilon)}\)
+这意味这典型集的基数存在上界，该上界由熵决定. 另一方面，典型集的概率无限接近于1，非典型集的概率无限接近于0. 从而可以给出如下的编码策略。&lt;/p&gt;
+&lt;p&gt;给出1bit用来标记典型集与非典型集，典型集的元素最多用 \(n(H+\varepsilon)+1+1\) 比特编码。非典型集的元素可以用 \(n \log|\chi| + 1 +1\) 比特来编码。虽然非典型集编码较长，但其概率较低，最终的编码长度由典型集主导。&lt;/p&gt;
+&lt;p&gt;\begin{align}
+\mathbb E l(X^n) &amp;amp;\leq \sum_{ x^n \in A_\varepsilon^n} p(x^n) l(x^n) +  \sum_{x^n \in (A_\varepsilon^n)^c } p (x^n) l(x^n)
+\\
+&amp;amp;\leq n(H+\varepsilon)+2 + \varepsilon (n \log|\chi| + 2)
+\end{align}&lt;/p&gt;
+&lt;p&gt;于是对于任意小的 \(\varepsilon&#39;\) 可以选取合适的 \(n\)
+使得
+\[
+\mathbb
+E l(X^n) \leq n(H + \epsilon&#39;)
+\]&lt;/p&gt;
+&lt;h2 id=&#34;弱大数定理的证明&#34;&gt;弱大数定理的证明&lt;/h2&gt;
+&lt;p&gt;弱大数定理的证明很简单，使用切比雪夫不等式即可。切比雪夫不等式：
+\[
+\mathbb P (|X-\mu| &amp;gt; \varepsilon) \leq \frac{\sigma^2}{\epsilon^2}
+\]&lt;/p&gt;
+&lt;p&gt;令\(\bar X_n = \frac{1}{n} \sum_{i=1}^n X_i\)。从而
+\[
+\lim \mathbb P(|\bar X_n - \mu | &amp;gt; \epsilon) \leq \lim \frac{\sigma^2}{n\varepsilon^2} = 0
+\]&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/categories/%E9%80%9A%E4%BF%A1/" term="通信" label="通信" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/tags/%E4%BF%A1%E6%81%AF%E8%AE%BA/" term="信息论" label="信息论" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://wenbin-liu.github.io/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" term="概率论" label="概率论" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">NAS – All in One</title>
             <link rel="alternate" type="text/html" href="https://wenbin-liu.github.io/posts/20231217160000-nas_all_in_one/" />
