@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 04 Jan 2025 13:59:05 &#43;0800</lastBuildDate>
+        <lastBuildDate>Sat, 04 Jan 2025 14:38:08 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="https://wenbin-liu.github.io/rss.xml" />
         
@@ -106,10 +106,10 @@ Typst 有许多优点：
 &#34;&gt;
     &lt;meta name=&#34;viewport&#34; content=&#34;width=device-width, initial-scale=1&#34;&gt;
 
-    &lt;link rel=&#34;stylesheet&#34; href=&#34;typst-ts/theme/css/general.css&#34;&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://wenbin-liu.github.io/typst-ts/theme/css/general.css&#34;&gt;
 
     &lt;!-- Fonts --&gt;
-    &lt;link rel=&#34;stylesheet&#34; href=&#34;typst-ts/theme/FontAwesome/css/font-awesome.css&#34;&gt;
+    &lt;link rel=&#34;stylesheet&#34; href=&#34;https://wenbin-liu.github.io/typst-ts/theme/FontAwesome/css/font-awesome.css&#34;&gt;
 
     &lt;!-- Custom theme stylesheets --&gt;
 
@@ -207,7 +207,7 @@ Typst 有许多优点：
         &lt;script&gt;
             window.getTypstTheme = function getTypstTheme() {
                 var _theme;
-                try { _theme = localStorage.getItem(&#39;shiroa-theme&#39;); } catch (e) { }
+                try { _theme = localStorage.getItem(&#39;theme&#39;); } catch (e) { }
                 if (_theme === null || _theme === undefined) { _theme = default_theme; }
                 window.typstBookTheme = _theme;
                 return _theme;
@@ -251,7 +251,7 @@ Typst 有许多优点：
 
         &lt;/div&gt;
 
-        &lt;script src=&#34;typst-ts/internal/svg_utils.js&#34;&gt;&lt;/script&gt;
+        &lt;script src=&#34;https://wenbin-liu.github.io/typst-ts/internal/svg_utils.js&#34;&gt;&lt;/script&gt;
 
 
     &lt;/div&gt;
